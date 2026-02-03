@@ -2,6 +2,10 @@
 
 Frontend application for the Vibe Holidays website built with React, TypeScript, Vite, and Tailwind CSS.
 
+## Production URLs
+- Frontend: https://vibe-holidays-svl8.vercel.app
+- Backend API: https://vibe-holidays-backend.onrender.com
+
 ## Setup
 
 1. Install dependencies:
