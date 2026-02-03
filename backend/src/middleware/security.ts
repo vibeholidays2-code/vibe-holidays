@@ -138,9 +138,12 @@ export const getCorsOptions = () => {
         return callback(null, true);
       }
 
-      if (allowedOrigins.includes(origin)) {
+      // In production, allow Vercel preview deployments
+      if (origin.includes('vercel.app') || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log('CORS blocked origin:', origin);
+        console.log('Allowed origins:', allowedOrigins);
         callback(new Error('Not allowed by CORS'));
       }
     },
