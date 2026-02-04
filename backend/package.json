@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "echo 'Build complete'",
-    "start": "ts-node src/server.ts",
+    "start": "ts-node --transpile-only src/server.ts",
     "test": "cross-env NODE_OPTIONS=--localstorage-file=.localstorage jest --runInBand",
     "test:watch": "cross-env NODE_OPTIONS=--localstorage-file=.localstorage jest --watch",
     "lint": "eslint . --ext .ts",
