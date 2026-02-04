@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc --skipLibCheck",
+    "build": "npm install && tsc --skipLibCheck",
     "start": "node dist/server.js",
     "test": "cross-env NODE_OPTIONS=--localstorage-file=.localstorage jest --runInBand",
     "test:watch": "cross-env NODE_OPTIONS=--localstorage-file=.localstorage jest --watch",
