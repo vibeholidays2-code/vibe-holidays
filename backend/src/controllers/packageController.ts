@@ -5,7 +5,7 @@ import { AuthRequest } from '../middleware/auth';
 /**
  * Get all packages with optional filtering and search
  * Public endpoint
- * Query params: destination, minPrice, maxPrice, minDuration, maxDuration, search, featured, page, limit
+ * Query params: destination, category, minPrice, maxPrice, minDuration, maxDuration, search, featured, page, limit
  */
 export const getPackages = async (
   req: AuthRequest,
@@ -14,6 +14,7 @@ export const getPackages = async (
   try {
     const {
       destination,
+      category,
       minPrice,
       maxPrice,
       minDuration,
@@ -30,6 +31,11 @@ export const getPackages = async (
     // Destination filter
     if (destination) {
       filter.destination = destination;
+    }
+
+    // Category filter (for frontend compatibility)
+    if (category) {
+      filter.category = category;
     }
 
     // Price range filter
