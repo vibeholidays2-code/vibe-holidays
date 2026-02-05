@@ -18,7 +18,7 @@ interface DestinationCard {
 
 const PackagesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const selectedDestination = searchParams.get('destination');
+  const selectedDestination = searchParams.get('category');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'price-low' | 'price-high' | 'duration' | 'name'>('price-low');
   
@@ -52,10 +52,16 @@ const PackagesPage = () => {
       packageCount: 11,
       category: 'Vietnam'
     },
+    { 
+      name: 'Goa', 
+      image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', 
+      packageCount: 2,
+      category: 'Goa'
+    },
   ];
 
   const handleDestinationClick = (category: string) => {
-    setSearchParams({ destination: category });
+    setSearchParams({ category: category });
   };
 
   const handleBackToDestinations = () => {
