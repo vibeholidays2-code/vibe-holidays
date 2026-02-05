@@ -31,8 +31,8 @@ const HomePage = () => {
         setIsLoading(true);
         setError(null);
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        console.log('Fetching from:', `${apiUrl}/api/packages?featured=true&limit=6`);
-        const response = await fetch(`${apiUrl}/api/packages?featured=true&limit=6`);
+        console.log('Fetching from:', `${apiUrl}/api/packages?featured=true&limit=12`);
+        const response = await fetch(`${apiUrl}/api/packages?featured=true&limit=12`);
         console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
