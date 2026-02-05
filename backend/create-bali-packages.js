@@ -50,7 +50,7 @@ const baliPackages = [
     thumbnail: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400',
     featured: true,
     active: true,
-    category: 'International',
+    category: 'Bali',
     brochureUrl: 'http://localhost:5000/brochures/bali-budget-25000.pdf'
   },
   {
@@ -92,7 +92,7 @@ const baliPackages = [
     thumbnail: 'https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=400',
     featured: true,
     active: true,
-    category: 'International',
+    category: 'Bali',
     brochureUrl: 'http://localhost:5000/brochures/bali-standard-27000.pdf'
   },
   {
@@ -136,7 +136,7 @@ const baliPackages = [
     thumbnail: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400',
     featured: true,
     active: true,
-    category: 'International',
+    category: 'Bali',
     brochureUrl: 'http://localhost:5000/brochures/bali-deluxe-30000.pdf'
   },
   {
@@ -183,7 +183,7 @@ const baliPackages = [
     thumbnail: 'https://images.unsplash.com/photo-1573790387438-4da905039392?w=400',
     featured: true,
     active: true,
-    category: 'International',
+    category: 'Bali',
     brochureUrl: 'http://localhost:5000/brochures/bali-premium-35000.pdf'
   }
 ];

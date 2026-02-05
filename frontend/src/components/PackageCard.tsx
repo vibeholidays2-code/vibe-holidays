@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Package } from '../types/package';
-import Card from './Card';
 
 interface PackageCardProps {
   package: Package;
@@ -9,85 +9,259 @@ interface PackageCardProps {
 const PackageCard = ({ package: pkg }: PackageCardProps) => {
   const imageUrl = pkg.thumbnail || pkg.images[0] || '/placeholder-image.jpg';
 
+  // Animation variants for the card
+  const cardVariants = {
+    initial: { 
+      scale: 1, 
+      y: 0,
+      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+    },
+    hover: { 
+      scale: 1.02,
+      y: -8,
+      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20 
+      }
+    }
+  };
+
+  // Animation variants for the image
+  const imageVariants = {
+    initial: { scale: 1 },
+    hover: { 
+      scale: 1.1,
+      transition: { 
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Animation variants for the overlay
+  const overlayVariants = {
+    initial: { opacity: 0 },
+    hover: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.3 
+      }
+    }
+  };
+
+  // Animation variants for the price badge
+  const priceBadgeVariants = {
+    initial: { 
+      opacity: 0, 
+      scale: 0.8,
+      y: 10
+    },
+    hover: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { 
+        duration: 0.3,
+        delay: 0.1
+      }
+    }
+  };
+
+  // Animation variants for the title
+  const titleVariants = {
+    initial: { color: '#111827' },
+    hover: { 
+      color: '#1e40af',
+      transition: { 
+        duration: 0.2 
+      }
+    }
+  };
+
+  // Animation variants for the arrow
+  const arrowVariants = {
+    initial: { x: 0 },
+    hover: { 
+      x: 4,
+      transition: { 
+        type: "spring", 
+        stiffness: 400, 
+        damping: 10 
+      }
+    }
+  };
+
+  // Animation variants for the featured badge
+  const featuredBadgeVariants = {
+    initial: { 
+      scale: 1,
+      rotate: 0
+    },
+    hover: { 
+      scale: 1.05,
+      rotate: 2,
+      transition: { 
+        type: "spring", 
+        stiffness: 400, 
+        damping: 10 
+      }
+    }
+  };
+
   return (
-    <Link to={`/packages/${pkg._id}`}>
-      <Card padding="none" hover className="h-full overflow-hidden">
-        <div className="relative h-48 overflow-hidden">
-          <img
+    <Link to={`/packages/${pkg._id}`} className="block group">
+      <motion.div
+        variants={cardVariants}
+        initial="initial"
+        whileHover="hover"
+        className="h-full overflow-hidden rounded-2xl bg-white border border-neutral-200"
+      >
+        <div className="relative h-56 overflow-hidden">
+          <motion.img
             src={imageUrl}
             alt={pkg.name}
             className="w-full h-full object-cover"
             loading="lazy"
+            variants={imageVariants}
           />
+          
+          {/* Subtle overlay for better text readability */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"
+            variants={overlayVariants}
+          />
+          
           {pkg.featured && (
-            <span className="absolute top-2 right-2 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-              Featured
-            </span>
+            <motion.div 
+              className="absolute top-3 right-3"
+              variants={featuredBadgeVariants}
+            >
+              <span className="bg-gradient-secondary text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-soft">
+                ✨ Featured
+              </span>
+            </motion.div>
           )}
-        </div>
-        
-        <div className="p-4">
-          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-            {pkg.name}
-          </h3>
           
-          <div className="flex items-center text-gray-600 mb-2">
-            <svg
-              className="w-4 h-4 mr-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            <span className="text-sm">{pkg.destination}</span>
-          </div>
-          
-          <div className="flex items-center text-gray-600 mb-3">
-            <svg
-              className="w-4 h-4 mr-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="text-sm">{pkg.duration} days</span>
-          </div>
-          
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-            {pkg.description}
-          </p>
-          
-          <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-            <div>
-              <span className="text-2xl font-bold text-blue-600">
+          {/* Price badge overlay */}
+          <motion.div 
+            className="absolute bottom-3 left-3"
+            variants={priceBadgeVariants}
+          >
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow-soft">
+              <span className="text-lg font-bold text-primary-600">
                 ₹{pkg.price.toLocaleString()}
               </span>
-              <span className="text-gray-500 text-sm ml-1">per person</span>
             </div>
-            <button className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-              View Details →
-            </button>
+          </motion.div>
+        </div>
+        
+        <div className="p-4 sm:p-5 lg:p-6">
+          {/* Enhanced typography hierarchy */}
+          <motion.h3 
+            className="text-lg sm:text-xl font-bold mb-3 line-clamp-2"
+            variants={titleVariants}
+          >
+            {pkg.name}
+          </motion.h3>
+          
+          {/* Improved metadata with better spacing */}
+          <div className="flex items-center justify-between mb-3 text-sm sm:text-base">
+            <motion.div 
+              className="flex items-center text-neutral-600"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <svg
+                className="w-4 h-4 mr-1.5 text-primary-500 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              <span className="font-medium truncate">{pkg.destination}</span>
+            </motion.div>
+            
+            <motion.div 
+              className="flex items-center text-neutral-600 ml-2"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <svg
+                className="w-4 h-4 mr-1.5 text-primary-500 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-medium">{pkg.duration} days</span>
+            </motion.div>
+          </div>
+          
+          {/* Enhanced description with better typography */}
+          <motion.p 
+            className="text-neutral-600 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3"
+            initial={{ opacity: 0.8 }}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            {pkg.description}
+          </motion.p>
+          
+          {/* Refined pricing and CTA section */}
+          <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+            <motion.div 
+              className="flex flex-col"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="text-xl sm:text-2xl font-bold text-primary-600">
+                ₹{pkg.price.toLocaleString()}
+              </span>
+              <span className="text-neutral-500 text-xs">per person</span>
+            </motion.div>
+            
+            <motion.div 
+              className="flex items-center text-primary-600 font-semibold min-h-[44px] py-2"
+              whileHover={{ 
+                color: '#1d4ed8',
+                scale: 1.05
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="mr-1 text-sm sm:text-base">View Details</span>
+              <motion.svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                variants={arrowVariants}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </motion.svg>
+            </motion.div>
           </div>
         </div>
-      </Card>
+      </motion.div>
     </Link>
   );
 };

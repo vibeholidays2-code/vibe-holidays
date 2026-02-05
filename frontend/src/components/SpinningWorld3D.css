@@ -1,0 +1,290 @@
+/* 3D Spinning World Container */
+.spinning-world-container {
+  position: relative;
+  margin: 0 auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* World Globe */
+.world-globe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #1e3c72, #2a5298, #4facfe);
+  transform-style: preserve-3d;
+  animation: worldSpin 20s linear infinite;
+  box-shadow: 
+    inset -20px -20px 50px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(79, 172, 254, 0.3);
+}
+
+/* World Surface with continents */
+.world-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Continents */
+.continent {
+  position: absolute;
+  background: #2d5016;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.continent-1 {
+  width: 30%;
+  height: 25%;
+  top: 20%;
+  left: 15%;
+  transform: rotate(15deg);
+}
+
+.continent-2 {
+  width: 25%;
+  height: 20%;
+  top: 45%;
+  right: 20%;
+  transform: rotate(-30deg);
+}
+
+.continent-3 {
+  width: 20%;
+  height: 15%;
+  top: 60%;
+  left: 25%;
+  transform: rotate(45deg);
+}
+
+.continent-4 {
+  width: 15%;
+  height: 20%;
+  top: 25%;
+  right: 10%;
+  transform: rotate(-15deg);
+}
+
+.continent-5 {
+  width: 18%;
+  height: 12%;
+  top: 70%;
+  right: 30%;
+  transform: rotate(60deg);
+}
+
+.continent-6 {
+  width: 12%;
+  height: 18%;
+  top: 10%;
+  left: 45%;
+  transform: rotate(-45deg);
+}
+
+/* Atmosphere glow */
+.atmosphere {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 70%, rgba(135, 206, 250, 0.3) 100%);
+  animation: atmosphereGlow 4s ease-in-out infinite alternate;
+}
+
+/* Airplane Orbits */
+.airplane-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+.orbit-1 {
+  width: 140%;
+  height: 140%;
+  margin: -70% 0 0 -70%;
+  animation: orbitRotate1 12s linear infinite;
+  transform: rotateX(10deg) rotateY(0deg);
+}
+
+.orbit-2 {
+  width: 160%;
+  height: 160%;
+  margin: -80% 0 0 -80%;
+  animation: orbitRotate2 15s linear infinite reverse;
+  transform: rotateX(-15deg) rotateY(45deg);
+}
+
+.orbit-3 {
+  width: 180%;
+  height: 180%;
+  margin: -90% 0 0 -90%;
+  animation: orbitRotate3 18s linear infinite;
+  transform: rotateX(20deg) rotateY(-30deg);
+}
+
+/* Airplanes */
+.airplane {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+  animation: airplaneBob 2s ease-in-out infinite alternate;
+}
+
+.airplane-1 {
+  top: -10px;
+  left: -10px;
+  animation-delay: 0s;
+}
+
+.airplane-2 {
+  top: -10px;
+  left: -10px;
+  animation-delay: 0.7s;
+}
+
+.airplane-3 {
+  top: -10px;
+  left: -10px;
+  animation-delay: 1.4s;
+}
+
+.airplane svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(90deg);
+}
+
+/* Flight Paths */
+.flight-path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: pathPulse 3s ease-in-out infinite;
+}
+
+.path-1 {
+  width: 140%;
+  height: 140%;
+  margin: -70% 0 0 -70%;
+  animation-delay: 0s;
+}
+
+.path-2 {
+  width: 160%;
+  height: 160%;
+  margin: -80% 0 0 -80%;
+  animation-delay: 1s;
+}
+
+.path-3 {
+  width: 180%;
+  height: 180%;
+  margin: -90% 0 0 -90%;
+  animation-delay: 2s;
+}
+
+/* Animations */
+@keyframes worldSpin {
+  from {
+    transform: rotateY(0deg) rotateX(5deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(5deg);
+  }
+}
+
+@keyframes orbitRotate1 {
+  from {
+    transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(10deg) rotateY(0deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbitRotate2 {
+  from {
+    transform: rotateX(-15deg) rotateY(45deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(-15deg) rotateY(45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbitRotate3 {
+  from {
+    transform: rotateX(20deg) rotateY(-30deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(20deg) rotateY(-30deg) rotateZ(360deg);
+  }
+}
+
+@keyframes airplaneBob {
+  from {
+    transform: translateY(0px) scale(1);
+  }
+  to {
+    transform: translateY(-3px) scale(1.1);
+  }
+}
+
+@keyframes atmosphereGlow {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pathPulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .airplane {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .orbit-1, .orbit-2, .orbit-3 {
+    border-width: 1px;
+  }
+}
+
+/* Hover effects */
+.spinning-world-container:hover .world-globe {
+  animation-duration: 10s;
+}
+
+.spinning-world-container:hover .airplane-orbit {
+  animation-duration: 8s;
+}
+
+.spinning-world-container:hover .atmosphere {
+  animation-duration: 2s;
+}

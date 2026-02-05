@@ -13,7 +13,7 @@ describe('Button Component', () => {
     it('should render with default primary variant', () => {
       render(<Button>Primary</Button>);
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('bg-primary-600');
+      expect(button).toHaveClass('bg-gradient-primary');
     });
   });
 
@@ -21,25 +21,25 @@ describe('Button Component', () => {
     it('should render primary variant correctly', () => {
       render(<Button variant="primary">Primary</Button>);
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('bg-primary-600', 'text-white');
+      expect(button).toHaveClass('bg-gradient-primary', 'text-white');
     });
 
     it('should render secondary variant correctly', () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('bg-gray-600', 'text-white');
+      expect(button).toHaveClass('border-2', 'border-primary-600', 'text-primary-600', 'bg-white');
     });
 
-    it('should render outline variant correctly', () => {
-      render(<Button variant="outline">Outline</Button>);
+    it('should render ghost variant correctly', () => {
+      render(<Button variant="ghost">Ghost</Button>);
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('border-2', 'border-primary-600', 'text-primary-600');
+      expect(button).toHaveClass('text-primary-600', 'bg-transparent');
     });
 
     it('should render danger variant correctly', () => {
       render(<Button variant="danger">Danger</Button>);
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('bg-red-600', 'text-white');
+      expect(button).toHaveClass('from-error-600', 'to-error-500', 'text-white');
     });
   });
 
@@ -86,7 +86,13 @@ describe('Button Component', () => {
     });
   });
 
-  describe('Interactions', () => {
+  describe('Enhanced Interactions', () => {
+    it('should have transition and transform classes for animations', () => {
+      render(<Button>Animated Button</Button>);
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass('transition-all', 'duration-200', 'transform', 'active:scale-95');
+    });
+
     it('should call onClick handler when clicked', async () => {
       const handleClick = vi.fn();
       const user = userEvent.setup();

@@ -219,17 +219,22 @@ const InquiryForm = ({
       )}
 
       {/* Form Actions */}
-      <div className="flex justify-end space-x-3 pt-4">
+      <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3 pt-4">
         {onCancel && (
           <Button
             type="button"
-            variant="outline"
+            variant="secondary"
             onClick={onCancel}
+            className="w-full sm:w-auto min-h-[48px]"
           >
             Cancel
           </Button>
         )}
-        <Button type="submit" isLoading={isSubmitting}>
+        <Button 
+          type="submit" 
+          isLoading={isSubmitting}
+          className="w-full sm:w-auto min-h-[48px]"
+        >
           Submit Inquiry
         </Button>
       </div>

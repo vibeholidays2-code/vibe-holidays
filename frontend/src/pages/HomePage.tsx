@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import { SkeletonPackageCard } from '../components/SkeletonLoader';
+import { ImageWithFallback } from '../components/ImagePlaceholder';
+import LoadingSpinner, { InlineLoader } from '../components/LoadingSpinner';
 
 interface Package {
   _id: string;
@@ -19,10 +22,14 @@ interface Package {
 const HomePage = () => {
   const [featuredPackages, setFeaturedPackages] = useState<Package[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFeaturedPackages = async () => {
       try {
+        setIsLoading(true);
+        setError(null);
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         console.log('Fetching from:', `${apiUrl}/api/packages?featured=true&limit=6`);
         const response = await fetch(`${apiUrl}/api/packages?featured=true&limit=6`);
@@ -35,9 +42,13 @@ const HomePage = () => {
           setFeaturedPackages(packages);
         } else {
           console.error('Failed to fetch:', response.status, response.statusText);
+          setError('Failed to load featured packages');
         }
       } catch (error) {
         console.error('Error fetching featured packages:', error);
+        setError('Unable to connect to server');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -73,10 +84,10 @@ const HomePage = () => {
   const destinations = [
     { name: 'Bali', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80', packages: 4 },
     { name: 'Jaisalmer', image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80', packages: 2 },
-    { name: 'Vietnam', image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80', packages: 11 },
+    { name: 'Vietnam', image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80', packages: 13 },
+    { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', packages: 2 },
     { name: 'Manali', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', packages: 0 },
     { name: 'Shimla', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80', packages: 0 },
-    { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', packages: 0 },
   ];
 
   const testimonials = [
@@ -143,8 +154,8 @@ const HomePage = () => {
         {heroSlides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
           >
             <img
@@ -152,79 +163,168 @@ const HomePage = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+            {/* Enhanced gradient overlay with subtle animation */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            
+            {/* Subtle animated background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
           </div>
         ))}
 
         {/* Hero Content */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 lg:px-8 xl:px-12">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="max-w-5xl xl:max-w-6xl"
             >
-              <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-                {heroSlides[currentSlide].title}
-              </h1>
-              <p className="text-2xl md:text-3xl text-gray-200 mb-8">
+              {/* Enhanced typography with better hierarchy */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="mb-4 lg:mb-6"
+              >
+                <span className="inline-block px-4 py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-sm lg:text-base font-medium tracking-wide uppercase">
+                  Premium Travel Experience
+                </span>
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-white mb-6 lg:mb-8 leading-[0.9] tracking-tight"
+              >
+                <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+                  {heroSlides[currentSlide].title}
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-200 mb-8 lg:mb-12 font-light leading-relaxed max-w-4xl xl:max-w-5xl"
+              >
                 {heroSlides[currentSlide].subtitle}
-              </p>
-              <div className="flex flex-wrap gap-4">
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.8 }}
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8"
+              >
                 <Link to="/packages">
-                  <Button className="px-10 py-5 text-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
-                    🌟 Explore Packages
+                  <Button className="group px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                    <span className="flex items-center justify-center gap-2 lg:gap-3">
+                      <span className="text-xl lg:text-2xl">✨</span>
+                      <span>Explore Packages</span>
+                      <svg className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button className="px-10 py-5 text-lg bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-full shadow-2xl transform hover:scale-105 transition-all">
-                    📞 Plan Your Trip
+                  <Button className="group px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+                    <span className="flex items-center justify-center gap-2 lg:gap-3">
+                      <span className="text-lg lg:text-xl">📞</span>
+                      <span>Plan Your Trip</span>
+                    </span>
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
 
-        {/* Carousel Indicators */}
+        {/* Enhanced Carousel Indicators */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide ? 'bg-yellow-400 w-8' : 'bg-white/50'
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide 
+                  ? 'bg-gradient-to-r from-blue-400 to-purple-400 w-8 shadow-lg' 
+                  : 'bg-white/40 w-2 hover:bg-white/60'
               }`}
             />
           ))}
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 right-8 animate-bounce">
-          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
+        {/* Enhanced Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 right-8 z-20"
+        >
+          <div className="flex flex-col items-center gap-2 text-white/80">
+            <span className="text-sm font-medium tracking-wide">Scroll</span>
+            <div className="animate-bounce">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 xl:px-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 lg:mb-20"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-6">
+              Trusted by Thousands of Happy Travelers
+            </h2>
+            <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-3xl lg:max-w-4xl mx-auto">
+              Our commitment to excellence speaks through numbers
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center text-white"
+                transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                className="text-center text-white group"
               >
-                <div className="text-5xl mb-2">{stat.icon}</div>
-                <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-lg font-medium">{stat.label}</div>
+                <div className="relative mb-4 lg:mb-6">
+                  <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 lg:mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {stat.icon}
+                  </div>
+                  <div className="absolute inset-0 bg-white/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-2 lg:mb-3 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  {stat.number}
+                </div>
+                <div className="text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-100 tracking-wide">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -232,23 +332,23 @@ const HomePage = () => {
       </section>
 
       {/* Popular Destinations */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 lg:py-24 xl:py-28 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 lg:mb-20"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 lg:mb-6">
               🌏 Popular Destinations
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl lg:max-w-4xl mx-auto">
               Explore our most loved travel destinations
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
             {destinations.map((dest, index) => (
               <motion.div
                 key={index}
@@ -258,16 +358,16 @@ const HomePage = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/packages?destination=${dest.name}`} className="group block">
-                  <div className="relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <div className="relative h-72 md:h-80 lg:h-96 xl:h-[28rem] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                     <img
                       src={dest.image}
                       alt={dest.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-3xl font-bold mb-2">{dest.name}</h3>
-                      <p className="text-lg">{dest.packages} Packages Available</p>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 xl:p-10 text-white">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-3">{dest.name}</h3>
+                      <p className="text-base md:text-lg lg:text-xl">{dest.packages} Packages Available</p>
                     </div>
                   </div>
                 </Link>
@@ -278,68 +378,108 @@ const HomePage = () => {
       </section>
 
       {/* Featured Packages */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-24 lg:py-28 xl:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20 lg:mb-24"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="inline-block mb-4 lg:mb-6"
+            >
+              <span className="px-4 py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-blue-600 text-sm lg:text-base font-semibold tracking-wide uppercase">
+                Handpicked for You
+              </span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6 lg:mb-8 leading-tight">
               ✨ Featured Packages
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Handpicked packages for your perfect getaway
+            <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
+              Carefully curated travel experiences designed to create unforgettable memories
             </p>
           </motion.div>
 
           {featuredPackages.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {featuredPackages.slice(0, 6).map((pkg, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
+                {featuredPackages.slice(0, 8).map((pkg, index) => (
                   <motion.div
                     key={pkg._id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                   >
-                    <Link to={`/packages/${pkg._id}`} className="group block">
-                      <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div className="relative h-64 overflow-hidden">
-                          <img
+                    <Link to={`/packages/${pkg._id}`} className="group block h-full">
+                      <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] h-full flex flex-col border border-slate-100/50">
+                        <div className="relative h-64 md:h-72 lg:h-80 xl:h-72 overflow-hidden">
+                          <ImageWithFallback
                             src={pkg.thumbnail || pkg.images[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
                             alt={pkg.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            aspectRatio="video"
+                            placeholder="blur"
                           />
-                          <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                            ₹{pkg.price.toLocaleString()}
+                          {/* Enhanced overlay gradient */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          
+                          {/* Price badge with enhanced styling */}
+                          <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                            <span className="text-xs md:text-sm">₹</span>
+                            <span className="text-sm md:text-lg">{pkg.price.toLocaleString()}</span>
                           </div>
+                          
+                          {/* Category badge */}
                           {pkg.category && (
-                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-slate-800 px-2 md:px-3 py-1 md:py-1.5 rounded-xl text-xs md:text-sm font-semibold shadow-lg border border-white/50">
                               {pkg.category}
                             </div>
                           )}
+                          
+                          {/* Featured badge */}
+                          <div className="absolute bottom-4 left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-xl text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            ⭐ FEATURED
+                          </div>
                         </div>
-                        <div className="p-6">
-                          <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        
+                        <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
+                          <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                             {pkg.name}
                           </h3>
-                          <div className="flex items-center text-gray-600 mb-3">
-                            <span className="mr-2">📍</span>
-                            <span>{pkg.destination}</span>
-                            <span className="mx-2">•</span>
-                            <span>⏱️ {pkg.duration} days</span>
+                          
+                          <div className="flex items-center text-slate-600 mb-4 text-sm md:text-base">
+                            <span className="mr-2 text-base md:text-lg">📍</span>
+                            <span className="font-medium">{pkg.destination}</span>
+                            <span className="mx-3 text-slate-400">•</span>
+                            <span className="mr-1 text-base md:text-lg">⏱️</span>
+                            <span className="font-medium">{pkg.duration} days</span>
                           </div>
-                          <p className="text-gray-600 line-clamp-2 mb-4">
+                          
+                          <p className="text-slate-600 line-clamp-3 mb-6 leading-relaxed flex-1 text-sm md:text-base">
                             {pkg.description}
                           </p>
-                          <div className="flex items-center text-purple-600 font-semibold group-hover:text-purple-700">
-                            View Details
-                            <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
+                          
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm md:text-base">
+                              <span>View Details</span>
+                              <svg className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </div>
+                            
+                            {/* Rating placeholder */}
+                            <div className="flex items-center gap-1">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <span key={i} className="text-amber-400 text-xs md:text-sm">★</span>
+                              ))}
+                              <span className="text-slate-500 text-xs md:text-sm ml-1">(4.9)</span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -348,72 +488,200 @@ const HomePage = () => {
                 ))}
               </div>
 
-              <div className="text-center mt-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center mt-16 lg:mt-20"
+              >
                 <Link to="/packages">
-                  <Button className="px-10 py-4 text-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition-all">
-                    View All Packages →
+                  <Button className="group px-8 md:px-10 lg:px-12 py-4 lg:py-5 text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-2xl shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                    <span className="flex items-center gap-2 lg:gap-3">
+                      <span>View All Packages</span>
+                      <svg className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </Button>
+                </Link>
+              </motion.div>
+            </>
+          ) : isLoading ? (
+            <div className="space-y-8">
+              {/* Professional loading state with skeleton cards */}
+              <InlineLoader text="Discovering Amazing Packages" />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                  >
+                    <SkeletonPackageCard />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center">
+                  <svg className="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">Unable to Load Packages</h3>
+                <p className="text-slate-600 mb-6">{error}</p>
+                <Button 
+                  onClick={() => window.location.reload()} 
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                >
+                  Try Again
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                  <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">No Featured Packages</h3>
+                <p className="text-slate-600 mb-6">We're currently updating our featured packages. Check back soon!</p>
+                <Link to="/packages">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+                    Browse All Packages
                   </Button>
                 </Link>
               </div>
-            </>
-          ) : (
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-600 mx-auto"></div>
-              <p className="text-gray-600 mt-4">Loading amazing packages...</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50/50">
+        <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="inline-block mb-4"
+            >
+              <span className="px-4 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200/50 rounded-full text-amber-600 text-sm font-semibold tracking-wide uppercase">
+                Real Stories
+              </span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6 leading-tight">
               💬 What Our Travelers Say
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Real experiences from real travelers
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Authentic experiences shared by our valued customers
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
+                className="group"
               >
-                <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full mr-4 border-4 border-white shadow-md"
-                  />
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
-                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-slate-100/50 h-full flex flex-col relative overflow-hidden">
+                  {/* Background decoration */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full -translate-y-16 translate-x-16"></div>
+                  
+                  {/* Quote icon */}
+                  <div className="absolute top-6 right-6 text-4xl text-blue-500/20 group-hover:text-blue-500/30 transition-colors">
+                    "
+                  </div>
+                  
+                  {/* Rating stars */}
+                  <div className="flex mb-6 relative z-10">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <motion.span 
+                        key={i}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: (index * 0.15) + (i * 0.1) }}
+                        className="text-amber-400 text-2xl mr-1 group-hover:text-amber-500 transition-colors"
+                      >
+                        ★
+                      </motion.span>
+                    ))}
+                  </div>
+                  
+                  {/* Testimonial text */}
+                  <blockquote className="text-slate-700 text-lg leading-relaxed mb-8 flex-1 relative z-10 font-medium">
+                    "{testimonial.text}"
+                  </blockquote>
+                  
+                  {/* Author info */}
+                  <div className="flex items-center relative z-10">
+                    <div className="relative">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-16 h-16 rounded-2xl mr-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow object-cover"
+                      />
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-xl mb-1 group-hover:text-blue-600 transition-colors">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-slate-500 text-base flex items-center">
+                        <span className="mr-1">📍</span>
+                        {testimonial.location}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Verified badge */}
+                  <div className="absolute bottom-6 right-6 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    ✓ Verified
                   </div>
                 </div>
-                <div className="flex mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <span key={i} className="text-purple-500 text-2xl">★</span>
-                  ))}
-                </div>
-                <p className="text-gray-700 italic leading-relaxed">
-                  "{testimonial.text}"
-                </p>
               </motion.div>
             ))}
           </div>
+          
+          {/* Additional testimonials indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-16"
+          >
+            <p className="text-slate-600 text-lg mb-4">
+              Join thousands of satisfied travelers
+            </p>
+            <div className="flex justify-center items-center gap-2">
+              <div className="flex -space-x-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-white shadow-lg"></div>
+                ))}
+              </div>
+              <span className="text-slate-500 ml-3">+5000 happy customers</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 

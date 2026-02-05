@@ -47,10 +47,14 @@ describe('PackageCard Component', () => {
       expect(screen.getByText('7 days')).toBeInTheDocument();
     });
 
-    it('should render package price', () => {
+    it('should render package price with rupee symbol', () => {
       renderWithRouter(<PackageCard package={mockPackage} />);
       
-      expect(screen.getByText('$1,200')).toBeInTheDocument();
+      // Check for the main price display (larger text)
+      const priceElements = screen.getAllByText('₹1,200');
+      const mainPrice = priceElements.find(el => el.classList.contains('text-2xl'));
+      expect(mainPrice).toBeInTheDocument();
+      expect(mainPrice).toHaveClass('text-2xl');
     });
 
     it('should render package description', () => {
@@ -87,23 +91,23 @@ describe('PackageCard Component', () => {
       expect(image).toHaveAttribute('src', '/placeholder-image.jpg');
     });
 
-    it('should display featured badge for featured packages', () => {
+    it('should display enhanced featured badge for featured packages', () => {
       renderWithRouter(<PackageCard package={mockPackage} />);
       
-      expect(screen.getByText('Featured')).toBeInTheDocument();
+      expect(screen.getByText('✨ Featured')).toBeInTheDocument();
     });
 
     it('should not display featured badge for non-featured packages', () => {
       const nonFeaturedPackage = { ...mockPackage, featured: false };
       renderWithRouter(<PackageCard package={nonFeaturedPackage} />);
       
-      expect(screen.queryByText('Featured')).not.toBeInTheDocument();
+      expect(screen.queryByText('✨ Featured')).not.toBeInTheDocument();
     });
 
-    it('should render View Details button', () => {
+    it('should render enhanced View Details button with arrow', () => {
       renderWithRouter(<PackageCard package={mockPackage} />);
       
-      expect(screen.getByText(/view details/i)).toBeInTheDocument();
+      expect(screen.getByText('View Details')).toBeInTheDocument();
     });
 
     it('should link to package detail page', () => {
@@ -127,26 +131,68 @@ describe('PackageCard Component', () => {
     });
   });
 
+  describe('Enhanced Visual Design', () => {
+    it('should have professional styling classes', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const link = container.querySelector('a');
+      expect(link).toHaveClass('block', 'group');
+    });
+
+    it('should have enhanced image container with proper height', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const imageContainer = container.querySelector('.h-56');
+      expect(imageContainer).toBeInTheDocument();
+    });
+
+    it('should have hover animations and transitions', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const image = container.querySelector('img');
+      expect(image).toHaveClass('transition-transform', 'duration-500', 'group-hover:scale-105');
+    });
+
+    it('should have enhanced card styling with shadow effects', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const card = container.querySelector('[class*="group-hover:shadow-large"]');
+      expect(card).toBeInTheDocument();
+    });
+  });
+
   describe('Price Formatting', () => {
     it('should format price with comma separator for thousands', () => {
       const expensivePackage = { ...mockPackage, price: 5000 };
       renderWithRouter(<PackageCard package={expensivePackage} />);
       
-      expect(screen.getByText('$5,000')).toBeInTheDocument();
+      // Check for the main price display (larger text)
+      const priceElements = screen.getAllByText('₹5,000');
+      const mainPrice = priceElements.find(el => el.classList.contains('text-2xl'));
+      expect(mainPrice).toBeInTheDocument();
+      expect(mainPrice).toHaveClass('text-2xl');
     });
 
     it('should format price correctly for values under 1000', () => {
       const cheapPackage = { ...mockPackage, price: 500 };
       renderWithRouter(<PackageCard package={cheapPackage} />);
       
-      expect(screen.getByText('$500')).toBeInTheDocument();
+      // Check for the main price display (larger text)
+      const priceElements = screen.getAllByText('₹500');
+      const mainPrice = priceElements.find(el => el.classList.contains('text-2xl'));
+      expect(mainPrice).toBeInTheDocument();
+      expect(mainPrice).toHaveClass('text-2xl');
     });
 
     it('should format large prices correctly', () => {
       const luxuryPackage = { ...mockPackage, price: 15000 };
       renderWithRouter(<PackageCard package={luxuryPackage} />);
       
-      expect(screen.getByText('$15,000')).toBeInTheDocument();
+      // Check for the main price display (larger text)
+      const priceElements = screen.getAllByText('₹15,000');
+      const mainPrice = priceElements.find(el => el.classList.contains('text-2xl'));
+      expect(mainPrice).toBeInTheDocument();
+      expect(mainPrice).toHaveClass('text-2xl');
     });
   });
 
@@ -174,26 +220,36 @@ describe('PackageCard Component', () => {
     });
   });
 
-  describe('Visual Elements', () => {
-    it('should render location icon', () => {
+  describe('Enhanced Visual Elements', () => {
+    it('should render location icon with primary color', () => {
       const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
       
       const locationIcon = container.querySelector('svg');
       expect(locationIcon).toBeInTheDocument();
+      expect(locationIcon).toHaveClass('text-primary-500');
     });
 
-    it('should render duration icon', () => {
+    it('should render duration icon with primary color', () => {
       const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
       
       const icons = container.querySelectorAll('svg');
       expect(icons.length).toBeGreaterThan(1);
+      // Check that duration icon also has primary color
+      expect(icons[1]).toHaveClass('text-primary-500');
     });
 
-    it('should have hover effect class', () => {
+    it('should have enhanced hover effect classes', () => {
       const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
       
-      const card = container.querySelector('[class*="hover"]');
+      const card = container.querySelector('[class*="group-hover:shadow-large"]');
       expect(card).toBeInTheDocument();
+    });
+
+    it('should have gradient overlay on hover', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const overlay = container.querySelector('[class*="bg-gradient-to-t"]');
+      expect(overlay).toBeInTheDocument();
     });
   });
 
@@ -217,6 +273,13 @@ describe('PackageCard Component', () => {
       
       const link = screen.getByRole('link');
       expect(link).toBeInTheDocument();
+    });
+
+    it('should have enhanced typography with proper color classes', () => {
+      const { container } = renderWithRouter(<PackageCard package={mockPackage} />);
+      
+      const heading = container.querySelector('h3');
+      expect(heading).toHaveClass('text-neutral-900', 'group-hover:text-primary-600');
     });
   });
 });
