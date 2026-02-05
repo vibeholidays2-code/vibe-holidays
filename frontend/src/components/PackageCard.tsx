@@ -118,7 +118,7 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
         whileHover="hover"
         className="h-full overflow-hidden rounded-2xl bg-white border border-neutral-200"
       >
-        <div className="relative h-56 overflow-hidden">
+        <div className="relative h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden">
           <motion.img
             src={imageUrl}
             alt={pkg.name}
@@ -135,10 +135,10 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
           
           {pkg.featured && (
             <motion.div 
-              className="absolute top-3 right-3"
+              className="absolute top-2 right-2 sm:top-3 sm:right-3"
               variants={featuredBadgeVariants}
             >
-              <span className="bg-gradient-secondary text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-soft">
+              <span className="bg-gradient-secondary text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-soft">
                 ✨ Featured
               </span>
             </motion.div>
@@ -146,35 +146,35 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
           
           {/* Price badge overlay */}
           <motion.div 
-            className="absolute bottom-3 left-3"
+            className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3"
             variants={priceBadgeVariants}
           >
-            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow-soft">
-              <span className="text-lg font-bold text-primary-600">
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 sm:px-3 sm:py-1.5 shadow-soft">
+              <span className="text-base sm:text-lg font-bold text-primary-600">
                 ₹{pkg.price.toLocaleString()}
               </span>
             </div>
           </motion.div>
         </div>
         
-        <div className="p-4 sm:p-5 lg:p-6">
+        <div className="p-3 sm:p-4 md:p-5 lg:p-6">
           {/* Enhanced typography hierarchy */}
           <motion.h3 
-            className="text-lg sm:text-xl font-bold mb-3 line-clamp-2"
+            className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 line-clamp-2"
             variants={titleVariants}
           >
             {pkg.name}
           </motion.h3>
           
           {/* Improved metadata with better spacing */}
-          <div className="flex items-center justify-between mb-3 text-sm sm:text-base">
+          <div className="flex items-center justify-between mb-2 sm:mb-3 text-xs sm:text-sm md:text-base">
             <motion.div 
               className="flex items-center text-neutral-600"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
               <svg
-                className="w-4 h-4 mr-1.5 text-primary-500 flex-shrink-0"
+                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 text-primary-500 flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -201,7 +201,7 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
               transition={{ duration: 0.2 }}
             >
               <svg
-                className="w-4 h-4 mr-1.5 text-primary-500 flex-shrink-0"
+                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 text-primary-500 flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -219,7 +219,7 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
           
           {/* Enhanced description with better typography */}
           <motion.p 
-            className="text-neutral-600 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3"
+            className="text-neutral-600 text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 line-clamp-3"
             initial={{ opacity: 0.8 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
@@ -228,13 +228,13 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
           </motion.p>
           
           {/* Refined pricing and CTA section */}
-          <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+          <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-200">
             <motion.div 
               className="flex flex-col"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <span className="text-xl sm:text-2xl font-bold text-primary-600">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary-600">
                 ₹{pkg.price.toLocaleString()}
               </span>
               <span className="text-neutral-500 text-xs">per person</span>
@@ -248,9 +248,9 @@ const PackageCard = ({ package: pkg }: PackageCardProps) => {
               }}
               transition={{ duration: 0.2 }}
             >
-              <span className="mr-1 text-sm sm:text-base">View Details</span>
+              <span className="mr-1 text-xs sm:text-sm md:text-base">View Details</span>
               <motion.svg 
-                className="w-4 h-4" 
+                className="w-3 h-3 sm:w-4 sm:h-4" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"

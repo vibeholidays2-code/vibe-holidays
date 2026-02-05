@@ -102,43 +102,43 @@ const PackageDetailPage = () => {
       
       {/* Enhanced Breadcrumb */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center text-sm text-gray-600">
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <nav className="flex items-center text-xs sm:text-sm text-gray-600">
             <Link to="/" className="hover:text-blue-600 transition-colors duration-200 font-medium">
               Home
             </Link>
-            <svg className="w-4 h-4 mx-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 sm:w-4 sm:h-4 mx-2 sm:mx-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
             <Link to="/packages" className="hover:text-blue-600 transition-colors duration-200 font-medium">
               Packages
             </Link>
-            <svg className="w-4 h-4 mx-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 sm:w-4 sm:h-4 mx-2 sm:mx-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-gray-900 font-semibold truncate">{pkg.name}</span>
+            <span className="text-gray-900 font-semibold truncate max-w-[150px] sm:max-w-none">{pkg.name}</span>
           </nav>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <motion.div 
-          className="grid grid-cols-1 xl:grid-cols-3 gap-12"
+          className="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           {/* Main Content */}
-          <div className="xl:col-span-2 space-y-8">
+          <div className="xl:col-span-2 space-y-6 sm:space-y-8">
             {/* Enhanced Image Gallery */}
             <motion.div 
-              className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200/50"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-200/50"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
             >
               <div
-                className="relative h-[500px] cursor-pointer group"
+                className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] cursor-pointer group"
                 onClick={() => setIsImageModalOpen(true)}
               >
                 <ImageWithFallback
@@ -153,7 +153,7 @@ const PackageDetailPage = () => {
                 {/* Featured Badge */}
                 {pkg.featured && (
                   <motion.span 
-                    className="absolute top-6 right-6 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl backdrop-blur-sm"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-6 lg:right-6 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-sm"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
@@ -164,29 +164,30 @@ const PackageDetailPage = () => {
 
                 {/* Image Counter */}
                 {images.length > 1 && (
-                  <div className="absolute bottom-6 right-6 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm">
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm">
                     {selectedImageIndex + 1} / {images.length}
                   </div>
                 )}
 
                 {/* Zoom Indicator */}
-                <div className="absolute bottom-6 left-6 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg className="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 lg:bottom-6 lg:left-6 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 inline mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  Click to view full size
+                  <span className="hidden sm:inline">Click to view full size</span>
+                  <span className="sm:hidden">Tap to zoom</span>
                 </div>
               </div>
               
               {/* Enhanced Thumbnail Gallery */}
               {images.length > 1 && (
-                <div className="p-6 bg-gray-50/50">
-                  <div className="flex gap-3 overflow-x-auto pb-2">
+                <div className="p-3 sm:p-4 lg:p-6 bg-gray-50/50">
+                  <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2">
                     {images.map((image, index) => (
                       <motion.button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-3 transition-all duration-300 ${
+                        className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-lg sm:rounded-xl overflow-hidden border-2 sm:border-3 transition-all duration-300 ${
                           index === selectedImageIndex
                             ? 'border-blue-500 shadow-lg scale-105'
                             : 'border-gray-200 hover:border-gray-300 hover:scale-102'
@@ -211,60 +212,60 @@ const PackageDetailPage = () => {
 
             {/* Enhanced Package Info */}
             <motion.div 
-              className="bg-white rounded-3xl shadow-xl p-8 border border-gray-200/50"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200/50"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <div className="mb-8">
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <div className="mb-6 sm:mb-8">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                   {pkg.name}
                 </h1>
                 
-                <div className="flex flex-wrap gap-6 mb-8">
-                  <div className="flex items-center text-gray-700 bg-gray-50 px-4 py-3 rounded-xl">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-6 mb-6 sm:mb-8">
+                  <div className="flex items-center text-gray-700 bg-gray-50 px-3 py-2 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Destination</p>
-                      <p className="font-semibold">{pkg.destination}</p>
+                      <p className="text-xs sm:text-sm text-gray-500 font-medium">Destination</p>
+                      <p className="text-sm sm:text-base font-semibold">{pkg.destination}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center text-gray-700 bg-gray-50 px-4 py-3 rounded-xl">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center text-gray-700 bg-gray-50 px-3 py-2 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Duration</p>
-                      <p className="font-semibold">{pkg.duration} days</p>
+                      <p className="text-xs sm:text-sm text-gray-500 font-medium">Duration</p>
+                      <p className="text-sm sm:text-base font-semibold">{pkg.duration} days</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="prose prose-lg max-w-none">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="prose prose-sm sm:prose-lg max-w-none">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   About This Package
                 </h2>
-                <div className="text-gray-700 text-lg leading-relaxed whitespace-pre-line mb-8">
+                <div className="text-gray-700 text-base sm:text-lg leading-relaxed whitespace-pre-line mb-6 sm:mb-8">
                   {pkg.description}
                 </div>
                 
                 {pkg.brochureUrl && (
                   <motion.div 
-                    className="mt-8 pt-8 border-t border-gray-200"
+                    className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.4 }}
@@ -273,18 +274,18 @@ const PackageDetailPage = () => {
                       href={pkg.brochureUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 text-blue-600 hover:text-blue-700 font-semibold text-lg group transition-all duration-200 bg-blue-50 hover:bg-blue-100 px-6 py-4 rounded-xl"
+                      className="inline-flex items-center gap-2 sm:gap-3 text-blue-600 hover:text-blue-700 font-semibold text-base sm:text-lg group transition-all duration-200 bg-blue-50 hover:bg-blue-100 px-4 py-3 sm:px-6 sm:py-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
                     >
-                      <div className="w-10 h-10 bg-blue-100 group-hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors duration-200">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 group-hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors duration-200">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </div>
-                      <div>
+                      <div className="text-center sm:text-left">
                         <p className="font-bold">View Complete Brochure</p>
-                        <p className="text-sm text-blue-500">Detailed itinerary and information (PDF)</p>
+                        <p className="text-xs sm:text-sm text-blue-500">Detailed itinerary and information (PDF)</p>
                       </div>
-                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </a>
@@ -296,37 +297,37 @@ const PackageDetailPage = () => {
             {/* Enhanced Itinerary */}
             {pkg.itinerary && pkg.itinerary.length > 0 && (
               <motion.div 
-                className="bg-white rounded-3xl shadow-xl p-8 border border-gray-200/50"
+                className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200/50"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
-                  <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                     </svg>
                   </div>
                   Day-by-Day Itinerary
                 </h2>
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {pkg.itinerary.map((item, index) => (
                     <motion.div 
                       key={index} 
-                      className="flex gap-6 group"
+                      className="flex gap-3 sm:gap-4 lg:gap-6 group"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
                     >
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-xl sm:rounded-2xl flex items-center justify-center font-bold text-sm sm:text-base lg:text-lg shadow-lg group-hover:scale-110 transition-transform duration-300">
                           {index + 1}
                         </div>
                       </div>
-                      <div className="flex-1 pt-2">
-                        <div className="bg-gray-50 rounded-2xl p-6 group-hover:bg-gray-100 transition-colors duration-300">
-                          <h3 className="font-semibold text-gray-900 mb-2 text-lg">Day {index + 1}</h3>
-                          <p className="text-gray-700 whitespace-pre-line leading-relaxed">{item}</p>
+                      <div className="flex-1 pt-1 sm:pt-2">
+                        <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 group-hover:bg-gray-100 transition-colors duration-300">
+                          <h3 className="font-semibold text-gray-900 mb-2 text-base sm:text-lg">Day {index + 1}</h3>
+                          <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base">{item}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -336,24 +337,24 @@ const PackageDetailPage = () => {
             )}
 
             {/* Enhanced Inclusions & Exclusions */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               {/* Inclusions */}
               {pkg.inclusions && pkg.inclusions.length > 0 && (
                 <motion.div 
-                  className="bg-white rounded-3xl shadow-xl p-8 border border-gray-200/50"
+                  className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200/50"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     What's Included
                   </h2>
-                  <ul className="space-y-4">
+                  <ul className="space-y-3 sm:space-y-4">
                     {pkg.inclusions.map((item, index) => (
                       <motion.li 
                         key={index} 
@@ -362,12 +363,12 @@ const PackageDetailPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 + index * 0.05, duration: 0.3 }}
                       >
-                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-0.5 group-hover:bg-green-200 transition-colors duration-200">
-                          <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 mt-0.5 group-hover:bg-green-200 transition-colors duration-200">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        <span className="text-gray-700 leading-relaxed">{item}</span>
+                        <span className="text-gray-700 leading-relaxed text-sm sm:text-base">{item}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -377,20 +378,20 @@ const PackageDetailPage = () => {
               {/* Exclusions */}
               {pkg.exclusions && pkg.exclusions.length > 0 && (
                 <motion.div 
-                  className="bg-white rounded-3xl shadow-xl p-8 border border-gray-200/50"
+                  className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200/50"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.5 }}
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mr-4">
-                      <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-100 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     Not Included
                   </h2>
-                  <ul className="space-y-4">
+                  <ul className="space-y-3 sm:space-y-4">
                     {pkg.exclusions.map((item, index) => (
                       <motion.li 
                         key={index} 
@@ -399,12 +400,12 @@ const PackageDetailPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 + index * 0.05, duration: 0.3 }}
                       >
-                        <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-0.5 group-hover:bg-red-200 transition-colors duration-200">
-                          <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 mt-0.5 group-hover:bg-red-200 transition-colors duration-200">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                           </svg>
                         </div>
-                        <span className="text-gray-700 leading-relaxed">{item}</span>
+                        <span className="text-gray-700 leading-relaxed text-sm sm:text-base">{item}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -416,31 +417,31 @@ const PackageDetailPage = () => {
           {/* Enhanced Sidebar - Booking Card */}
           <div className="xl:col-span-1">
             <motion.div 
-              className="bg-white rounded-3xl shadow-2xl border border-gray-200/50 sticky top-24 overflow-hidden"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/50 sticky top-20 sm:top-24 overflow-hidden"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               {/* Pricing Header */}
-              <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-8 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-6 sm:p-8 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
                 <div className="relative z-10">
                   <p className="text-blue-100 text-sm font-medium mb-2">Starting from</p>
                   <div className="flex items-baseline mb-2">
-                    <span className="text-5xl font-bold">₹{pkg.price.toLocaleString()}</span>
-                    <span className="text-xl text-blue-100 ml-2">per person</span>
+                    <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">₹{pkg.price.toLocaleString()}</span>
+                    <span className="text-lg sm:text-xl text-blue-100 ml-2">per person</span>
                   </div>
                   <p className="text-blue-100 text-sm">All inclusive package</p>
                 </div>
               </div>
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 {/* Action Buttons */}
-                <div className="space-y-4 mb-8">
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <Button
                     onClick={() => setIsBookingModalOpen(true)}
                     variant="primary"
-                    className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="w-full py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     Book This Package
                   </Button>
@@ -454,9 +455,9 @@ const PackageDetailPage = () => {
                     >
                       <Button
                         variant="secondary"
-                        className="w-full py-4 text-lg font-semibold flex items-center justify-center gap-3 border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300"
+                        className="w-full py-3 sm:py-4 text-base sm:text-lg font-semibold flex items-center justify-center gap-2 sm:gap-3 border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         Download Brochure
@@ -466,73 +467,73 @@ const PackageDetailPage = () => {
                 </div>
 
                 {/* Package Features */}
-                <div className="border-t border-gray-200 pt-8 space-y-6">
-                  <h3 className="font-bold text-gray-900 text-lg mb-4">Package Highlights</h3>
+                <div className="border-t border-gray-200 pt-6 sm:pt-8 space-y-4 sm:space-y-6">
+                  <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-3 sm:mb-4">Package Highlights</h3>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <div className="flex items-center text-gray-700">
-                      <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mr-4">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">{pkg.duration} Days Adventure</p>
-                        <p className="text-sm text-gray-500">Complete itinerary included</p>
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">{pkg.duration} Days Adventure</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Complete itinerary included</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center text-gray-700">
-                      <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mr-4">
-                        <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-50 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Group & Private Tours</p>
-                        <p className="text-sm text-gray-500">Flexible booking options</p>
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">Group & Private Tours</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Flexible booking options</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center text-gray-700">
-                      <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mr-4">
-                        <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-50 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">24/7 Support</p>
-                        <p className="text-sm text-gray-500">Always here to help</p>
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">24/7 Support</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Always here to help</p>
                       </div>
                     </div>
 
                     <div className="flex items-center text-gray-700">
-                      <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mr-4">
-                        <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-50 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Best Price Guarantee</p>
-                        <p className="text-sm text-gray-500">Competitive pricing</p>
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">Best Price Guarantee</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Competitive pricing</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Contact Section */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <div className="bg-gray-50 rounded-2xl p-6">
-                    <h4 className="font-bold text-gray-900 mb-3">Need Help?</h4>
-                    <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
+                  <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                    <h4 className="font-bold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">Need Help?</h4>
+                    <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">
                       Have questions about this package? Our travel experts are here to help you plan the perfect trip.
                     </p>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group transition-colors duration-200"
+                      className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-xs sm:text-sm group transition-colors duration-200"
                     >
                       Contact Our Experts
-                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </Link>

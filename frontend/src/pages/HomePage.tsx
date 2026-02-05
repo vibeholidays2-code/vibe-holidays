@@ -565,34 +565,34 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50/50">
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50/50">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-block mb-4"
+              className="inline-block mb-3 sm:mb-4"
             >
-              <span className="px-4 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200/50 rounded-full text-amber-600 text-sm font-semibold tracking-wide uppercase">
+              <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200/50 rounded-full text-amber-600 text-xs sm:text-sm font-semibold tracking-wide uppercase">
                 Real Stories
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
               💬 What Our Travelers Say
             </h2>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Authentic experiences shared by our valued customers
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -602,17 +602,17 @@ const HomePage = () => {
                 transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
                 className="group"
               >
-                <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-slate-100/50 h-full flex flex-col relative overflow-hidden">
+                <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-slate-100/50 h-full flex flex-col relative overflow-hidden">
                   {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full -translate-y-16 translate-x-16"></div>
+                  <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
                   
                   {/* Quote icon */}
-                  <div className="absolute top-6 right-6 text-4xl text-blue-500/20 group-hover:text-blue-500/30 transition-colors">
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 text-3xl sm:text-4xl text-blue-500/20 group-hover:text-blue-500/30 transition-colors">
                     "
                   </div>
                   
                   {/* Rating stars */}
-                  <div className="flex mb-6 relative z-10">
+                  <div className="flex mb-4 sm:mb-6 relative z-10">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <motion.span 
                         key={i}
@@ -620,7 +620,7 @@ const HomePage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: (index * 0.15) + (i * 0.1) }}
-                        className="text-amber-400 text-2xl mr-1 group-hover:text-amber-500 transition-colors"
+                        className="text-amber-400 text-xl sm:text-2xl mr-1 group-hover:text-amber-500 transition-colors"
                       >
                         ★
                       </motion.span>
@@ -628,7 +628,7 @@ const HomePage = () => {
                   </div>
                   
                   {/* Testimonial text */}
-                  <blockquote className="text-slate-700 text-lg leading-relaxed mb-8 flex-1 relative z-10 font-medium">
+                  <blockquote className="text-slate-700 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 flex-1 relative z-10 font-medium">
                     "{testimonial.text}"
                   </blockquote>
                   
@@ -638,15 +638,15 @@ const HomePage = () => {
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-16 h-16 rounded-2xl mr-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow object-cover"
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl mr-3 sm:mr-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow object-cover"
                       />
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xl mb-1 group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-bold text-slate-900 text-lg sm:text-xl mb-1 group-hover:text-blue-600 transition-colors">
                         {testimonial.name}
                       </h4>
-                      <p className="text-slate-500 text-base flex items-center">
+                      <p className="text-slate-500 text-sm sm:text-base flex items-center">
                         <span className="mr-1">📍</span>
                         {testimonial.location}
                       </p>
@@ -654,7 +654,7 @@ const HomePage = () => {
                   </div>
                   
                   {/* Verified badge */}
-                  <div className="absolute bottom-6 right-6 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     ✓ Verified
                   </div>
                 </div>
@@ -668,50 +668,50 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="text-center mt-16"
+            className="text-center mt-12 sm:mt-16"
           >
-            <p className="text-slate-600 text-lg mb-4">
+            <p className="text-slate-600 text-base sm:text-lg mb-3 sm:mb-4">
               Join thousands of satisfied travelers
             </p>
             <div className="flex justify-center items-center gap-2">
               <div className="flex -space-x-2">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-white shadow-lg"></div>
+                  <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-white shadow-lg"></div>
                 ))}
               </div>
-              <span className="text-slate-500 ml-3">+5000 happy customers</span>
+              <span className="text-slate-500 ml-3 text-sm sm:text-base">+5000 happy customers</span>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
               🎉 Ready for Your Next Adventure?
             </h2>
-            <p className="text-2xl mb-10 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto">
               Let us help you plan the perfect vacation. Contact us today and make your travel dreams come true!
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/contact">
-                <Button className="px-12 py-5 text-xl !bg-blue-500 hover:!bg-blue-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-blue-500 hover:!bg-blue-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
                   📧 Contact Us Now
                 </Button>
               </Link>
-              <a href="https://wa.me/917048505128" target="_blank" rel="noopener noreferrer">
-                <Button className="px-12 py-5 text-xl !bg-green-500 hover:!bg-green-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
+              <a href="https://wa.me/917048505128" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-green-500 hover:!bg-green-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
                   💬 WhatsApp Us
                 </Button>
               </a>
-              <a href="tel:+917048505128">
-                <Button className="px-12 py-5 text-xl !bg-white/20 backdrop-blur-md border-2 border-white !text-white hover:!bg-white hover:!text-purple-600 rounded-full shadow-2xl transform hover:scale-105 transition-all">
+              <a href="tel:+917048505128" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-white/20 backdrop-blur-md border-2 border-white !text-white hover:!bg-white hover:!text-purple-600 rounded-full shadow-2xl transform hover:scale-105 transition-all">
                   📞 Call Now
                 </Button>
               </a>
