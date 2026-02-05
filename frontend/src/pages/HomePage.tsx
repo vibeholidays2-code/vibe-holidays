@@ -177,7 +177,7 @@ const HomePage = () => {
 
         {/* Hero Content */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 lg:px-8 xl:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               key={currentSlide}
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -190,9 +190,9 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="mb-4 lg:mb-6"
+                className="mb-3 sm:mb-4 lg:mb-6"
               >
-                <span className="inline-block px-4 py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-sm lg:text-base font-medium tracking-wide uppercase">
+                <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-xs sm:text-sm lg:text-base font-medium tracking-wide uppercase">
                   Premium Travel Experience
                 </span>
               </motion.div>
@@ -201,7 +201,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-white mb-6 lg:mb-8 leading-[0.9] tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white mb-4 sm:mb-6 lg:mb-8 leading-[0.9] tracking-tight"
               >
                 <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
                   {heroSlides[currentSlide].title}
@@ -212,7 +212,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-200 mb-8 lg:mb-12 font-light leading-relaxed max-w-4xl xl:max-w-5xl"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-200 mb-6 sm:mb-8 lg:mb-12 font-light leading-relaxed max-w-3xl sm:max-w-4xl xl:max-w-5xl"
               >
                 {heroSlides[currentSlide].subtitle}
               </motion.p>
@@ -221,23 +221,23 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6"
               >
-                <Link to="/packages">
-                  <Button className="group px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                <Link to="/packages" className="w-full sm:w-auto">
+                  <Button className="group w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
                     <span className="flex items-center justify-center gap-2 lg:gap-3">
-                      <span className="text-xl lg:text-2xl">✨</span>
+                      <span className="text-lg lg:text-xl">✨</span>
                       <span>Explore Packages</span>
-                      <svg className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
                   </Button>
                 </Link>
-                <Link to="/contact">
-                  <Button className="group px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <Button className="group w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300">
                     <span className="flex items-center justify-center gap-2 lg:gap-3">
-                      <span className="text-lg lg:text-xl">📞</span>
+                      <span className="text-base lg:text-lg">📞</span>
                       <span>Plan Your Trip</span>
                     </span>
                   </Button>
@@ -281,29 +281,29 @@ const HomePage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl"></div>
         </div>
         
-        <div className="container mx-auto px-4 lg:px-8 xl:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 lg:mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
               Trusted by Thousands of Happy Travelers
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-3xl lg:max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
               Our commitment to excellence speaks through numbers
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -313,16 +313,16 @@ const HomePage = () => {
                 transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                 className="text-center text-white group"
               >
-                <div className="relative mb-4 lg:mb-6">
-                  <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 lg:mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                <div className="relative mb-3 sm:mb-4 lg:mb-6">
+                  <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-1 sm:mb-2 lg:mb-4 transform group-hover:scale-110 transition-transform duration-300">
                     {stat.icon}
                   </div>
                   <div className="absolute inset-0 bg-white/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-2 lg:mb-3 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-1 sm:mb-2 lg:mb-3 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                   {stat.number}
                 </div>
-                <div className="text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-100 tracking-wide">
+                <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-blue-100 tracking-wide">
                   {stat.label}
                 </div>
               </motion.div>
@@ -332,23 +332,23 @@ const HomePage = () => {
       </section>
 
       {/* Popular Destinations */}
-      <section className="py-20 lg:py-24 xl:py-28 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 lg:mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 lg:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
               🌏 Popular Destinations
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl lg:max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
               Explore our most loved travel destinations
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
             {destinations.map((dest, index) => (
               <motion.div
                 key={index}
@@ -358,16 +358,16 @@ const HomePage = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/packages?destination=${dest.name}`} className="group block">
-                  <div className="relative h-72 md:h-80 lg:h-96 xl:h-[28rem] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                     <img
                       src={dest.image}
                       alt={dest.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 xl:p-10 text-white">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-3">{dest.name}</h3>
-                      <p className="text-base md:text-lg lg:text-xl">{dest.packages} Packages Available</p>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 xl:p-10 text-white">
+                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3">{dest.name}</h3>
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl">{dest.packages} Packages Available</p>
                     </div>
                   </div>
                 </Link>
@@ -378,36 +378,36 @@ const HomePage = () => {
       </section>
 
       {/* Featured Packages */}
-      <section className="py-24 lg:py-28 xl:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
-        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
+      <section className="py-16 sm:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20 lg:mb-24"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-block mb-4 lg:mb-6"
+              className="inline-block mb-3 sm:mb-4 lg:mb-6"
             >
-              <span className="px-4 py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-blue-600 text-sm lg:text-base font-semibold tracking-wide uppercase">
+              <span className="px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-blue-600 text-xs sm:text-sm lg:text-base font-semibold tracking-wide uppercase">
                 Handpicked for You
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6 lg:mb-8 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4 sm:mb-6 lg:mb-8 leading-tight">
               ✨ Featured Packages
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
               Carefully curated travel experiences designed to create unforgettable memories
             </p>
           </motion.div>
 
           {featuredPackages.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
                 {featuredPackages.slice(0, 8).map((pkg, index) => (
                   <motion.div
                     key={pkg._id}
@@ -417,8 +417,8 @@ const HomePage = () => {
                     transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                   >
                     <Link to={`/packages/${pkg._id}`} className="group block h-full">
-                      <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] h-full flex flex-col border border-slate-100/50">
-                        <div className="relative h-64 md:h-72 lg:h-80 xl:h-72 overflow-hidden">
+                      <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] h-full flex flex-col border border-slate-100/50">
+                        <div className="relative h-48 sm:h-56 md:h-64 lg:h-56 xl:h-64 overflow-hidden">
                           <ImageWithFallback
                             src={pkg.thumbnail || pkg.images[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
                             alt={pkg.name}
@@ -430,55 +430,55 @@ const HomePage = () => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           
                           {/* Price badge with enhanced styling */}
-                          <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                            <span className="text-xs md:text-sm">₹</span>
-                            <span className="text-sm md:text-lg">{pkg.price.toLocaleString()}</span>
+                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-xl sm:rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                            <span className="text-xs sm:text-sm">₹</span>
+                            <span className="text-sm sm:text-base md:text-lg">{pkg.price.toLocaleString()}</span>
                           </div>
                           
                           {/* Category badge */}
                           {pkg.category && (
-                            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-slate-800 px-2 md:px-3 py-1 md:py-1.5 rounded-xl text-xs md:text-sm font-semibold shadow-lg border border-white/50">
+                            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm text-slate-800 px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg border border-white/50">
                               {pkg.category}
                             </div>
                           )}
                           
                           {/* Featured badge */}
-                          <div className="absolute bottom-4 left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-xl text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             ⭐ FEATURED
                           </div>
                         </div>
                         
-                        <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
-                          <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                        <div className="p-4 sm:p-5 md:p-6 lg:p-8 flex-1 flex flex-col">
+                          <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                             {pkg.name}
                           </h3>
                           
-                          <div className="flex items-center text-slate-600 mb-4 text-sm md:text-base">
-                            <span className="mr-2 text-base md:text-lg">📍</span>
+                          <div className="flex items-center text-slate-600 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base">
+                            <span className="mr-1.5 sm:mr-2 text-sm sm:text-base md:text-lg">📍</span>
                             <span className="font-medium">{pkg.destination}</span>
-                            <span className="mx-3 text-slate-400">•</span>
-                            <span className="mr-1 text-base md:text-lg">⏱️</span>
+                            <span className="mx-2 sm:mx-3 text-slate-400">•</span>
+                            <span className="mr-1 text-sm sm:text-base md:text-lg">⏱️</span>
                             <span className="font-medium">{pkg.duration} days</span>
                           </div>
                           
-                          <p className="text-slate-600 line-clamp-3 mb-6 leading-relaxed flex-1 text-sm md:text-base">
+                          <p className="text-slate-600 line-clamp-3 mb-4 sm:mb-6 leading-relaxed flex-1 text-xs sm:text-sm md:text-base">
                             {pkg.description}
                           </p>
                           
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm md:text-base">
+                            <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-xs sm:text-sm md:text-base">
                               <span>View Details</span>
-                              <svg className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ml-1.5 sm:ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                               </svg>
                             </div>
                             
                             {/* Rating placeholder */}
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-0.5 sm:gap-1">
                               {Array.from({ length: 5 }).map((_, i) => (
-                                <span key={i} className="text-amber-400 text-xs md:text-sm">★</span>
+                                <span key={i} className="text-amber-400 text-xs sm:text-sm">★</span>
                               ))}
-                              <span className="text-slate-500 text-xs md:text-sm ml-1">(4.9)</span>
+                              <span className="text-slate-500 text-xs sm:text-sm ml-1">(4.9)</span>
                             </div>
                           </div>
                         </div>
@@ -493,13 +493,13 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="text-center mt-16 lg:mt-20"
+                className="text-center mt-12 sm:mt-16 lg:mt-20"
               >
                 <Link to="/packages">
-                  <Button className="group px-8 md:px-10 lg:px-12 py-4 lg:py-5 text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-2xl shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                  <Button className="group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl sm:rounded-2xl shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
                     <span className="flex items-center gap-2 lg:gap-3">
                       <span>View All Packages</span>
-                      <svg className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
@@ -512,7 +512,7 @@ const HomePage = () => {
               {/* Professional loading state with skeleton cards */}
               <InlineLoader text="Discovering Amazing Packages" />
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 {Array.from({ length: 6 }).map((_, index) => (
                   <motion.div
                     key={index}
