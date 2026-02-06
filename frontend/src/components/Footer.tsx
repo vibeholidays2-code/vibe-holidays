@@ -86,7 +86,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://youtube.com/@vibesholidays?si=74cMT3WXqv8pFygP"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group w-12 h-12 bg-neutral-800 hover:bg-gradient-secondary rounded-xl flex items-center justify-center transition-all duration-200 ease-in-out-smooth hover:shadow-soft hover:-translate-y-1"
