@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import { SkeletonPackageCard } from '../components/SkeletonLoader';
 import { ImageWithFallback } from '../components/ImagePlaceholder';
 import LoadingSpinner, { InlineLoader } from '../components/LoadingSpinner';
+import InquiryModal from '../components/InquiryModal';
 
 interface Package {
   _id: string;
@@ -24,15 +25,16 @@ const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
 
   useEffect(() => {
     const fetchFeaturedPackages = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        console.log('Fetching from:', `${apiUrl}/api/packages?featured=true&limit=12`);
-        const response = await fetch(`${apiUrl}/api/packages?featured=true&limit=12`);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        console.log('Fetching from:', `${apiUrl}/packages?featured=true&limit=12`);
+        const response = await fetch(`${apiUrl}/packages?featured=true&limit=12`);
         console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
@@ -53,6 +55,19 @@ const HomePage = () => {
     };
 
     fetchFeaturedPackages();
+  }, []);
+
+  // Show inquiry modal after 5 seconds for all users
+  useEffect(() => {
+    console.log('Modal effect running...');
+    
+    // Set up timer to show modal after 5 seconds
+    const timer = setTimeout(() => {
+      console.log('5 seconds elapsed - showing modal');
+      setShowInquiryModal(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Auto-rotate hero carousel
@@ -79,16 +94,6 @@ const HomePage = () => {
       title: 'Your Dream Vacation Awaits',
       subtitle: 'Let us plan your perfect getaway',
     },
-  ];
-
-  const destinations = [
-    { name: 'Bali', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80', packages: 4 },
-    { name: 'Jaisalmer', image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80', packages: 2 },
-    { name: 'Vietnam', image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80', packages: 13 },
-    { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', packages: 2 },
-    { name: 'Spiti Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', packages: 1 },
-    { name: 'Manali', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', packages: 0 },
-    { name: 'Shimla', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80', packages: 0 },
   ];
 
   const testimonials = [
@@ -148,6 +153,12 @@ const HomePage = () => {
         keywords="travel, holidays, vacation packages, holiday booking, travel agency, tours, destinations, adventure travel, beach holidays, cultural tours"
         url="/"
         structuredData={structuredData}
+      />
+
+      {/* Inquiry Modal - Shows 5 seconds after login */}
+      <InquiryModal 
+        isOpen={showInquiryModal} 
+        onClose={() => setShowInquiryModal(false)} 
       />
 
       {/* Hero Carousel Section */}
@@ -332,52 +343,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Popular Destinations */}
-      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
-              🌏 Popular Destinations
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
-              Explore our most loved travel destinations
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
-            {destinations.map((dest, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link to={`/packages?destination=${dest.name}`} className="group block">
-                  <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img
-                      src={dest.image}
-                      alt={dest.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 xl:p-10 text-white">
-                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3">{dest.name}</h3>
-                      <p className="text-sm sm:text-base md:text-lg lg:text-xl">{dest.packages} Packages Available</p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Featured Packages */}
       <section className="py-16 sm:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
@@ -420,20 +385,42 @@ const HomePage = () => {
                     <Link to={`/packages/${pkg._id}`} className="group block h-full">
                       <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] h-full flex flex-col border border-slate-100/50">
                         <div className="relative h-48 sm:h-56 md:h-64 lg:h-56 xl:h-64 overflow-hidden">
-                          <ImageWithFallback
-                            src={pkg.thumbnail || pkg.images[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
+                          <img
+                            src={pkg.thumbnail || pkg.images?.[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
                             alt={pkg.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            aspectRatio="video"
-                            placeholder="blur"
+                            loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800';
+                            }}
                           />
                           {/* Enhanced overlay gradient */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           
-                          {/* Price badge with enhanced styling */}
-                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-xl sm:rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                            <span className="text-xs sm:text-sm">₹</span>
-                            <span className="text-sm sm:text-base md:text-lg">{pkg.price.toLocaleString()}</span>
+                          {/* Sale Price Badge with Original Price */}
+                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex flex-col items-end gap-1">
+                            {/* Discount Badge */}
+                            <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-lg text-xs sm:text-sm font-bold shadow-lg animate-pulse">
+                              {(() => {
+                                const originalPrice = Math.round(pkg.price * 1.25);
+                                const discount = originalPrice - pkg.price;
+                                const discountPercent = Math.round((discount / originalPrice) * 100);
+                                return `${discountPercent}% OFF`;
+                              })()}
+                            </div>
+                            {/* Price Container */}
+                            <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 rounded-xl sm:rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                              {/* Original Price - Crossed Out */}
+                              <div className="text-xs sm:text-sm text-white/70 line-through mb-0.5">
+                                ₹{Math.round(pkg.price * 1.25).toLocaleString()}
+                              </div>
+                              {/* Sale Price */}
+                              <div className="flex items-baseline">
+                                <span className="text-xs sm:text-sm">₹</span>
+                                <span className="text-sm sm:text-base md:text-lg">{pkg.price.toLocaleString()}</span>
+                              </div>
+                            </div>
                           </div>
                           
                           {/* Category badge */}
@@ -443,9 +430,10 @@ const HomePage = () => {
                             </div>
                           )}
                           
-                          {/* Featured badge */}
-                          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            ⭐ FEATURED
+                          {/* Sale Badge */}
+                          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold shadow-lg flex items-center gap-1">
+                            <span className="text-sm">🔥</span>
+                            <span>SALE</span>
                           </div>
                         </div>
                         

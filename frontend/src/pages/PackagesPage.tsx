@@ -18,7 +18,7 @@ interface DestinationCard {
 
 const PackagesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const selectedDestination = searchParams.get('category');
+  const selectedDestination = searchParams.get('destination');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'price-low' | 'price-high' | 'duration' | 'name'>('price-low');
   
@@ -66,8 +66,8 @@ const PackagesPage = () => {
     },
   ];
 
-  const handleDestinationClick = (category: string) => {
-    setSearchParams({ category: category });
+  const handleDestinationClick = (destination: string) => {
+    setSearchParams({ destination: destination });
   };
 
   const handleBackToDestinations = () => {
@@ -76,9 +76,14 @@ const PackagesPage = () => {
 
   // Get packages for selected destination and apply filtering/sorting
   const filteredAndSortedPackages = useMemo(() => {
-    let packages = data?.data.filter(pkg => 
-      pkg.category === selectedDestination
-    ) || [];
+    let packages = data?.data || [];
+    
+    // Filter by destination if selected
+    if (selectedDestination) {
+      packages = packages.filter(pkg => 
+        pkg.destination.toLowerCase().includes(selectedDestination.toLowerCase())
+      );
+    }
 
     // Apply search filter
     if (searchQuery.trim()) {

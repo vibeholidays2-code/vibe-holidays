@@ -41,7 +41,7 @@ const Footer = () => {
               <h4 className="text-lg font-semibold text-white">Follow Our Journey</h4>
               <div className="flex space-x-4">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/share/1J9VSNkHcn/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group w-12 h-12 bg-neutral-800 hover:bg-gradient-primary rounded-xl flex items-center justify-center transition-all duration-200 ease-in-out-smooth hover:shadow-soft hover:-translate-y-1"

@@ -9,6 +9,7 @@ import AdminLayout from './layouts/AdminLayout';
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -39,6 +40,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <ScrollToTop />
         <Suspense
           fallback={
             <div className="min-h-screen flex items-center justify-center">

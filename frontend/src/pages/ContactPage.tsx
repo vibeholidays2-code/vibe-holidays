@@ -261,7 +261,7 @@ const ContactPage = () => {
               </h2>
               <div className="flex space-x-4">
                 <a
-                  href="https://facebook.com/vibeholidays"
+                  href="https://www.facebook.com/share/1J9VSNkHcn/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors"
