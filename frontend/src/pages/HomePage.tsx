@@ -72,16 +72,22 @@ const HomePage = () => {
   }, [featuredPackages.length]);
 
   // Show inquiry modal after 5 seconds for all users
+  // Show inquiry modal after 5 seconds - DESKTOP ONLY
   useEffect(() => {
     console.log('Modal effect running...');
     
-    // Set up timer to show modal after 5 seconds
-    const timer = setTimeout(() => {
-      console.log('5 seconds elapsed - showing modal');
-      setShowInquiryModal(true);
-    }, 5000);
+    // Only show modal on desktop screens (width >= 768px)
+    const isDesktop = () => window.innerWidth >= 768;
+    
+    if (isDesktop()) {
+      // Set up timer to show modal after 5 seconds
+      const timer = setTimeout(() => {
+        console.log('5 seconds elapsed - showing modal (desktop only)');
+        setShowInquiryModal(true);
+      }, 5000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Auto-rotate hero carousel
