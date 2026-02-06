@@ -272,7 +272,7 @@ const ContactPage = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com/vibeholidays"
+                  href="https://www.instagram.com/vibes_holidays_?igsh=MXFvZDQzd25hd2wxcQ=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-pink-600 hover:bg-pink-700 text-white rounded-lg flex items-center justify-center transition-colors"
