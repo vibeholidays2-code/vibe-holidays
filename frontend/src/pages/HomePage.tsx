@@ -403,14 +403,7 @@ const HomePage = () => {
               <div className="sm:hidden relative">
                 <div className="overflow-hidden">
                   {featuredPackages[currentSlide] ? (
-                    <motion.div
-                      key={currentSlide}
-                      initial={{ opacity: 0, x: 100 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -100 }}
-                      transition={{ duration: 0.5 }}
-                      className="px-4"
-                    >
+                    <div className="px-4 transition-opacity duration-500">
                       <Link to={`/packages/${featuredPackages[currentSlide]._id}`} className="group block">
                         <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] border border-slate-100/50">
                           <div className="relative h-56 overflow-hidden">
@@ -488,7 +481,7 @@ const HomePage = () => {
                           </div>
                         </div>
                       </Link>
-                    </motion.div>
+                    </div>
                   ) : (
                     <div className="px-4 py-8 text-center text-slate-600">
                       Loading package...
