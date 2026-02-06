@@ -89,8 +89,8 @@ const Navbar = () => {
 
       {/* Mobile Navigation Bar - Below White Area */}
       <div className="md:hidden bg-gradient-to-r from-neutral-50 to-neutral-100 border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center overflow-x-auto py-2 space-x-1 scrollbar-hide" role="menubar">
+        <div className="max-w-7xl mx-auto px-2">
+          <div className="flex items-center justify-between py-2 gap-0.5" role="menubar">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -100,7 +100,7 @@ const Navbar = () => {
                   isActive(link.path)
                     ? 'text-primary-600 bg-white border-b-2 border-primary-600'
                     : 'text-neutral-700 hover:text-primary-600 hover:bg-white/50 border-b-2 border-transparent'
-                } px-4 py-2.5 text-sm font-medium transition-all duration-200 whitespace-nowrap relative flex-shrink-0`}
+                } px-2 py-2 text-xs font-medium transition-all duration-200 whitespace-nowrap relative flex-1 text-center`}
                 aria-current={isActive(link.path) ? 'page' : undefined}
               >
                 {link.label}
