@@ -214,8 +214,10 @@ const Footer = () => {
                   <div>
                     <p className="text-sm text-neutral-400 mb-1">Visit us</p>
                     <address className="text-white font-medium not-italic leading-relaxed">
-                      Vejalpur, Ahmedabad,<br />
-                      Gujarat 380015
+                      E-block, 510, PNTC, 5<br />
+                      Times Of India Press Rd<br />
+                      Mahakali Society, Vejalpur<br />
+                      Ahmedabad, Gujarat 380015
                     </address>
                   </div>
                 </div>
