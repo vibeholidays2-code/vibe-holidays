@@ -61,37 +61,36 @@ const Navbar = () => {
                 </div>
               </div>
             </Link>
+
+            {/* Desktop Navigation - Right Side */}
+            <div className="hidden md:flex items-center space-x-1" role="menubar">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  role="menuitem"
+                  className={`${
+                    isActive(link.path)
+                      ? 'text-primary-600 bg-primary-50 border-b-2 border-primary-600'
+                      : 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50/50 border-b-2 border-transparent hover:border-primary-200'
+                  } px-4 py-3 text-sm font-medium transition-all duration-200 ease-in-out-smooth rounded-t-lg relative group`}
+                  aria-current={isActive(link.path) ? 'page' : undefined}
+                >
+                  {link.label}
+                  <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-primary transform transition-transform duration-200 ${
+                    isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`} />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Section: Navigation Links - Visible on ALL screens */}
-      <div className="bg-gradient-to-r from-neutral-50 to-neutral-100 border-b border-neutral-200">
+      {/* Mobile Navigation Bar - Below White Area */}
+      <div className="md:hidden bg-gradient-to-r from-neutral-50 to-neutral-100 border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center space-x-1" role="menubar">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                role="menuitem"
-                className={`${
-                  isActive(link.path)
-                    ? 'text-primary-600 bg-white border-b-2 border-primary-600'
-                    : 'text-neutral-700 hover:text-primary-600 hover:bg-white/50 border-b-2 border-transparent hover:border-primary-200'
-                } px-6 py-3 text-sm font-medium transition-all duration-200 ease-in-out-smooth relative group`}
-                aria-current={isActive(link.path) ? 'page' : undefined}
-              >
-                {link.label}
-                <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-primary transform transition-transform duration-200 ${
-                  isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                }`} />
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Navigation - Horizontal Scroll */}
-          <div className="md:hidden flex items-center overflow-x-auto py-2 space-x-1 scrollbar-hide" role="menubar">
+          <div className="flex items-center overflow-x-auto py-2 space-x-1 scrollbar-hide" role="menubar">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
