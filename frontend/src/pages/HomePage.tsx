@@ -42,6 +42,8 @@ const HomePage = () => {
           const packages = data.data || data.packages || [];
           console.log('Setting packages:', packages);
           setFeaturedPackages(packages);
+          // Reset slide to 0 when packages load
+          setCurrentSlide(0);
         } else {
           console.error('Failed to fetch:', response.status, response.statusText);
           setError('Failed to load featured packages');
@@ -64,7 +66,11 @@ const HomePage = () => {
     
     if (featuredPackages.length > 0 && isMobile()) {
       const timer = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % featuredPackages.length);
+        setCurrentSlide((prev) => {
+          // Ensure we stay within bounds
+          const nextSlide = (prev + 1) % featuredPackages.length;
+          return nextSlide;
+        });
       }, 5000); // Auto-slide every 5 seconds
 
       return () => clearInterval(timer);
@@ -396,15 +402,15 @@ const HomePage = () => {
               {/* Mobile: Carousel View */}
               <div className="sm:hidden relative">
                 <div className="overflow-hidden">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
-                    transition={{ duration: 0.5 }}
-                    className="px-4"
-                  >
-                    {featuredPackages[currentSlide] && (
+                  {featuredPackages[currentSlide] ? (
+                    <motion.div
+                      key={currentSlide}
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ duration: 0.5 }}
+                      className="px-4"
+                    >
                       <Link to={`/packages/${featuredPackages[currentSlide]._id}`} className="group block">
                         <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] border border-slate-100/50">
                           <div className="relative h-56 overflow-hidden">
@@ -482,8 +488,12 @@ const HomePage = () => {
                           </div>
                         </div>
                       </Link>
-                    )}
-                  </motion.div>
+                    </motion.div>
+                  ) : (
+                    <div className="px-4 py-8 text-center text-slate-600">
+                      Loading package...
+                    </div>
+                  )}
                 </div>
                 
                 {/* Slide Indicators */}
