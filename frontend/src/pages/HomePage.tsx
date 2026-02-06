@@ -59,24 +59,6 @@ const HomePage = () => {
     fetchFeaturedPackages();
   }, []);
 
-  // Auto-slide for mobile screens only
-  useEffect(() => {
-    // Only enable auto-slide on mobile (screen width < 640px)
-    const isMobile = () => window.innerWidth < 640;
-    
-    if (featuredPackages.length > 0 && isMobile()) {
-      const timer = setInterval(() => {
-        setCurrentSlide((prev) => {
-          // Ensure we stay within bounds
-          const nextSlide = (prev + 1) % featuredPackages.length;
-          return nextSlide;
-        });
-      }, 5000); // Auto-slide every 5 seconds
-
-      return () => clearInterval(timer);
-    }
-  }, [featuredPackages.length]);
-
   // Show inquiry modal after 5 seconds for all users
   // Show inquiry modal after 5 seconds - DESKTOP ONLY
   useEffect(() => {
@@ -399,115 +381,7 @@ const HomePage = () => {
 
           {featuredPackages.length > 0 ? (
             <>
-              {/* Mobile: Carousel View */}
-              <div className="sm:hidden relative">
-                <div className="overflow-hidden">
-                  {featuredPackages[currentSlide] ? (
-                    <div className="px-4 transition-opacity duration-500">
-                      <Link to={`/packages/${featuredPackages[currentSlide]._id}`} className="group block">
-                        <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] border border-slate-100/50">
-                          <div className="relative h-56 overflow-hidden">
-                            <img
-                              src={featuredPackages[currentSlide].thumbnail || featuredPackages[currentSlide].images?.[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
-                              alt={featuredPackages[currentSlide].name}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                              loading="lazy"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800';
-                              }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            
-                            {/* Sale Price Badge */}
-                            <div className="absolute top-3 right-3 flex flex-col items-end gap-1">
-                              <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg animate-pulse">
-                                {(() => {
-                                  const originalPrice = Math.round(featuredPackages[currentSlide].price * 1.25);
-                                  const discount = originalPrice - featuredPackages[currentSlide].price;
-                                  const discountPercent = Math.round((discount / originalPrice) * 100);
-                                  return `${discountPercent}% OFF`;
-                                })()}
-                              </div>
-                              <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-2.5 py-1.5 rounded-xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                                <div className="text-xs text-white/70 line-through mb-0.5">
-                                  ₹{Math.round(featuredPackages[currentSlide].price * 1.25).toLocaleString()}
-                                </div>
-                                <div className="flex items-baseline">
-                                  <span className="text-xs">₹</span>
-                                  <span className="text-sm">{featuredPackages[currentSlide].price.toLocaleString()}</span>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {featuredPackages[currentSlide].category && (
-                              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-slate-800 px-2 py-1 rounded-lg text-xs font-semibold shadow-lg border border-white/50">
-                                {featuredPackages[currentSlide].category}
-                              </div>
-                            )}
-                            
-                            <div className="absolute bottom-3 left-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg flex items-center gap-1">
-                              <span className="text-sm">🔥</span>
-                              <span>SALE</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-5 flex flex-col">
-                            <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
-                              {featuredPackages[currentSlide].name}
-                            </h3>
-                            
-                            <div className="flex items-center text-slate-600 mb-3 text-sm">
-                              <span className="mr-1.5 text-base">📍</span>
-                              <span className="font-medium">{featuredPackages[currentSlide].destination}</span>
-                              <span className="mx-2 text-slate-400">•</span>
-                              <span className="mr-1 text-base">⏱️</span>
-                              <span className="font-medium">{featuredPackages[currentSlide].duration} days</span>
-                            </div>
-                            
-                            <p className="text-slate-600 text-sm mb-4 line-clamp-2 flex-1">
-                              {featuredPackages[currentSlide].description}
-                            </p>
-                            
-                            <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                              <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-700 transition-colors">
-                                View Details →
-                              </span>
-                              <div className="flex items-center gap-1 text-amber-500">
-                                <span>⭐</span>
-                                <span className="text-slate-700 font-semibold text-sm">4.8</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="px-4 py-8 text-center text-slate-600">
-                      Loading package...
-                    </div>
-                  )}
-                </div>
-                
-                {/* Slide Indicators */}
-                <div className="flex justify-center gap-2 mt-6">
-                  {featuredPackages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        index === currentSlide 
-                          ? 'w-8 bg-blue-600' 
-                          : 'w-2 bg-slate-300 hover:bg-slate-400'
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Desktop/Tablet: Grid View */}
-              <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
                 {featuredPackages.slice(0, 8).map((pkg, index) => (
                   <motion.div
                     key={pkg._id}
