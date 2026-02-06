@@ -84,9 +84,9 @@ const InquiryModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 40 }}
             transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
           >
-            <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-hidden flex flex-col lg:flex-row">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[98vh] sm:max-h-[95vh] overflow-hidden flex flex-col lg:flex-row">
               {/* Left Side - Branding */}
               <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 p-10 flex-col justify-between relative overflow-hidden">
                 {/* Decorative circles */}
@@ -126,12 +126,12 @@ const InquiryModal = ({
               </div>
 
               {/* Right Side - Form */}
-              <div className="w-full lg:w-3/5 p-6 sm:p-8 lg:p-10 overflow-y-auto max-h-[95vh] lg:max-h-none flex flex-col">
+              <div className="w-full lg:w-3/5 p-4 sm:p-6 lg:p-10 overflow-y-auto max-h-[98vh] sm:max-h-[95vh] lg:max-h-none flex flex-col">
                 {/* Close button */}
-                <div className="flex justify-end mb-6">
+                <div className="flex justify-end mb-3 sm:mb-6 -mt-1 sm:-mt-0">
                   <button
                     onClick={onClose}
-                    className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-2 transition-all duration-200 w-10 h-10 flex items-center justify-center"
+                    className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-2 transition-all duration-200 w-10 h-10 flex items-center justify-center touch-manipulation"
                     aria-label="Close modal"
                   >
                     <svg
@@ -151,10 +151,10 @@ const InquiryModal = ({
                 </div>
 
                 {/* Mobile Header */}
-                <div className="lg:hidden mb-6">
-                  <div className="text-4xl mb-3">✈️</div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Plan Your Perfect Trip</h2>
-                  <p className="text-gray-600 text-base">Get a FREE personalized itinerary with the best prices</p>
+                <div className="lg:hidden mb-4 sm:mb-6">
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">✈️</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2">Plan Your Perfect Trip</h2>
+                  <p className="text-gray-600 text-sm sm:text-base">Get a FREE personalized itinerary with the best prices</p>
                 </div>
 
                 {/* Messages */}
@@ -191,10 +191,10 @@ const InquiryModal = ({
                 )}
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-5 flex-1">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 flex-1">
                   {/* Full Name */}
                   <div>
-                    <label className="block text-sm font-bold text-gray-900 mb-2.5">Full Name <span className="text-error-600">*</span></label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">Full Name <span className="text-error-600">*</span></label>
                     <input
                       type="text"
                       name="name"
@@ -202,14 +202,14 @@ const InquiryModal = ({
                       onChange={handleChange}
                       required
                       placeholder="Enter Your Name"
-                      className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                     />
                   </div>
 
                   {/* Phone and Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-bold text-gray-900 mb-2.5">Phone Number <span className="text-error-600">*</span></label>
+                      <label className="block text-sm font-bold text-gray-900 mb-2">Phone Number <span className="text-error-600">*</span></label>
                       <input
                         type="tel"
                         name="phone"
@@ -217,11 +217,11 @@ const InquiryModal = ({
                         onChange={handleChange}
                         required
                         placeholder="Enter Phone Number"
-                        className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium"
+                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-gray-900 mb-2.5">Email <span className="text-error-600">*</span></label>
+                      <label className="block text-sm font-bold text-gray-900 mb-2">Email <span className="text-error-600">*</span></label>
                       <input
                         type="email"
                         name="email"
@@ -229,20 +229,20 @@ const InquiryModal = ({
                         onChange={handleChange}
                         required
                         placeholder="your.email@example.com"
-                        className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium"
+                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                       />
                     </div>
                   </div>
 
                   {/* Number of Travellers */}
                   <div>
-                    <label className="block text-sm font-bold text-gray-900 mb-2.5">Number of Travellers <span className="text-error-600">*</span></label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">Number of Travellers <span className="text-error-600">*</span></label>
                     <select
                       name="travelers"
                       value={formData.travelers}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e40af' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
@@ -261,13 +261,13 @@ const InquiryModal = ({
 
                   {/* Tour Type */}
                   <div>
-                    <label className="block text-sm font-bold text-gray-900 mb-2.5">Tour Type <span className="text-error-600">*</span></label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">Tour Type <span className="text-error-600">*</span></label>
                     <select
                       name="tourType"
                       value={formData.tourType}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e40af' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
@@ -286,27 +286,27 @@ const InquiryModal = ({
 
                   {/* Message */}
                   <div>
-                    <label className="block text-sm font-bold text-gray-900 mb-2.5">Tell us about your trip <span className="text-error-600">*</span></label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">Tell us about your trip <span className="text-error-600">*</span></label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={4}
+                      rows={3}
                       placeholder="Tell us how we can help you..."
-                      className="w-full px-4 py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium resize-none"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium resize-none text-base touch-manipulation"
                     />
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-center gap-3 p-4 bg-primary-50 rounded-xl border-2 border-primary-200">
+                  <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 bg-primary-50 rounded-xl border-2 border-primary-200">
                     <input
                       type="checkbox"
                       id="office-visit"
-                      className="w-5 h-5 rounded border-primary-300 text-primary-600 focus:ring-primary-500 cursor-pointer accent-primary-600"
+                      className="w-5 h-5 rounded border-primary-300 text-primary-600 focus:ring-primary-500 cursor-pointer accent-primary-600 touch-manipulation"
                       defaultChecked
                     />
-                    <label htmlFor="office-visit" className="text-sm text-gray-700 cursor-pointer font-medium">
+                    <label htmlFor="office-visit" className="text-xs sm:text-sm text-gray-700 cursor-pointer font-medium">
                       I would like to visit your office
                     </label>
                   </div>
@@ -315,7 +315,7 @@ const InquiryModal = ({
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-base sm:text-lg mt-6"
+                    className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold py-3.5 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-base sm:text-lg mt-4 sm:mt-6 touch-manipulation"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
@@ -328,7 +328,7 @@ const InquiryModal = ({
                   </Button>
 
                   {/* Footer */}
-                  <p className="text-xs text-center text-neutral-500 mt-4">
+                  <p className="text-xs text-center text-neutral-500 mt-3 sm:mt-4 pb-2">
                     By submitting, you agree to our <a href="#" className="text-primary-600 hover:underline font-semibold">Privacy Policy</a> and <a href="#" className="text-primary-600 hover:underline font-semibold">Terms of Service</a>
                   </p>
                 </form>
