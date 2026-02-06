@@ -4,8 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import { packageService } from '../services/packageService';
 import { PackageFilters } from '../types/package';
 import PackageCard from '../components/PackageCard';
-import LoadingSpinner, { InlineLoader } from '../components/LoadingSpinner';
 import { SkeletonPackageCard } from '../components/SkeletonLoader';
+import { InlineLoader } from '../components/LoadingSpinner';
 import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -57,6 +57,12 @@ const PackagesPage = () => {
       image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', 
       packageCount: 2,
       category: 'Goa'
+    },
+    { 
+      name: 'Spiti Valley', 
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', 
+      packageCount: 1,
+      category: 'Spiti Valley'
     },
   ];
 

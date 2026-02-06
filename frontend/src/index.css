@@ -88,10 +88,23 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--color-neutral-50);
+  overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow on all elements */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Ensure images and media don't cause overflow */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Professional Component Base Classes */

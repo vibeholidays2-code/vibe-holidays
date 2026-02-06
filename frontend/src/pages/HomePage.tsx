@@ -86,6 +86,7 @@ const HomePage = () => {
     { name: 'Jaisalmer', image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80', packages: 2 },
     { name: 'Vietnam', image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80', packages: 13 },
     { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80', packages: 2 },
+    { name: 'Spiti Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', packages: 1 },
     { name: 'Manali', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', packages: 0 },
     { name: 'Shimla', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80', packages: 0 },
   ];
