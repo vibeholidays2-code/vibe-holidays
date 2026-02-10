@@ -164,8 +164,12 @@ const GalleryPage = () => {
 
         {/* Loading State */}
         {loading && (
-          <div className="flex justify-center items-center py-20">
+          <div className="flex flex-col justify-center items-center py-20">
             <LoadingSpinner />
+            <p className="text-gray-600 mt-6 text-lg">Loading gallery...</p>
+            <p className="text-gray-500 mt-2 text-sm">
+              ⏳ First load may take 30-60 seconds as the server wakes up
+            </p>
           </div>
         )}
 

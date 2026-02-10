@@ -152,7 +152,10 @@ const PackagesPage = () => {
         {isLoading && (
           <div className="space-y-12">
             <div className="text-center">
-              <InlineLoader text="Loading amazing packages..." />
+              <InlineLoader text="Waking up the server and loading packages..." />
+              <p className="text-gray-500 mt-4 text-sm">
+                ⏳ First load may take 30-60 seconds as the server wakes up from sleep
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {Array.from({ length: 6 }).map((_, index) => (

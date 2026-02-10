@@ -7,6 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 60000, // 60 second timeout for Render free tier wake-up
 });
 
 // Add auth token to requests if available
@@ -17,5 +18,16 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      console.error('Request timeout - backend may be waking up from sleep');
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

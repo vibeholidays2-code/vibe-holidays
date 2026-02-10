@@ -507,7 +507,10 @@ const HomePage = () => {
           ) : isLoading ? (
             <div className="space-y-8">
               {/* Professional loading state with skeleton cards */}
-              <InlineLoader text="Discovering Amazing Packages" />
+              <InlineLoader text="Waking up server and discovering packages..." />
+              <p className="text-center text-gray-500 text-sm">
+                ⏳ First load may take 30-60 seconds as the server wakes up
+              </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 {Array.from({ length: 6 }).map((_, index) => (

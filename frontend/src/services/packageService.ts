@@ -1,6 +1,30 @@
 import api from './api';
 import { PackageFilters, PackagesResponse, PackageResponse, Package } from '../types/package';
 
+// Helper function to retry API calls
+const retryRequest = async <T>(
+  requestFn: () => Promise<T>,
+  maxRetries = 2,
+  delay = 2000
+): Promise<T> => {
+  for (let i = 0; i <= maxRetries; i++) {
+    try {
+      return await requestFn();
+    } catch (error: any) {
+      const isLastAttempt = i === maxRetries;
+      const isTimeout = error.code === 'ECONNABORTED' || error.message?.includes('timeout');
+      
+      if (isLastAttempt || !isTimeout) {
+        throw error;
+      }
+      
+      console.log(`Request timeout, retrying... (${i + 1}/${maxRetries})`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('Max retries exceeded');
+};
+
 export const packageService = {
   /**
    * Get all packages with optional filters
@@ -16,8 +40,10 @@ export const packageService = {
       });
     }
     
-    const response = await api.get<PackagesResponse>(`/packages?${params.toString()}`);
-    return response.data;
+    return retryRequest(async () => {
+      const response = await api.get<PackagesResponse>(`/packages?${params.toString()}`);
+      return response.data;
+    });
   },
 
   /**
