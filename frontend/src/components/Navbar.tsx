@@ -26,9 +26,11 @@ const Navbar = () => {
               aria-label="Vibes Holidays - Go to homepage"
             >
               <div className="flex items-center space-x-2 sm:space-x-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-lg flex items-center justify-center shadow-subtle group-hover:shadow-soft transition-all duration-200 flex-shrink-0">
-                  <span className="text-white font-bold text-lg sm:text-xl">V</span>
-                </div>
+                <img 
+                  src="/logo.png" 
+                  alt="Vibes Holidays Logo" 
+                  className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
+                />
                 <div className="flex flex-col">
                   <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200 leading-tight">
                     Vibes Holidays
