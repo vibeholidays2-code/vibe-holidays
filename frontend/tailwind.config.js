@@ -145,8 +145,9 @@ export default {
         '3xl': '1.5rem',    // 24px
         'full': '9999px',
       },
-      // Animation and Transition System - Ultra Smooth
+      // Animation and Transition System - 120fps Ultra Smooth
       transitionDuration: {
+        '25': '25ms',
         '50': '50ms',
         '75': '75ms',
         '100': '100ms',
@@ -165,6 +166,7 @@ export default {
         'ease-in-smooth': 'cubic-bezier(0.4, 0, 1, 1)',
         'bounce-smooth': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'elastic': 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
+        'ultra-smooth': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       },
       // Custom Animations
       keyframes: {
