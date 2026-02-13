@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Ultra-Smooth Performance Optimizations */
+@import './styles/smooth-performance.css';
+
 /* CSS Custom Properties for Dynamic Theming */
 :root {
   /* Color System Variables */

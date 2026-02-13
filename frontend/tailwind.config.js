@@ -145,13 +145,16 @@ export default {
         '3xl': '1.5rem',    // 24px
         'full': '9999px',
       },
-      // Animation and Transition System
+      // Animation and Transition System - Ultra Smooth
       transitionDuration: {
+        '50': '50ms',
         '75': '75ms',
         '100': '100ms',
         '150': '150ms',
         '200': '200ms',
+        '250': '250ms',
         '300': '300ms',
+        '400': '400ms',
         '500': '500ms',
         '700': '700ms',
         '1000': '1000ms',
@@ -160,6 +163,8 @@ export default {
         'ease-in-out-smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
         'ease-out-smooth': 'cubic-bezier(0, 0, 0.2, 1)',
         'ease-in-smooth': 'cubic-bezier(0.4, 0, 1, 1)',
+        'bounce-smooth': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        'elastic': 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
       },
       // Custom Animations
       keyframes: {
