@@ -10,6 +10,7 @@ import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
 import ScrollToTop from './components/ScrollToTop';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -40,6 +41,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <GoogleAnalytics />
         <ScrollToTop />
         <Suspense
           fallback={
