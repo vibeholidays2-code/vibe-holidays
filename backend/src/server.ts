@@ -45,9 +45,21 @@ app.use(sanitizeInput); // Input sanitization
 app.use('/uploads', express.static(path.join(__dirname, '../uploads'))); // Serve uploaded files
 app.use('/brochures', express.static(path.join(__dirname, '../brochures'))); // Serve PDF brochures
 
-// Health check route
+// Health check routes for UptimeRobot
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    message: 'Vibe Holidays API is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Vibe Holidays API is running' });
+  res.status(200).json({ 
+    status: 'ok', 
+    message: 'Vibe Holidays API is running',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // API Routes
