@@ -6,53 +6,50 @@ interface SEOProps {
   keywords?: string;
   image?: string;
   url?: string;
-  type?: 'website' | 'article';
-  structuredData?: object;
+  type?: string;
+  schema?: object;
 }
 
 const SEO = ({
-  title = 'Vibes Holidays - Travel & Holiday Booking',
-  description = 'Discover unforgettable travel experiences with Vibes Holidays. Browse our curated holiday packages, explore exotic destinations, and book your dream vacation today.',
-  keywords = 'travel, holidays, vacation packages, holiday booking, travel agency, tours, destinations, adventure travel',
-  image = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200',
-  url = 'https://vibeholidays.com',
+  title = 'Vibe Holidays - Best Travel Packages & Holiday Tours',
+  description = 'Discover amazing travel packages with Vibe Holidays. Book affordable tours to Bali, Vietnam, Goa, Jaisalmer, and more. Best prices guaranteed!',
+  keywords = 'travel packages, holiday tours, Bali packages, Vietnam tours, Goa holidays, Jaisalmer desert safari',
+  image = 'https://vibe-holidays-red.vercel.app/og-image.jpg',
+  url = 'https://vibe-holidays-red.vercel.app/',
   type = 'website',
-  structuredData,
+  schema,
 }: SEOProps) => {
-  const fullTitle = title.includes('Vibes Holidays') ? title : `${title} | Vibes Holidays`;
-  const canonicalUrl = url.startsWith('http') ? url : `https://vibeholidays.com${url}`;
+  const fullTitle = title.includes('Vibe Holidays') ? title : `${title} | Vibe Holidays`;
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
+      {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
+      <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={canonicalUrl} />
 
-      {/* Open Graph Tags for Social Sharing */}
+      {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
+      <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:site_name" content="Vibes Holidays" />
 
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={url} />
+      <meta property="twitter:title" content={fullTitle} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content={image} />
 
-      {/* Additional Meta Tags */}
-      <meta name="robots" content="index, follow" />
-      <meta name="author" content="Vibes Holidays" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      {/* Canonical URL */}
+      <link rel="canonical" href={url} />
 
       {/* Structured Data (JSON-LD) */}
-      {structuredData && (
+      {schema && (
         <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
+          {JSON.stringify(schema)}
         </script>
       )}
     </Helmet>
