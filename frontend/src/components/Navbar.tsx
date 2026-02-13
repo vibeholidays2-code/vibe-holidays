@@ -29,7 +29,7 @@ const Navbar = () => {
                 <img 
                   src="/logo.png" 
                   alt="Vibes Holidays Logo" 
-                  className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
+                  className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
                 />
                 <div className="flex flex-col">
                   <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200 leading-tight">
