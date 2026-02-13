@@ -1,7 +1,7 @@
 // Sitemap Generator for Vibe Holidays
 
 export const generateSitemap = (packages: any[] = []) => {
-  const baseUrl = 'https://vibe-holidays-red.vercel.app';
+  const baseUrl = 'https://www.vibesholidays.in';
   const currentDate = new Date().toISOString().split('T')[0];
 
   // Static pages

@@ -36,19 +36,19 @@ const PackagesPage = () => {
   const destinations: DestinationCard[] = [
     { 
       name: 'Bali', 
-      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80', 
+      image: 'https://res.cloudinary.com/dpsytvwmh/image/upload/v1770969368/29_eu4myp.png', 
       packageCount: 4,
       category: 'Bali'
     },
     { 
       name: 'Jaisalmer', 
-      image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80', 
+      image: 'https://res.cloudinary.com/dpsytvwmh/image/upload/v1770969705/36_gc4lnd.png', 
       packageCount: 2,
       category: 'Jaisalmer'
     },
     { 
       name: 'Vietnam', 
-      image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80', 
+      image: 'https://res.cloudinary.com/dpsytvwmh/image/upload/v1770967468/19_pw2che.png', 
       packageCount: 11,
       category: 'Vietnam'
     },

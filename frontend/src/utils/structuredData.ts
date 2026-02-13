@@ -6,9 +6,9 @@ export const organizationSchema = {
   '@type': 'TravelAgency',
   name: 'Vibe Holidays',
   description: 'Leading travel agency offering customized holiday packages and tours',
-  url: 'https://vibe-holidays-red.vercel.app',
-  logo: 'https://vibe-holidays-red.vercel.app/logo.png',
-  image: 'https://vibe-holidays-red.vercel.app/og-image.jpg',
+  url: 'https://www.vibesholidays.in',
+  logo: 'https://www.vibesholidays.in/logo.png',
+  image: 'https://www.vibesholidays.in/og-image.jpg',
   telephone: '+91-7048505128',
   email: 'vibesholidays.9@gmail.com',
   address: {
@@ -41,12 +41,12 @@ export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Vibe Holidays',
-  url: 'https://vibe-holidays-red.vercel.app',
+  url: 'https://www.vibesholidays.in',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://vibe-holidays-red.vercel.app/packages?search={search_term_string}',
+      urlTemplate: 'https://www.vibesholidays.in/packages?search={search_term_string}',
     },
     'query-input': 'required name=search_term_string',
   },
@@ -77,7 +77,7 @@ export const generateTourPackageSchema = (packageData: any) => {
       priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
       validFrom: new Date().toISOString(),
-      url: `https://vibe-holidays-red.vercel.app/packages/${packageData._id}`,
+      url: `https://www.vibesholidays.in/packages/${packageData._id}`,
     },
     provider: {
       '@type': 'TravelAgency',

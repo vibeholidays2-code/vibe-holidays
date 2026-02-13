@@ -14,8 +14,8 @@ const SEO = ({
   title = 'Vibe Holidays - Best Travel Packages & Holiday Tours',
   description = 'Discover amazing travel packages with Vibe Holidays. Book affordable tours to Bali, Vietnam, Goa, Jaisalmer, and more. Best prices guaranteed!',
   keywords = 'travel packages, holiday tours, Bali packages, Vietnam tours, Goa holidays, Jaisalmer desert safari',
-  image = 'https://vibe-holidays-red.vercel.app/og-image.jpg',
-  url = 'https://vibe-holidays-red.vercel.app/',
+  image = 'https://www.vibesholidays.in/og-image.jpg',
+  url = 'https://www.vibesholidays.in/',
   type = 'website',
   schema,
 }: SEOProps) => {

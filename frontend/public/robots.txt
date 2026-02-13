@@ -1,31 +1,8 @@
-# robots.txt for Vibe Holidays
-
-# Allow all search engines
 User-agent: *
 Allow: /
 
 # Disallow admin pages
 Disallow: /admin/
-Disallow: /admin/*
 
-# Disallow API endpoints (if any are exposed)
-Disallow: /api/
-
-# Sitemap location
-Sitemap: https://vibe-holidays-red.vercel.app/sitemap.xml
-
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
-
-# Specific rules for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 1
+# Sitemap
+Sitemap: https://www.vibesholidays.in/sitemap.xml

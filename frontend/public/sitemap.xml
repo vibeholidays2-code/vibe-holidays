@@ -5,7 +5,7 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Homepage -->
   <url>
-    <loc>https://vibe-holidays-red.vercel.app/</loc>
+    <loc>https://www.vibesholidays.in/</loc>
     <lastmod>2026-02-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -13,7 +13,7 @@
   
   <!-- Packages Page -->
   <url>
-    <loc>https://vibe-holidays-red.vercel.app/packages</loc>
+    <loc>https://www.vibesholidays.in/packages</loc>
     <lastmod>2026-02-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -21,7 +21,7 @@
   
   <!-- Gallery Page -->
   <url>
-    <loc>https://vibe-holidays-red.vercel.app/gallery</loc>
+    <loc>https://www.vibesholidays.in/gallery</loc>
     <lastmod>2026-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -29,7 +29,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://vibe-holidays-red.vercel.app/about</loc>
+    <loc>https://www.vibesholidays.in/about</loc>
     <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -37,7 +37,7 @@
   
   <!-- Contact Page -->
   <url>
-    <loc>https://vibe-holidays-red.vercel.app/contact</loc>
+    <loc>https://www.vibesholidays.in/contact</loc>
     <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
