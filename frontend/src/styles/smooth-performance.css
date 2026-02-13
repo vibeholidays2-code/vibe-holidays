@@ -33,12 +33,57 @@ html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: y proximity;
+  /* iOS momentum scrolling */
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  /* iOS smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent rubber band effect */
+  overscroll-behavior-y: contain;
+  /* Touch action optimization */
+  touch-action: pan-y;
+}
+
+/* Mobile-specific smooth scrolling optimizations */
+@media (max-width: 768px) {
+  html {
+    /* Enhanced iOS momentum */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+  }
+  
+  body {
+    /* Buttery smooth mobile scrolling */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    /* Prevent scroll jank */
+    will-change: scroll-position;
+  }
+  
+  /* Optimize all scrollable containers on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Smooth scroll containers */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto,
+  [style*="overflow"] {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+  }
 }
 
 /* Ultra-smooth transitions for interactive elements - 120fps optimized */
@@ -598,4 +643,247 @@ img:not([loading="lazy"]) {
 /* Disable will-change after animation completes */
 .hw-accelerate.animation-complete {
   will-change: auto;
+}
+
+/* ========================================
+   MOBILE ULTRA-SMOOTH SCROLLING
+   ======================================== */
+
+/* iOS Safari smooth scrolling */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent iOS scroll bounce */
+  body {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #root {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Android Chrome smooth scrolling */
+@media (max-width: 768px) {
+  /* Optimize touch interactions */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Allow text selection where needed */
+  input, textarea, [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  
+  /* Smooth momentum scrolling */
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
+  
+  /* Optimize scroll containers */
+  .scroll-container,
+  [class*="overflow"],
+  [style*="overflow: auto"],
+  [style*="overflow-y: auto"] {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    will-change: scroll-position;
+  }
+  
+  /* Smooth card scrolling on mobile */
+  .card-container,
+  .package-grid,
+  .gallery-grid {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize images for mobile scrolling */
+  img {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Prevent layout shift during scroll */
+  * {
+    contain: layout style paint;
+  }
+  
+  /* Fast tap response */
+  a, button, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Mobile-specific 120fps animations */
+@media (max-width: 768px) and (min-resolution: 2dppx) {
+  * {
+    animation-duration: 0.1s;
+    transition-duration: 0.08s;
+  }
+  
+  /* Instant feedback on mobile */
+  a:active, button:active {
+    transition-duration: 0.03s;
+    transform: translate3d(0, 0, 0) scale(0.97);
+  }
+}
+
+/* Optimize for mobile high refresh rate (90Hz+) */
+@media (max-width: 768px) and (min-resolution: 3dppx) {
+  * {
+    animation-duration: 0.08s;
+    transition-duration: 0.05s;
+  }
+}
+
+/* Smooth pull-to-refresh prevention */
+@media (max-width: 768px) {
+  body {
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Prevent overscroll on iOS */
+  html {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #root {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Smooth horizontal scrolling on mobile */
+@media (max-width: 768px) {
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .horizontal-scroll > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+
+/* Optimize mobile navigation scrolling */
+@media (max-width: 768px) {
+  nav {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Smooth sticky header */
+  .sticky, [class*="sticky"] {
+    position: -webkit-sticky;
+    position: sticky;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  /* Optimize for touch devices */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Larger touch targets */
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Instant visual feedback */
+  a:active, button:active {
+    opacity: 0.7;
+    transform: translate3d(0, 0, 0) scale(0.97);
+    transition-duration: 0.05s;
+  }
+}
+
+/* Smooth scroll restoration */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent scroll jump on navigation */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+/* Mobile performance optimization */
+@media (max-width: 768px) {
+  /* Reduce paint areas */
+  * {
+    contain: layout style paint;
+  }
+  
+  /* Optimize compositing */
+  img, video, iframe {
+    contain: layout;
+    content-visibility: auto;
+  }
+  
+  /* Fast rendering */
+  .card, [class*="card"] {
+    contain: layout style paint;
+    content-visibility: auto;
+  }
 }
