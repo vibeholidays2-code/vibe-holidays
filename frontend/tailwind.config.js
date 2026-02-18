@@ -16,44 +16,57 @@ export default {
     },
     extend: {
       colors: {
-        // Professional Primary Colors - Deep blue for trust and professionalism
+        // Light Mint - Primary Color (replacing yellow)
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#1e40af', // Main primary color
-          700: '#1d4ed8',
-          800: '#1e3a8a',
-          900: '#1e293b',
+          50: '#e0f2f1',
+          100: '#b2dfdb', // Light Mint - main color
+          200: '#80cbc4',
+          300: '#4db6ac',
+          400: '#26a69a',
+          500: '#009688',
+          600: '#00897b',
+          700: '#00796b',
+          800: '#00695c',
+          900: '#004d40',
         },
-        // Secondary Colors - Warm orange for call-to-action elements
+        // Light Mint - Secondary Color (same as primary for consistency)
         secondary: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316', // Main secondary color
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+          50: '#e0f2f1',
+          100: '#b2dfdb', // Light Mint - main color
+          200: '#80cbc4',
+          300: '#4db6ac',
+          400: '#26a69a',
+          500: '#009688',
+          600: '#00897b',
+          700: '#00796b',
+          800: '#00695c',
+          900: '#004d40',
         },
-        // Sophisticated Neutral Palette
+        // Light Mint - Accent Color (same as primary for consistency)
+        accent: {
+          50: '#e0f2f1',
+          100: '#b2dfdb', // Light Mint - main color
+          200: '#80cbc4',
+          300: '#4db6ac',
+          400: '#26a69a',
+          500: '#009688',
+          600: '#00897b',
+          700: '#00796b',
+          800: '#00695c',
+          900: '#004d40',
+        },
+        // Sophisticated Neutral Palette - Warm Beige/Cream (No Blue)
         neutral: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#fafaf9',
+          100: '#f5f5f4',
+          200: '#e7e5e4',
+          300: '#d6d3d1',
+          400: '#a8a29e',
+          500: '#78716c',
+          600: '#57534e',
+          700: '#44403c',
+          800: '#292524',
+          900: '#1c1917',
         },
         // Success States
         success: {
@@ -286,12 +299,13 @@ export default {
         'zoom-in': 'zoom-in 200ms ease-out forwards',
         'float': 'float 3s ease-in-out infinite',
       },
-      // Gradient System
+      // Gradient System - White and Light Mint Only
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
-        'gradient-secondary': 'linear-gradient(135deg, #f97316 0%, #fb923c 100%)',
-        'gradient-success': 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-        'gradient-subtle': 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #80cbc4 0%, #b2dfdb 100%)', // Mint gradient
+        'gradient-secondary': 'linear-gradient(135deg, #b2dfdb 0%, #e0f2f1 100%)', // Light mint gradient
+        'gradient-accent': 'linear-gradient(135deg, #e0f2f1 0%, #f1f8f7 100%)', // Very light mint gradient
+        'gradient-hero': 'linear-gradient(135deg, #ffffff 0%, #e0f2f1 50%, #b2dfdb 100%)', // White to mint
+        'gradient-subtle': 'linear-gradient(135deg, #ffffff 0%, #fafffe 100%)', // Subtle white background
       },
     },
   },

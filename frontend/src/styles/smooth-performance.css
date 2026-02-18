@@ -171,23 +171,23 @@ img:not([loading="lazy"]) {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f5f5f4; /* Warm neutral */
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d6d3d1; /* Warm neutral */
   border-radius: 10px;
   transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #a8a29e; /* Warm neutral */
 }
 
 /* Smooth focus states */
 *:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #93d551; /* Yellow */
   outline-offset: 2px;
   transition: outline-offset 0.2s ease;
 }
@@ -197,7 +197,7 @@ img:not([loading="lazy"]) {
 }
 
 *:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #b2e47a; /* Yellow */
   outline-offset: 2px;
 }
 
@@ -299,9 +299,9 @@ img:not([loading="lazy"]) {
 .skeleton {
   background: linear-gradient(
     90deg,
-    #f1f5f9 0%,
-    #e2e8f0 50%,
-    #f1f5f9 100%
+    #f5f5f4 0%,
+    #e7e5e4 50%,
+    #f5f5f4 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
@@ -375,14 +375,14 @@ img:not([loading="lazy"]) {
 
 /* Smooth text selection */
 ::selection {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #b2dfdb; /* Light Mint */
+  color: #000000;
   text-shadow: none;
 }
 
 ::-moz-selection {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #b2dfdb; /* Light Mint */
+  color: #000000;
   text-shadow: none;
 }
 
@@ -418,7 +418,7 @@ img:not([loading="lazy"]) {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f97316);
+  background: linear-gradient(45deg, #b2dfdb, #80cbc4, #e0f2f1, #ffffff); /* White and Light Mint only */
   background-size: 400%;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -601,7 +601,7 @@ img:not([loading="lazy"]) {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f97316);
+  background: linear-gradient(45deg, #b2dfdb, #80cbc4, #e0f2f1, #ffffff); /* White and Light Mint only */
   background-size: 400%;
   opacity: 0;
   transition: opacity 0.15s ease, filter 0.15s ease;

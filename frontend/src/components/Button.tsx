@@ -6,6 +6,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   children: ReactNode;
+  bgColor?: string;
 }
 
 const Button = ({
@@ -15,6 +16,7 @@ const Button = ({
   children,
   className = '',
   disabled,
+  bgColor,
   ...props
 }: ButtonProps) => {
   const baseStyles =
@@ -22,7 +24,7 @@ const Button = ({
 
   const variantStyles = {
     primary:
-      'bg-gradient-primary text-white shadow-soft hover:shadow-medium focus:ring-primary-500',
+      'text-white shadow-soft hover:shadow-medium focus:ring-orange-500',
     secondary:
       'border-2 border-primary-600 text-primary-600 bg-white hover:bg-primary-600 hover:text-white hover:shadow-soft focus:ring-primary-500',
     outline:
@@ -78,6 +80,7 @@ const Button = ({
   return (
     <motion.button
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      style={bgColor ? { backgroundColor: bgColor, backgroundImage: 'none' } : (variant === 'primary' ? { backgroundColor: '#FFA726', backgroundImage: 'none' } : undefined)}
       disabled={disabled || isLoading}
       variants={buttonVariants}
       initial="initial"

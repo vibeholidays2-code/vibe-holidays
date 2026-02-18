@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       focused: { 
         y: -8, 
         scale: 0.85, 
-        color: error ? '#dc2626' : '#1e40af',
+        color: error ? '#dc2626' : '#FFA726',
         transition: { 
           type: "spring", 
           stiffness: 300, 
@@ -117,7 +117,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               error
                 ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
                 : isFocused
-                ? 'border-primary-500 focus:ring-primary-500 focus:border-primary-500 shadow-soft'
+                ? 'border-orange-400 focus:ring-orange-400 focus:border-orange-400 shadow-soft'
                 : 'border-neutral-300 hover:border-neutral-400'
             } ${className}`}
             onFocus={handleFocus}
@@ -126,7 +126,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             whileFocus={{ 
               boxShadow: error 
                 ? "0 0 0 3px rgba(220, 38, 38, 0.1)" 
-                : "0 0 0 3px rgba(30, 64, 175, 0.1)"
+                : "0 0 0 3px rgba(255, 167, 38, 0.1)"
             }}
             {...(props as any)}
           />
@@ -134,7 +134,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {/* Focus indicator line */}
           <motion.div
             className={`absolute bottom-0 left-0 h-0.5 ${
-              error ? 'bg-red-500' : 'bg-primary-500'
+              error ? 'bg-red-500' : 'bg-orange-500'
             }`}
             initial={{ width: 0 }}
             animate={{ width: isFocused ? '100%' : 0 }}

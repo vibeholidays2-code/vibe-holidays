@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView, useMotionValue, animate, useAnimationControls } from 'framer-motion';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import HeroModern from '../components/HeroModern';
+import WhyChooseUs from '../components/WhyChooseUs';
+import FloatingGlobe3D from '../components/FloatingGlobe3D';
 import { SkeletonPackageCard } from '../components/SkeletonLoader';
-import { ImageWithFallback } from '../components/ImagePlaceholder';
-import LoadingSpinner, { InlineLoader } from '../components/LoadingSpinner';
+import { InlineLoader } from '../components/LoadingSpinner';
 import InquiryModal from '../components/InquiryModal';
 
 interface Package {
@@ -20,9 +22,139 @@ interface Package {
   category?: string;
 }
 
+// ─── Animated Counter ────────────────────────────────────────────────────────
+const CountUp = ({ target, suffix = '' }: { target: number; suffix?: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const count = useMotionValue(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(count, target, {
+      duration: 2,
+      ease: 'easeOut',
+      onUpdate: (v) => {
+        if (ref.current) ref.current.textContent = Math.round(v) + suffix;
+      },
+    });
+    return controls.stop;
+  }, [inView, target, suffix, count]);
+
+  return <span ref={ref}>0{suffix}</span>;
+};
+
+// ─── Infinite Testimonials Carousel ──────────────────────────────────────────
+const CARD_WIDTH = 360;
+const GAP = 24;
+
+const TestimonialsCarousel = ({ items }: { items: typeof testimonialData }) => {
+  const doubled = [...items, ...items]; // duplicate for seamless loop
+  const x = useMotionValue(0);
+  const controls = useAnimationControls();
+  const [paused, setPaused] = useState(false);
+  const totalWidth = items.length * (CARD_WIDTH + GAP);
+
+  useEffect(() => {
+    if (paused) {
+      controls.stop();
+      return;
+    }
+    controls.start({
+      x: [0, -totalWidth],
+      transition: { duration: items.length * 5, ease: 'linear', repeat: Infinity },
+    });
+  }, [paused, controls, totalWidth, items.length]);
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Fade masks */}
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+
+      <motion.div
+        className="flex"
+        style={{ x, gap: GAP }}
+        animate={controls}
+        drag="x"
+        dragConstraints={{ left: -totalWidth, right: 0 }}
+      >
+        {doubled.map((t, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition-shadow duration-400 border border-slate-100 relative overflow-hidden group"
+            style={{ width: CARD_WIDTH }}
+          >
+            {/* Large quote */}
+            <div className="absolute top-4 right-5 text-6xl text-teal-100 font-serif leading-none select-none">"</div>
+
+            {/* Stars */}
+            <div className="flex gap-0.5 mb-4">
+              {Array.from({ length: t.rating }).map((_, si) => (
+                <span key={si} className="text-amber-400 text-lg">★</span>
+              ))}
+            </div>
+
+            {/* Text */}
+            <blockquote className="text-slate-600 text-sm leading-relaxed mb-6 relative z-10">
+              "{t.text}"
+            </blockquote>
+
+            {/* Author */}
+            <div className="flex items-center gap-3">
+              <img
+                src={t.image}
+                alt={t.name}
+                className="w-11 h-11 rounded-2xl object-cover border-2 border-white shadow-md"
+              />
+              <div>
+                <p className="font-bold text-slate-900 text-sm">{t.name}</p>
+                <p className="text-slate-400 text-xs flex items-center gap-1">
+                  <span>📍</span>{t.location}
+                </p>
+              </div>
+              <div className="ml-auto bg-green-50 text-green-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-green-100">
+                ✓ Verified
+              </div>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const testimonialData = [
+  { name: 'Priya Sharma', location: 'Ahmedabad', rating: 5, text: 'Amazing experience! The Bali package was perfectly organized. Every detail was taken care of. Highly recommend Vibes Holidays!', image: 'https://i.pravatar.cc/150?img=1' },
+  { name: 'Rahul Patel', location: 'Surat', rating: 5, text: 'The Jaisalmer desert tour was incredible! Great hospitality, beautiful locations, and excellent service throughout.', image: 'https://i.pravatar.cc/150?img=3' },
+  { name: 'Anjali Desai', location: 'Vadodara', rating: 5, text: 'Best travel agency! They customized our honeymoon package perfectly. Thank you for making our trip memorable!', image: 'https://i.pravatar.cc/150?img=5' },
+  { name: 'Vikram Singh', location: 'Mumbai', rating: 5, text: 'Professional service from start to finish. The Kashmir trip exceeded all expectations. Will definitely book again!', image: 'https://i.pravatar.cc/150?img=7' },
+  { name: 'Neha Kapoor', location: 'Delhi', rating: 5, text: 'Fantastic Goa package! Beach resorts were amazing and the itinerary was perfect. Great value for money!', image: 'https://i.pravatar.cc/150?img=9' },
+  { name: 'Arjun Mehta', location: 'Bangalore', rating: 5, text: 'Dubai trip was spectacular! Everything was well-organized and the team was very responsive. Highly recommended!', image: 'https://i.pravatar.cc/150?img=11' },
+];
+
+const stats = [
+  { number: 5000, suffix: '+', label: 'Happy Travelers', icon: '✈️', color: 'from-teal-400 to-teal-600' },
+  { number: 50, suffix: '+', label: 'Destinations', icon: '🌍', color: 'from-blue-400 to-blue-600' },
+  { number: 100, suffix: '+', label: 'Tour Packages', icon: '📦', color: 'from-orange-400 to-orange-600' },
+  { number: 10, suffix: '+', label: 'Years Experience', icon: '⭐', color: 'from-purple-400 to-purple-600' },
+];
+
+const ctaIcons = [
+  { icon: '✈️', delay: 0, left: '10%' },
+  { icon: '🌴', delay: 0.8, left: '25%' },
+  { icon: '🏖️', delay: 1.6, left: '50%' },
+  { icon: '🗺️', delay: 0.4, left: '70%' },
+  { icon: '🌅', delay: 1.2, left: '85%' },
+];
+
+// ─── HomePage ─────────────────────────────────────────────────────────────────
 const HomePage = () => {
   const [featuredPackages, setFeaturedPackages] = useState<Package[]>([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showInquiryModal, setShowInquiryModal] = useState(false);
@@ -33,107 +165,28 @@ const HomePage = () => {
         setIsLoading(true);
         setError(null);
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-        console.log('Fetching from:', `${apiUrl}/packages?featured=true&limit=12`);
         const response = await fetch(`${apiUrl}/packages?featured=true&limit=12`);
-        console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
-          console.log('Received data:', data);
-          const packages = data.data || data.packages || [];
-          console.log('Setting packages:', packages);
-          setFeaturedPackages(packages);
-          // Reset slide to 0 when packages load
-          setCurrentSlide(0);
+          setFeaturedPackages(data.data || data.packages || []);
         } else {
-          console.error('Failed to fetch:', response.status, response.statusText);
           setError('Failed to load featured packages');
         }
-      } catch (error) {
-        console.error('Error fetching featured packages:', error);
+      } catch {
         setError('Unable to connect to server');
       } finally {
         setIsLoading(false);
       }
     };
-
     fetchFeaturedPackages();
   }, []);
 
-  // Show inquiry modal after 5 seconds for all users
-  // Show inquiry modal after 5 seconds - DESKTOP ONLY
   useEffect(() => {
-    console.log('Modal effect running...');
-    
-    // Only show modal on desktop screens (width >= 768px)
-    const isDesktop = () => window.innerWidth >= 768;
-    
-    if (isDesktop()) {
-      // Set up timer to show modal after 5 seconds
-      const timer = setTimeout(() => {
-        console.log('5 seconds elapsed - showing modal (desktop only)');
-        setShowInquiryModal(true);
-      }, 5000);
-
+    if (window.innerWidth >= 768) {
+      const timer = setTimeout(() => setShowInquiryModal(true), 5000);
       return () => clearTimeout(timer);
     }
   }, []);
-
-  // Auto-rotate hero carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const heroSlides = [
-    {
-      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80',
-      title: 'Discover Your Next Adventure',
-      subtitle: 'Explore the world with Vibes Holidays',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80',
-      title: 'Create Unforgettable Memories',
-      subtitle: 'Experience the journey of a lifetime',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=1920&q=80',
-      title: 'Your Dream Vacation Awaits',
-      subtitle: 'Let us plan your perfect getaway',
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Priya Sharma',
-      location: 'Ahmedabad',
-      rating: 5,
-      text: 'Amazing experience! The Bali package was perfectly organized. Every detail was taken care of. Highly recommend Vibes Holidays!',
-      image: 'https://i.pravatar.cc/150?img=1',
-    },
-    {
-      name: 'Rahul Patel',
-      location: 'Surat',
-      rating: 5,
-      text: 'The Jaisalmer desert tour was incredible! Great hospitality, beautiful locations, and excellent service throughout.',
-      image: 'https://i.pravatar.cc/150?img=3',
-    },
-    {
-      name: 'Anjali Desai',
-      location: 'Vadodara',
-      rating: 5,
-      text: 'Best travel agency! They customized our honeymoon package perfectly. Thank you for making our trip memorable!',
-      image: 'https://i.pravatar.cc/150?img=5',
-    },
-  ];
-
-  const stats = [
-    { number: '5000+', label: 'Happy Travelers', icon: '😊' },
-    { number: '50+', label: 'Destinations', icon: '🌍' },
-    { number: '100+', label: 'Tour Packages', icon: '🎒' },
-    { number: '10+', label: 'Years Experience', icon: '⭐' },
-  ];
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -160,323 +213,122 @@ const HomePage = () => {
         description="Discover unforgettable travel experiences with Vibes Holidays. Browse our curated holiday packages, explore exotic destinations, and book your dream vacation today."
         keywords="travel, holidays, vacation packages, holiday booking, travel agency, tours, destinations, adventure travel, beach holidays, cultural tours"
         url="/"
-        structuredData={structuredData}
+        schema={structuredData}
       />
 
-      {/* Inquiry Modal - Shows 5 seconds after login */}
-      <InquiryModal 
-        isOpen={showInquiryModal} 
-        onClose={() => setShowInquiryModal(false)} 
-      />
+      <InquiryModal isOpen={showInquiryModal} onClose={() => setShowInquiryModal(false)} />
 
-      {/* Hero Carousel Section */}
-      <section className="relative h-screen overflow-hidden">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-            }`}
-          >
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className="w-full h-full object-cover"
-            />
-            {/* Enhanced gradient overlay with subtle animation */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-            
-            {/* Subtle animated background pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
-          </div>
-        ))}
+      {/* ── Hero ── */}
+      <HeroModern featuredPackages={featuredPackages} />
 
-        {/* Hero Content */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="max-w-5xl xl:max-w-6xl"
-            >
-              {/* Enhanced typography with better hierarchy */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="mb-3 sm:mb-4 lg:mb-6"
-              >
-                <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-xs sm:text-sm lg:text-base font-medium tracking-wide uppercase">
-                  Premium Travel Experience
-                </span>
-              </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white mb-4 sm:mb-6 lg:mb-8 leading-[0.9] tracking-tight"
-              >
-                <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-                  {heroSlides[currentSlide].title}
-                </span>
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-200 mb-6 sm:mb-8 lg:mb-12 font-light leading-relaxed max-w-3xl sm:max-w-4xl xl:max-w-5xl"
-              >
-                {heroSlides[currentSlide].subtitle}
-              </motion.p>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6"
-              >
-                <Link to="/packages" className="w-full sm:w-auto">
-                  <Button className="group w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
-                    <span className="flex items-center justify-center gap-2 lg:gap-3">
-                      <span className="text-lg lg:text-xl">✨</span>
-                      <span>Explore Packages</span>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </Button>
-                </Link>
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <Button className="group w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 rounded-xl sm:rounded-2xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300">
-                    <span className="flex items-center justify-center gap-2 lg:gap-3">
-                      <span className="text-base lg:text-lg">📞</span>
-                      <span>Plan Your Trip</span>
-                    </span>
-                  </Button>
-                </Link>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Enhanced Carousel Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-gradient-to-r from-blue-400 to-purple-400 w-8 shadow-lg' 
-                  : 'bg-white/40 w-2 hover:bg-white/60'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Enhanced Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 right-8 z-20"
-        >
-          <div className="flex flex-col items-center gap-2 text-white/80">
-            <span className="text-sm font-medium tracking-wide">Scroll</span>
-            <div className="animate-bounce">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
-              Trusted by Thousands of Happy Travelers
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
-              Our commitment to excellence speaks through numbers
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                className="text-center text-white group"
-              >
-                <div className="relative mb-3 sm:mb-4 lg:mb-6">
-                  <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-1 sm:mb-2 lg:mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    {stat.icon}
-                  </div>
-                  <div className="absolute inset-0 bg-white/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-1 sm:mb-2 lg:mb-3 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                  {stat.number}
-                </div>
-                <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-blue-100 tracking-wide">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Packages */}
-      <section className="py-16 sm:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+      {/* ── Featured Packages ── */}
+      <section className="py-20 lg:py-32 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
+            className="text-center mb-16"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.85 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="inline-block mb-3 sm:mb-4 lg:mb-6"
+              transition={{ delay: 0.1 }}
+              className="inline-block px-5 py-2 bg-teal-50 border border-teal-100 rounded-full text-teal-600 text-sm font-semibold tracking-wide uppercase mb-4"
             >
-              <span className="px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-blue-600 text-xs sm:text-sm lg:text-base font-semibold tracking-wide uppercase">
-                Handpicked for You
-              </span>
-            </motion.div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4 sm:mb-6 lg:mb-8 leading-tight">
-              ✨ Featured Packages
+              Handpicked for You
+            </motion.span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-5 leading-tight">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700">Packages</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
-              Carefully curated travel experiences designed to create unforgettable memories
+            <p className="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto">
+              Carefully curated travel experiences designed to create unforgettable memories.
             </p>
           </motion.div>
 
           {featuredPackages.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 max-w-8xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
                 {featuredPackages.slice(0, 8).map((pkg, index) => (
                   <motion.div
                     key={pkg._id}
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                    transition={{ delay: index * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Link to={`/packages/${pkg._id}`} className="group block h-full">
-                      <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] h-full flex flex-col border border-slate-100/50">
-                        <div className="relative h-48 sm:h-56 md:h-64 lg:h-56 xl:h-64 overflow-hidden">
+                      <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 h-full flex flex-col border border-slate-100">
+                        {/* Image */}
+                        <div className="relative h-52 overflow-hidden">
                           <img
                             src={pkg.thumbnail || pkg.images?.[0] || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'}
                             alt={pkg.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             loading="lazy"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800';
-                            }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'; }}
                           />
-                          {/* Enhanced overlay gradient */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          
-                          {/* Sale Price Badge with Original Price */}
-                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex flex-col items-end gap-1">
-                            {/* Discount Badge */}
-                            <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-lg text-xs sm:text-sm font-bold shadow-lg animate-pulse">
-                              {(() => {
-                                const originalPrice = Math.round(pkg.price * 1.25);
-                                const discount = originalPrice - pkg.price;
-                                const discountPercent = Math.round((discount / originalPrice) * 100);
-                                return `${discountPercent}% OFF`;
-                              })()}
+                          {/* Hover overlay with "View Details" */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4">
+                            <span className="text-white font-semibold text-sm flex items-center gap-1">
+                              View Details
+                              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </span>
+                          </div>
+
+                          {/* Badges */}
+                          <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+                            <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold shadow-lg">
+                              {Math.round(20)}% OFF
                             </div>
-                            {/* Price Container */}
-                            <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 rounded-xl sm:rounded-2xl font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                              {/* Original Price - Crossed Out */}
-                              <div className="text-xs sm:text-sm text-white/70 line-through mb-0.5">
-                                ₹{Math.round(pkg.price * 1.25).toLocaleString()}
-                              </div>
-                              {/* Sale Price */}
-                              <div className="flex items-baseline">
-                                <span className="text-xs sm:text-sm">₹</span>
-                                <span className="text-sm sm:text-base md:text-lg">{pkg.price.toLocaleString()}</span>
-                              </div>
+                            <div className="bg-[#FFA726] text-white px-3 py-1.5 rounded-xl font-bold shadow-xl text-sm">
+                              <div className="text-white/70 line-through text-xs">₹{Math.round(pkg.price * 1.25).toLocaleString()}</div>
+                              <div>₹{pkg.price.toLocaleString()}</div>
                             </div>
                           </div>
-                          
-                          {/* Category badge */}
+
                           {pkg.category && (
-                            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm text-slate-800 px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg border border-white/50">
+                            <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-slate-800 px-2.5 py-1 rounded-lg text-xs font-semibold shadow-md">
                               {pkg.category}
                             </div>
                           )}
-                          
-                          {/* Sale Badge */}
-                          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold shadow-lg flex items-center gap-1">
-                            <span className="text-sm">🔥</span>
-                            <span>SALE</span>
+
+                          <div className="absolute bottom-3 left-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold shadow-md flex items-center gap-1">
+                            🔥 SALE
                           </div>
                         </div>
-                        
-                        <div className="p-4 sm:p-5 md:p-6 lg:p-8 flex-1 flex flex-col">
-                          <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+
+                        {/* Card body */}
+                        <div className="p-5 flex-1 flex flex-col">
+                          <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-teal-600 transition-colors leading-snug">
                             {pkg.name}
                           </h3>
-                          
-                          <div className="flex items-center text-slate-600 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base">
-                            <span className="mr-1.5 sm:mr-2 text-sm sm:text-base md:text-lg">📍</span>
+                          <div className="flex items-center text-slate-500 text-sm mb-3 gap-1">
+                            <span>📍</span>
                             <span className="font-medium">{pkg.destination}</span>
-                            <span className="mx-2 sm:mx-3 text-slate-400">•</span>
-                            <span className="mr-1 text-sm sm:text-base md:text-lg">⏱️</span>
+                            <span className="mx-2 text-slate-300">•</span>
+                            <span>⏱️</span>
                             <span className="font-medium">{pkg.duration} days</span>
                           </div>
-                          
-                          <p className="text-slate-600 line-clamp-3 mb-4 sm:mb-6 leading-relaxed flex-1 text-xs sm:text-sm md:text-base">
+                          <p className="text-slate-500 text-sm line-clamp-2 mb-4 flex-1 leading-relaxed">
                             {pkg.description}
                           </p>
-                          
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-xs sm:text-sm md:text-base">
-                              <span>View Details</span>
-                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ml-1.5 sm:ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="flex gap-0.5">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <span key={i} className="text-amber-400 text-sm">★</span>
+                              ))}
+                              <span className="text-slate-400 text-xs ml-1">(4.9)</span>
+                            </div>
+                            <span className="text-teal-600 text-sm font-semibold group-hover:text-teal-700 flex items-center gap-1">
+                              Details
+                              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                               </svg>
-                            </div>
-                            
-                            {/* Rating placeholder */}
-                            <div className="flex items-center gap-0.5 sm:gap-1">
-                              {Array.from({ length: 5 }).map((_, i) => (
-                                <span key={i} className="text-amber-400 text-xs sm:text-sm">★</span>
-                              ))}
-                              <span className="text-slate-500 text-xs sm:text-sm ml-1">(4.9)</span>
-                            </div>
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -485,18 +337,18 @@ const HomePage = () => {
                 ))}
               </div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="text-center mt-12 sm:mt-16 lg:mt-20"
+                className="text-center mt-14"
               >
                 <Link to="/packages">
-                  <Button className="group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl sm:rounded-2xl shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-white/10">
-                    <span className="flex items-center gap-2 lg:gap-3">
-                      <span>View All Packages</span>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <Button className="group px-10 py-4 text-lg bg-[#FFA726] hover:bg-[#FB8C00] text-white font-semibold rounded-2xl shadow-xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+                    <span className="flex items-center gap-2">
+                      View All Packages
+                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
@@ -506,20 +358,11 @@ const HomePage = () => {
             </>
           ) : isLoading ? (
             <div className="space-y-8">
-              {/* Professional loading state with skeleton cards */}
               <InlineLoader text="Waking up server and discovering packages..." />
-              <p className="text-center text-gray-500 text-sm">
-                ⏳ First load may take 30-60 seconds as the server wakes up
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.4 }}
-                  >
+              <p className="text-center text-gray-500 text-sm">⏳ First load may take 30-60 seconds</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
                     <SkeletonPackageCard />
                   </motion.div>
                 ))}
@@ -535,185 +378,215 @@ const HomePage = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">Unable to Load Packages</h3>
                 <p className="text-slate-600 mb-6">{error}</p>
-                <Button 
-                  onClick={() => window.location.reload()} 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-                >
-                  Try Again
-                </Button>
+                <Button onClick={() => window.location.reload()} className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-6 py-3 rounded-xl font-semibold">Try Again</Button>
               </div>
             </div>
           ) : (
             <div className="text-center py-20">
-              <div className="max-w-md mx-auto">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">No Featured Packages</h3>
-                <p className="text-slate-600 mb-6">We're currently updating our featured packages. Check back soon!</p>
-                <Link to="/packages">
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300">
-                    Browse All Packages
-                  </Button>
-                </Link>
-              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">No Featured Packages</h3>
+              <p className="text-slate-600 mb-6">We're currently updating our featured packages. Check back soon!</p>
+              <Link to="/packages">
+                <Button className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-6 py-3 rounded-xl font-semibold">Browse All Packages</Button>
+              </Link>
             </div>
           )}
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50/50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="inline-block mb-3 sm:mb-4"
-            >
-              <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200/50 rounded-full text-amber-600 text-xs sm:text-sm font-semibold tracking-wide uppercase">
-                Real Stories
-              </span>
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
-              💬 What Our Travelers Say
-            </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Authentic experiences shared by our valued customers
-            </p>
-          </motion.div>
+      {/* ── Stats ── */}
+      <section className="relative py-20 lg:py-32 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-teal-900">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2021&q=80')] bg-cover bg-center opacity-15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-900 via-teal-900/80 to-teal-900/50" />
+          {/* Animated blobs */}
+          <motion.div animate={{ y: [0, -25, 0], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} className="absolute top-16 left-8 w-40 h-40 bg-teal-400/15 rounded-full blur-3xl" />
+          <motion.div animate={{ y: [0, 25, 0], opacity: [0.15, 0.4, 0.15] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }} className="absolute bottom-16 right-8 w-56 h-56 bg-orange-400/15 rounded-full blur-3xl" />
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+            {/* Left — heading + stat cards */}
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+              <motion.span
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
-                className="group"
+                transition={{ delay: 0.15 }}
+                className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-teal-300 text-sm font-semibold tracking-wider uppercase mb-5"
               >
-                <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-slate-100/50 h-full flex flex-col relative overflow-hidden">
-                  {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
-                  
-                  {/* Quote icon */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 text-3xl sm:text-4xl text-blue-500/20 group-hover:text-blue-500/30 transition-colors">
-                    "
-                  </div>
-                  
-                  {/* Rating stars */}
-                  <div className="flex mb-4 sm:mb-6 relative z-10">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <motion.span 
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: (index * 0.15) + (i * 0.1) }}
-                        className="text-amber-400 text-xl sm:text-2xl mr-1 group-hover:text-amber-500 transition-colors"
-                      >
-                        ★
-                      </motion.span>
-                    ))}
-                  </div>
-                  
-                  {/* Testimonial text */}
-                  <blockquote className="text-slate-700 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 flex-1 relative z-10 font-medium">
-                    "{testimonial.text}"
-                  </blockquote>
-                  
-                  {/* Author info */}
-                  <div className="flex items-center relative z-10">
-                    <div className="relative">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl mr-3 sm:mr-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow object-cover"
-                      />
-                      <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                Our Impact
+              </motion.span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+                Trusted by <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Thousands</span> of Travelers
+              </h2>
+              <p className="text-slate-300 text-lg mb-10 max-w-md leading-relaxed">
+                Our numbers reflect the trust and satisfaction of our growing community of happy explorers.
+              </p>
+
+              {/* Stat cards grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24, scale: 0.9 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.12, duration: 0.55, type: 'spring', stiffness: 100 }}
+                    className="bg-white/8 backdrop-blur-md border border-white/12 rounded-2xl p-5 hover:bg-white/12 transition-colors duration-300"
+                  >
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center text-lg mb-3 shadow-lg`}>
+                      {stat.icon}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-lg sm:text-xl mb-1 group-hover:text-blue-600 transition-colors">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-slate-500 text-sm sm:text-base flex items-center">
-                        <span className="mr-1">📍</span>
-                        {testimonial.location}
-                      </p>
+                    <div className="text-3xl font-extrabold text-white mb-1">
+                      <CountUp target={stat.number} suffix={stat.suffix} />
                     </div>
-                  </div>
-                  
-                  {/* Verified badge */}
-                  <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    ✓ Verified
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Additional testimonials indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-12 sm:mt-16"
-          >
-            <p className="text-slate-600 text-base sm:text-lg mb-3 sm:mb-4">
-              Join thousands of satisfied travelers
-            </p>
-            <div className="flex justify-center items-center gap-2">
-              <div className="flex -space-x-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-white shadow-lg"></div>
+                    <div className="text-slate-400 text-sm font-medium">{stat.label}</div>
+                  </motion.div>
                 ))}
               </div>
-              <span className="text-slate-500 ml-3 text-sm sm:text-base">+5000 happy customers</span>
+            </motion.div>
+
+            {/* Right — 3D Globe (desktop) */}
+            <div>
+              <div className="hidden lg:block">
+                <FloatingGlobe3D />
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-              🎉 Ready for Your Next Adventure?
+      {/* ── Why Choose Us ── */}
+      <WhyChooseUs />
+
+      {/* ── Testimonials ── */}
+      <section className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
+        <div className="container mx-auto px-4 lg:px-8 mb-12">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="inline-block px-5 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200/60 rounded-full text-amber-600 text-sm font-semibold mb-5"
+            >
+              Real Stories
+            </motion.span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
+              What Our{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700">Travelers Say</span>
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              Authentic experiences shared by our valued customers
+            </p>
+          </motion.div>
+        </div>
+
+        <TestimonialsCarousel items={testimonialData} />
+
+        {/* Social proof */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-center mt-12 flex flex-col items-center gap-3"
+        >
+          <div className="flex -space-x-2">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 border-2 border-white shadow-md" />
+            ))}
+          </div>
+          <p className="text-slate-500 text-sm font-medium">+5,000 happy travelers trust Vibes Holidays</p>
+        </motion.div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="relative py-20 lg:py-28 overflow-hidden text-white">
+        {/* Animated mesh gradient */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              'linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #134e4a 100%)',
+              'linear-gradient(135deg, #0f766e 0%, #134e4a 40%, #0d9488 100%)',
+              'linear-gradient(135deg, #134e4a 0%, #0d9488 60%, #0f766e 100%)',
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        />
+        {/* Orange radial accent */}
+        <motion.div
+          className="absolute inset-0 opacity-25"
+          animate={{
+            background: [
+              'radial-gradient(circle at 20% 50%, rgba(255,167,38,0.5) 0%, transparent 55%)',
+              'radial-gradient(circle at 80% 30%, rgba(255,167,38,0.5) 0%, transparent 55%)',
+              'radial-gradient(circle at 50% 80%, rgba(255,167,38,0.5) 0%, transparent 55%)',
+              'radial-gradient(circle at 20% 50%, rgba(255,167,38,0.5) 0%, transparent 55%)',
+            ],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+        />
+
+        {/* Floating travel icons */}
+        {ctaIcons.map((item, i) => (
+          <div
+            key={i}
+            className="absolute bottom-0 text-3xl animate-float-icon pointer-events-none"
+            style={{ left: item.left, animationDelay: `${item.delay}s`, animationDuration: `${3.5 + i * 0.4}s` }}
+          >
+            {item.icon}
+          </div>
+        ))}
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 120 }}
+              className="text-5xl mb-5"
+            >
+              🎉
+            </motion.div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight">
+              Ready for Your Next Adventure?
+            </h2>
+            <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
               Let us help you plan the perfect vacation. Contact us today and make your travel dreams come true!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-blue-500 hover:!bg-blue-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
+                <motion.button
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="w-full sm:w-auto px-10 py-4 bg-[#FFA726] hover:bg-[#FB8C00] text-white font-bold text-lg rounded-full shadow-2xl transition-colors"
+                >
                   📧 Contact Us Now
-                </Button>
+                </motion.button>
               </Link>
               <a href="https://wa.me/917048505128" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-green-500 hover:!bg-green-600 !text-white font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
+                <motion.button
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="w-full sm:w-auto px-10 py-4 bg-green-500 hover:bg-green-600 text-white font-bold text-lg rounded-full shadow-2xl transition-colors"
+                >
                   💬 WhatsApp Us
-                </Button>
+                </motion.button>
               </a>
               <a href="tel:+917048505128" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl !bg-white/20 backdrop-blur-md border-2 border-white !text-white hover:!bg-white hover:!text-purple-600 rounded-full shadow-2xl transform hover:scale-105 transition-all">
+                <motion.button
+                  whileHover={{ scale: 1.06, backgroundColor: 'rgba(255,255,255,1)', color: '#FFA726' }}
+                  whileTap={{ scale: 0.96 }}
+                  className="w-full sm:w-auto px-10 py-4 bg-white/15 backdrop-blur-md border-2 border-white text-white font-bold text-lg rounded-full shadow-2xl transition-colors"
+                >
                   📞 Call Now
-                </Button>
+                </motion.button>
               </a>
             </div>
           </motion.div>

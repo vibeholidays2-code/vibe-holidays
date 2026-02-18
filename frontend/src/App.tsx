@@ -14,6 +14,7 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
+const HomePageModern = lazy(() => import('./pages/HomePageModern'));
 const PackagesPage = lazy(() => import('./pages/PackagesPage'));
 const PackageDetailPage = lazy(() => import('./pages/PackageDetailPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
@@ -54,6 +55,7 @@ function App() {
             {/* Public Routes */}
             <Route element={<PublicLayout />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/modern" element={<HomePageModern />} />
               <Route path="/packages" element={<PackagesPage />} />
               <Route path="/packages/:id" element={<PackageDetailPage />} />
               <Route path="/gallery" element={<GalleryPage />} />

@@ -88,7 +88,7 @@ const InquiryModal = ({
           >
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[98vh] sm:max-h-[95vh] overflow-hidden flex flex-col lg:flex-row">
               {/* Left Side - Branding */}
-              <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 p-10 flex-col justify-between relative overflow-hidden">
+              <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-700 p-10 flex-col justify-between relative overflow-hidden">
                 {/* Decorative circles */}
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full blur-2xl"></div>
@@ -98,7 +98,7 @@ const InquiryModal = ({
                 <div className="relative z-10">
                   <div className="text-6xl mb-6">✈️</div>
                   <h2 className="text-4xl font-bold text-white mb-4 leading-tight">Plan Your Perfect Trip</h2>
-                  <p className="text-primary-100 text-lg leading-relaxed">
+                  <p className="text-orange-100 text-lg leading-relaxed">
                     Get a <span className="font-bold text-white">FREE</span> personalized itinerary with the best prices from our travel experts
                   </p>
                 </div>
@@ -202,7 +202,7 @@ const InquiryModal = ({
                       onChange={handleChange}
                       required
                       placeholder="Enter Your Name"
-                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                     />
                   </div>
 
@@ -217,7 +217,7 @@ const InquiryModal = ({
                         onChange={handleChange}
                         required
                         placeholder="Enter Phone Number"
-                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
+                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                       />
                     </div>
                     <div>
@@ -229,7 +229,7 @@ const InquiryModal = ({
                         onChange={handleChange}
                         required
                         placeholder="your.email@example.com"
-                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
+                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium text-base touch-manipulation"
                       />
                     </div>
                   </div>
@@ -242,9 +242,9 @@ const InquiryModal = ({
                       value={formData.travelers}
                       onChange={handleChange}
                       required
-                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
                       style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e40af' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFA726' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right 1rem center',
                         paddingRight: '2.5rem',
@@ -267,9 +267,9 @@ const InquiryModal = ({
                       value={formData.tourType}
                       onChange={handleChange}
                       required
-                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 font-medium appearance-none cursor-pointer text-base touch-manipulation"
                       style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e40af' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFA726' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right 1rem center',
                         paddingRight: '2.5rem',
@@ -294,16 +294,16 @@ const InquiryModal = ({
                       required
                       rows={3}
                       placeholder="Tell us how we can help you..."
-                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium resize-none text-base touch-manipulation"
+                      className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-200 transition-all bg-white text-gray-900 placeholder-gray-400 font-medium resize-none text-base touch-manipulation"
                     />
                   </div>
 
                   {/* Checkbox */}
-                  <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 bg-primary-50 rounded-xl border-2 border-primary-200">
+                  <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 bg-orange-50 rounded-xl border-2 border-orange-200">
                     <input
                       type="checkbox"
                       id="office-visit"
-                      className="w-5 h-5 rounded border-primary-300 text-primary-600 focus:ring-primary-500 cursor-pointer accent-primary-600 touch-manipulation"
+                      className="w-5 h-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500 cursor-pointer accent-orange-600 touch-manipulation"
                       defaultChecked
                     />
                     <label htmlFor="office-visit" className="text-xs sm:text-sm text-gray-700 cursor-pointer font-medium">
@@ -315,7 +315,7 @@ const InquiryModal = ({
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold py-3.5 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-base sm:text-lg mt-4 sm:mt-6 touch-manipulation"
+                    className="w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold py-3.5 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-base sm:text-lg mt-4 sm:mt-6 touch-manipulation"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
@@ -329,7 +329,7 @@ const InquiryModal = ({
 
                   {/* Footer */}
                   <p className="text-xs text-center text-neutral-500 mt-3 sm:mt-4 pb-2">
-                    By submitting, you agree to our <a href="#" className="text-primary-600 hover:underline font-semibold">Privacy Policy</a> and <a href="#" className="text-primary-600 hover:underline font-semibold">Terms of Service</a>
+                    By submitting, you agree to our <a href="#" className="text-orange-600 hover:underline font-semibold">Privacy Policy</a> and <a href="#" className="text-orange-600 hover:underline font-semibold">Terms of Service</a>
                   </p>
                 </form>
               </div>
