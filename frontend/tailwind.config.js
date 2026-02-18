@@ -285,6 +285,17 @@ export default {
             transform: 'translateY(-4px)',
           },
         },
+        'ken-burns': {
+          '0%': {
+            transform: 'scale(1) translate(0%, 0%)',
+          },
+          '50%': {
+            transform: 'scale(1.08) translate(-1%, -1%)',
+          },
+          '100%': {
+            transform: 'scale(1) translate(0%, 0%)',
+          },
+        },
       },
       animation: {
         'slide-in-from-right': 'slide-in-from-right 300ms ease-out forwards',
@@ -298,6 +309,7 @@ export default {
         'slide-down': 'slide-down 300ms ease-out forwards',
         'zoom-in': 'zoom-in 200ms ease-out forwards',
         'float': 'float 3s ease-in-out infinite',
+        'ken-burns': 'ken-burns 18s ease-in-out infinite',
       },
       // Gradient System - White and Light Mint Only
       backgroundImage: {

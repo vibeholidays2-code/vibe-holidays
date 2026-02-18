@@ -28,7 +28,10 @@ const destinations = [
 
 const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
   return (
-    <section className="relative min-h-[100svh] flex flex-col overflow-hidden">
+    <section
+      className="relative flex flex-col overflow-hidden"
+      style={{ minHeight: 'calc(100svh - 4rem)' }}
+    >
 
       {/* Full-screen Ken Burns background */}
       <div className="absolute inset-0">
@@ -37,11 +40,12 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
           alt="Travel destination"
           className="w-full h-full object-cover animate-ken-burns"
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/35" />
+        {/* Extra bottom gradient so buttons are readable */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/60 to-transparent" />
       </div>
 
-
-      {/* Floating Destination Badges */}
+      {/* Floating Destination Badges — desktop only */}
       {destinations.map((dest, i) => (
         <motion.div
           key={dest.label}
@@ -63,20 +67,24 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
         </motion.div>
       ))}
 
+      {/* Spacer — pushes buttons to bottom */}
+      <div className="flex-1" />
+
       {/* CTA Buttons — pinned to bottom */}
-      <div className="relative z-10 mt-auto pb-12 sm:pb-20 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-6 sm:px-4">
+      <div className="relative z-10 pb-10 sm:pb-20 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-6 sm:px-4">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
+          className="w-full sm:w-auto"
         >
           <Link to="/packages">
             <motion.button
-              className="group relative w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-[#FFA726] text-white rounded-full font-bold text-base sm:text-lg shadow-2xl overflow-hidden"
+              className="group relative w-full sm:w-auto px-8 sm:px-10 py-4 bg-[#FFA726] text-white rounded-full font-bold text-base sm:text-lg shadow-2xl overflow-hidden"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Explore Packages
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -97,10 +105,11 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.6 }}
+          className="w-full sm:w-auto"
         >
           <Link to="/contact">
             <motion.button
-              className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-white/12 backdrop-blur-md border-2 border-white/70 text-white rounded-full font-bold text-base sm:text-lg shadow-2xl"
+              className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-white/15 backdrop-blur-md border-2 border-white/70 text-white rounded-full font-bold text-base sm:text-lg shadow-2xl"
               whileHover={{ scale: 1.06, backgroundColor: 'rgba(255,255,255,0.95)', color: '#FFA726' }}
               whileTap={{ scale: 0.96 }}
             >
