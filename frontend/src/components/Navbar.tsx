@@ -38,8 +38,8 @@ const Navbar = () => {
       {/* ── Main Navbar ── */}
       <nav
         className={`sticky top-0 z-50 transition-all duration-300 ${scrolled
-            ? 'bg-slate-950/95 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/30'
-            : 'bg-slate-950/80 backdrop-blur-lg border-b border-white/5'
+          ? 'bg-slate-950/95 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/30'
+          : 'bg-slate-950/80 backdrop-blur-lg border-b border-white/5'
           }`}
         role="navigation"
         aria-label="Main navigation"
@@ -56,7 +56,8 @@ const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="Vibes Holidays Logo"
-                className="h-12 sm:h-16 lg:h-20 w-auto object-contain brightness-0 invert"
+                className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(255,167,38,0.45))' }}
               />
             </Link>
 
@@ -68,8 +69,8 @@ const Navbar = () => {
                   to={link.path}
                   role="menuitem"
                   className={`${isActive(link.path)
-                      ? 'text-[#FFA726] bg-[#FFA726]/10'
-                      : 'text-slate-300 hover:text-[#FFA726] hover:bg-white/5'
+                    ? 'text-[#FFA726] bg-[#FFA726]/10'
+                    : 'text-slate-300 hover:text-[#FFA726] hover:bg-white/5'
                     } px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg relative group`}
                   aria-current={isActive(link.path) ? 'page' : undefined}
                 >
@@ -157,7 +158,7 @@ const Navbar = () => {
             >
               {/* Panel header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-                <img src="/logo.png" alt="Vibes Holidays" className="h-10 w-auto object-contain brightness-0 invert" />
+                <img src="/logo.png" alt="Vibes Holidays" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 0 6px rgba(255,167,38,0.4))' }} />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 rounded-lg text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
@@ -182,8 +183,8 @@ const Navbar = () => {
                       <Link
                         to={link.path}
                         className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-semibold transition-all duration-200 ${isActive(link.path)
-                            ? 'bg-[#FFA726]/15 text-[#FFA726] border border-[#FFA726]/20'
-                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                          ? 'bg-[#FFA726]/15 text-[#FFA726] border border-[#FFA726]/20'
+                          : 'text-slate-300 hover:bg-white/5 hover:text-white'
                           }`}
                         aria-current={isActive(link.path) ? 'page' : undefined}
                       >
