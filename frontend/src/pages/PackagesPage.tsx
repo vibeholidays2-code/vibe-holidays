@@ -107,13 +107,15 @@ const TiltCard = ({ children, className = '', onClick }: TiltCardProps) => {
   const rotateX = useTransform(y, [-0.5, 0.5], [8, -8]);
   const rotateY = useTransform(x, [-0.5, 0.5], [-8, 8]);
 
+  // Only enable tilt on devices with a real pointer (desktop)
+  const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchDevice) return;
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const nx = (e.clientX - rect.left) / rect.width - 0.5;
-    const ny = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(nx);
-    y.set(ny);
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
   const handleMouseLeave = () => {
@@ -125,18 +127,19 @@ const TiltCard = ({ children, className = '', onClick }: TiltCardProps) => {
     <motion.div
       ref={cardRef}
       className={`cursor-pointer ${className}`}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
+      style={isTouchDevice ? {} : { rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      whileHover={{ scale: 1.03, z: 20 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={isTouchDevice ? {} : { scale: 1.03, z: 20 }}
+      whileTap={{ scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
     >
       {children}
     </motion.div>
   );
 };
+
 
 // ─── Animated Background Particles ──────────────────────────────────────────
 const ParticleField = () => {
