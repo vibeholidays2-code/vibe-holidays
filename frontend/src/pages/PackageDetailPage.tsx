@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { packageService } from '../services/packageService';
+import { reviewService, Review } from '../services/reviewService';
 import { SkeletonPackageDetail } from '../components/SkeletonLoader';
 import { ImageWithFallback } from '../components/ImagePlaceholder';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
+import ReviewForm from '../components/ReviewForm';
 import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -15,6 +17,15 @@ const PackageDetailPage = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions'>('overview');
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [packageReviews, setPackageReviews] = useState<Review[]>([]);
+
+  // Fetch reviews
+  useEffect(() => {
+    reviewService.getApprovedReviews().then((revs) => {
+      setPackageReviews(revs);
+    }).catch(() => { });
+  }, []);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['package', id],
@@ -596,6 +607,71 @@ const PackageDetailPage = () => {
         </div>
       </div>
 
+      {/* ── Customer Reviews Section ── */}
+      <div className="bg-slate-950 border-t border-white/5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                <div className="w-8 h-8 bg-amber-500/20 border border-amber-500/30 rounded-lg flex items-center justify-center">
+                  ⭐
+                </div>
+                Customer Reviews
+              </h2>
+              {packageReviews.length > 0 && (
+                <p className="text-slate-400 mt-1 text-sm">{packageReviews.length} verified reviews</p>
+              )}
+            </div>
+            <motion.button
+              onClick={() => setShowReviewForm(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-5 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-sm rounded-xl shadow-lg shadow-teal-500/20 transition-all duration-300"
+            >
+              ✍️ Write a Review
+            </motion.button>
+          </div>
+
+          {packageReviews.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {packageReviews.slice(0, 6).map((review, i) => (
+                <motion.div
+                  key={review._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="flex gap-0.5 mb-3">
+                    {Array.from({ length: 5 }).map((_, si) => (
+                      <span key={si} className={`text-sm ${si < review.rating ? 'text-amber-400' : 'text-slate-600'}`}>★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">"{review.comment}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white font-bold text-sm">
+                      {review.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white text-sm">{review.name}</p>
+                      {review.destination && (
+                        <p className="text-slate-400 text-xs">📍 {review.destination}</p>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
+              <div className="text-4xl mb-4">💬</div>
+              <p className="text-slate-400 font-medium">No reviews yet</p>
+              <p className="text-slate-500 text-sm mt-1">Be the first to share your experience!</p>
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* ── Booking Modal ── */}
       <Modal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} title="">
         <div className="p-6 sm:p-8 bg-slate-900 rounded-2xl">
@@ -705,6 +781,18 @@ const PackageDetailPage = () => {
           </button>
         </div>
       </Modal>
+
+      {/* ── Review Form Modal ── */}
+      <ReviewForm
+        isOpen={showReviewForm}
+        onClose={() => setShowReviewForm(false)}
+        onSuccess={() => {
+          setShowReviewForm(false);
+          reviewService.getApprovedReviews().then((revs) => {
+            setPackageReviews(revs);
+          }).catch(() => { });
+        }}
+      />
     </div>
   );
 };

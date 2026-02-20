@@ -1,6 +1,6 @@
-import { useRef, useMemo, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, Line, useTexture } from '@react-three/drei';
+import { useRef, useMemo, Suspense, useState } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls, Sphere, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Destination coordinates (lat, lon converted to 3D)
@@ -27,21 +27,49 @@ const latLonToVector3 = (lat: number, lon: number, radius: number) => {
   return new THREE.Vector3(x, y, z);
 };
 
-const Globe = () => {
+// Earth textures from multiple reliable CDNs (fallback chain)
+const EARTH_TEXTURE_URLS = [
+  'https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg',
+  'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg',
+];
+
+const BUMP_MAP_URL = 'https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png';
+
+const EarthGlobe = () => {
   const globeRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
+  const cloudsRef = useRef<THREE.Mesh>(null);
+  const [textureLoaded, setTextureLoaded] = useState(false);
 
   // Load Earth texture
-  const earthTexture = useTexture(
-    'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+  const earthTexture = useLoader(
+    THREE.TextureLoader,
+    EARTH_TEXTURE_URLS[0]
   );
 
+  // Load bump map for terrain depth (optional enhancement)
+  const bumpMap = useLoader(
+    THREE.TextureLoader,
+    BUMP_MAP_URL
+  );
+
+  // Ensure correct color space for the Earth texture
+  if (earthTexture && !textureLoaded) {
+    earthTexture.colorSpace = THREE.SRGBColorSpace;
+    setTextureLoaded(true);
+  }
+
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
     if (globeRef.current) {
-      globeRef.current.rotation.y += 0.001;
+      globeRef.current.rotation.y += 0.0015;
+    }
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.y += 0.002;
     }
     if (ringRef.current) {
-      ringRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      ringRef.current.rotation.z = Math.sin(t * 0.5) * 0.1;
+      ringRef.current.rotation.x = Math.PI / 2 + Math.sin(t * 0.3) * 0.05;
     }
   });
 
@@ -49,7 +77,7 @@ const Globe = () => {
     return destinations.map((dest) => latLonToVector3(dest.lat, dest.lon, 2.52));
   }, []);
 
-  // Create flight arc paths
+  // Create flight arc paths between consecutive destinations
   const flightPaths = useMemo(() => {
     const paths = [];
     for (let i = 0; i < destinationPoints.length - 1; i++) {
@@ -70,34 +98,47 @@ const Globe = () => {
 
   return (
     <group>
-      {/* Main Globe — Realistic Earth */}
+      {/* Main Globe — Realistic Earth with Blue Marble texture */}
       <Sphere ref={globeRef} args={[2.5, 64, 64]}>
-        <meshStandardMaterial
+        <meshPhongMaterial
           map={earthTexture}
-          roughness={0.3}
-          metalness={0.05}
-          emissive="#667799"
-          emissiveIntensity={0.35}
+          bumpMap={bumpMap || undefined}
+          bumpScale={0.03}
+          specular={new THREE.Color('#888888')}
+          shininess={30}
         />
       </Sphere>
 
-      {/* Atmosphere Glow */}
-      <Sphere args={[2.62, 64, 64]}>
+      {/* Cloud layer — semi-transparent white sphere above the surface */}
+      <Sphere ref={cloudsRef} args={[2.53, 48, 48]}>
+        <meshPhongMaterial
+          color="#ffffff"
+          transparent
+          opacity={0.06}
+          depthWrite={false}
+          side={THREE.FrontSide}
+        />
+      </Sphere>
+
+      {/* Inner atmosphere glow */}
+      <Sphere args={[2.58, 64, 64]}>
         <meshBasicMaterial
-          color="#4fc3f7"
+          color="#88ccff"
           transparent
           opacity={0.08}
           side={THREE.BackSide}
+          depthWrite={false}
         />
       </Sphere>
 
       {/* Outer atmosphere haze */}
-      <Sphere args={[2.78, 64, 64]}>
+      <Sphere args={[2.72, 64, 64]}>
         <meshBasicMaterial
-          color="#81d4fa"
+          color="#5599dd"
           transparent
-          opacity={0.05}
+          opacity={0.04}
           side={THREE.BackSide}
+          depthWrite={false}
         />
       </Sphere>
 
@@ -139,11 +180,14 @@ const FloatingGlobe3D = () => {
   return (
     <div className="w-full h-[500px] lg:h-[600px]">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[5, 3, 5]} intensity={2} />
-        <pointLight position={[-10, -5, -10]} intensity={0.6} color="#4fc3f7" />
+        {/* Lighting setup for realistic Earth appearance */}
+        <ambientLight intensity={1.2} color="#ffffff" />
+        <directionalLight position={[5, 3, 5]} intensity={4.5} color="#ffffff" />
+        <directionalLight position={[-3, -1, -4]} intensity={1.0} color="#aaccee" />
+        <pointLight position={[10, 5, 10]} intensity={2.5} color="#ffffff" />
+        <pointLight position={[-8, -3, -6]} intensity={0.8} color="#aabbdd" />
         <Suspense fallback={null}>
-          <Globe />
+          <EarthGlobe />
         </Suspense>
         <OrbitControls
           enableZoom={false}

@@ -8,90 +8,7 @@ import { SkeletonPackageCard } from '../components/SkeletonLoader';
 import { InlineLoader } from '../components/LoadingSpinner';
 import SEO from '../components/SEO';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
 
-// ─── 3D Floating Orb (Three.js) ─────────────────────────────────────────────
-const FloatingOrb = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const ringRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.004;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
-    }
-    if (ringRef.current) {
-      ringRef.current.rotation.z += 0.006;
-      ringRef.current.rotation.x = Math.PI / 2 + Math.sin(state.clock.elapsedTime * 0.4) * 0.2;
-    }
-  });
-
-  return (
-    <group>
-      {/* Core globe wireframe */}
-      <Sphere ref={meshRef} args={[1.8, 48, 48]}>
-        <meshBasicMaterial color="#14B8A6" wireframe transparent opacity={0.35} />
-      </Sphere>
-
-      {/* Atmosphere glow */}
-      <Sphere args={[2.0, 48, 48]}>
-        <meshBasicMaterial color="#FFA726" transparent opacity={0.08} side={THREE.BackSide} />
-      </Sphere>
-
-      {/* Outer glow ring */}
-      <Sphere args={[2.2, 48, 48]}>
-        <meshBasicMaterial color="#14B8A6" transparent opacity={0.04} side={THREE.BackSide} />
-      </Sphere>
-
-      {/* Orbiting ring */}
-      <mesh ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[2.6, 0.018, 16, 100]} />
-        <meshBasicMaterial color="#FFA726" transparent opacity={0.7} />
-      </mesh>
-
-      {/* Second ring */}
-      <mesh rotation={[Math.PI / 3, Math.PI / 4, 0]}>
-        <torusGeometry args={[2.4, 0.01, 16, 100]} />
-        <meshBasicMaterial color="#14B8A6" transparent opacity={0.4} />
-      </mesh>
-
-      {/* Destination dots */}
-      {[
-        [1.4, 0.8, 1.0],
-        [-1.2, 1.1, 0.9],
-        [0.5, -1.5, 1.1],
-        [1.7, -0.3, 0.5],
-        [-0.8, -1.2, 1.3],
-        [1.0, 1.4, -0.7],
-      ].map((pos, i) => (
-        <mesh key={i} position={pos as [number, number, number]}>
-          <sphereGeometry args={[0.045, 16, 16]} />
-          <meshBasicMaterial color="#FFA726" />
-        </mesh>
-      ))}
-    </group>
-  );
-};
-
-const PackagesGlobe = () => (
-  <div className="w-full h-full">
-    <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-      <ambientLight intensity={0.6} />
-      <pointLight position={[10, 10, 10]} intensity={1.2} />
-      <FloatingOrb />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.8}
-        minPolarAngle={Math.PI / 3}
-        maxPolarAngle={Math.PI / 1.5}
-      />
-    </Canvas>
-  </div>
-);
 
 // ─── 3D Tilt Card ────────────────────────────────────────────────────────────
 interface TiltCardProps {
@@ -316,39 +233,40 @@ const PackagesPage = () => {
 
       {/* ── Hero Section ── */}
       <section ref={heroRef} className="relative min-h-[70vh] flex items-center overflow-hidden">
-        {/* Animated gradient background */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'linear-gradient(135deg, #0d1117 0%, #0d4a45 40%, #1a1a2e 100%)',
-              'linear-gradient(135deg, #1a1a2e 0%, #0d9488 40%, #0d1117 100%)',
-              'linear-gradient(135deg, #0d4a45 0%, #1a1a2e 40%, #0d9488 100%)',
-            ],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-        />
+        {/* Space / Earth-from-orbit background photo */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=2074&q=80"
+            alt="Maldives tropical destination"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Dark overlay to keep text readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/75 to-slate-950/60" />
+          {/* Teal colour tint to match brand */}
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/40 via-transparent to-transparent" />
+        </div>
 
         {/* Particle field */}
         <ParticleField />
 
-        {/* Grid overlay */}
+        {/* Subtle grid overlay */}
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(20,184,166,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.5) 1px, transparent 1px)',
+              'linear-gradient(rgba(20,184,166,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.8) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
 
         <div className="container mx-auto px-4 lg:px-8 xl:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 sm:py-20 lg:py-28">
-            {/* Left — Text */}
+          <div className="flex items-center py-16 sm:py-20 lg:py-28">
+            {/* Left — Text (max half-width on large screens) */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full lg:max-w-[55%]"
             >
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -397,23 +315,10 @@ const PackagesPage = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* Right — 3D Globe */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="hidden lg:block h-[420px] relative"
-            >
-              {/* Glow behind globe */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-64 bg-teal-500/20 rounded-full blur-3xl" />
-                <div className="absolute w-48 h-48 bg-orange-500/10 rounded-full blur-2xl" />
-              </div>
-              <PackagesGlobe />
-            </motion.div>
           </div>
         </div>
+
+
 
         {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-950 to-transparent" />

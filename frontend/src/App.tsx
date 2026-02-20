@@ -28,6 +28,7 @@ const PackageManagementPage = lazy(() => import('./pages/admin/PackageManagement
 const BookingManagementPage = lazy(() => import('./pages/admin/BookingManagementPage'));
 const InquiryManagementPage = lazy(() => import('./pages/admin/InquiryManagementPage'));
 const GalleryManagementPage = lazy(() => import('./pages/admin/GalleryManagementPage'));
+const ReviewManagementPage = lazy(() => import('./pages/admin/ReviewManagementPage'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -80,6 +81,7 @@ function App() {
               <Route path="bookings" element={<BookingManagementPage />} />
               <Route path="inquiries" element={<InquiryManagementPage />} />
               <Route path="gallery" element={<GalleryManagementPage />} />
+              <Route path="reviews" element={<ReviewManagementPage />} />
             </Route>
           </Routes>
         </Suspense>

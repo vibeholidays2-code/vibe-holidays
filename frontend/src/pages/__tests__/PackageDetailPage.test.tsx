@@ -13,6 +13,14 @@ vi.mock('../../services/packageService', () => ({
   },
 }));
 
+// Mock reviewService to avoid real API calls
+vi.mock('../../services/reviewService', () => ({
+  reviewService: {
+    getApprovedReviews: vi.fn(() => Promise.resolve([])),
+    createReview: vi.fn(() => Promise.resolve({})),
+  },
+}));
+
 // Helper to render with router and query client
 const renderWithProviders = (_packageId: string = '1') => {
   const queryClient = new QueryClient({
@@ -22,7 +30,7 @@ const renderWithProviders = (_packageId: string = '1') => {
       },
     },
   });
-  
+
   let result;
   act(() => {
     result = render(
@@ -393,7 +401,7 @@ describe('PackageDetailPage Component', () => {
       renderWithProviders('1');
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /book now/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /book this package/i })).toBeInTheDocument();
       });
     });
 
@@ -408,14 +416,14 @@ describe('PackageDetailPage Component', () => {
       renderWithProviders('1');
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /book now/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /book this package/i })).toBeInTheDocument();
       });
 
-      const bookButton = screen.getByRole('button', { name: /book now/i });
+      const bookButton = screen.getByRole('button', { name: /book this package/i });
       fireEvent.click(bookButton);
 
       await waitFor(() => {
-        expect(screen.getByText('Book This Package')).toBeInTheDocument();
+        expect(screen.getByText('Book Your Dream Trip')).toBeInTheDocument();
       });
     });
 
@@ -430,14 +438,14 @@ describe('PackageDetailPage Component', () => {
       renderWithProviders('1');
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /book now/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /book this package/i })).toBeInTheDocument();
       });
 
-      const bookButton = screen.getByRole('button', { name: /book now/i });
+      const bookButton = screen.getByRole('button', { name: /book this package/i });
       fireEvent.click(bookButton);
 
       await waitFor(() => {
-        const modalContent = screen.getByText('Book This Package').closest('div');
+        const modalContent = screen.getByText('Book Your Dream Trip').closest('div');
         expect(modalContent).toBeInTheDocument();
       });
     });
@@ -488,7 +496,7 @@ describe('PackageDetailPage Component', () => {
 
       await waitFor(() => {
         const packagesLinks = screen.getAllByRole('link', { name: /packages/i });
-        const breadcrumbPackagesLink = packagesLinks.find(link => 
+        const breadcrumbPackagesLink = packagesLinks.find(link =>
           link.getAttribute('href') === '/packages'
         );
         expect(breadcrumbPackagesLink).toBeInTheDocument();
@@ -553,7 +561,7 @@ describe('PackageDetailPage Component', () => {
 
       await waitFor(() => {
         const contactLinks = screen.getAllByRole('link', { name: /contact us/i });
-        const sidebarContactLink = contactLinks.find(link => 
+        const sidebarContactLink = contactLinks.find(link =>
           link.getAttribute('href') === '/contact'
         );
         expect(sidebarContactLink).toBeInTheDocument();

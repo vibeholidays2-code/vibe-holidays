@@ -8,6 +8,8 @@ import FloatingGlobe3D from '../components/FloatingGlobe3D';
 import { SkeletonPackageCard } from '../components/SkeletonLoader';
 import { InlineLoader } from '../components/LoadingSpinner';
 import InquiryModal from '../components/InquiryModal';
+import ReviewForm from '../components/ReviewForm';
+import { reviewService } from '../services/reviewService';
 
 interface Package {
   _id: string;
@@ -153,6 +155,31 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [dynamicReviews, setDynamicReviews] = useState<typeof testimonialData>([]);
+
+  // Fetch approved reviews from API
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviews = await reviewService.getApprovedReviews();
+        const mapped = reviews.map((r: any) => ({
+          name: r.name,
+          location: r.destination || 'India',
+          rating: r.rating,
+          text: r.comment,
+          image: `https://ui-avatars.com/api/?name=${encodeURIComponent(r.name)}&background=0d9488&color=fff&size=150`,
+        }));
+        setDynamicReviews(mapped);
+      } catch {
+        // Silently fall back to static testimonials
+      }
+    };
+    fetchReviews();
+  }, []);
+
+  // Merge API reviews with static data (API reviews first)
+  const allTestimonials = [...dynamicReviews, ...testimonialData];
 
   useEffect(() => {
     const fetchFeaturedPackages = async () => {
@@ -484,12 +511,12 @@ const HomePage = () => {
           </motion.div>
         </div>
 
-        <TestimonialsCarousel items={testimonialData} />
+        <TestimonialsCarousel items={allTestimonials} />
 
-        {/* Social proof */}
+        {/* Social proof + Write a Review */}
         <motion.div
           {...fadeUp(0.3)}
-          className="text-center mt-10 sm:mt-12 flex flex-col items-center gap-3"
+          className="text-center mt-10 sm:mt-12 flex flex-col items-center gap-4"
         >
           <div className="flex -space-x-2">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -497,8 +524,36 @@ const HomePage = () => {
             ))}
           </div>
           <p className="text-slate-400 text-sm font-medium">+5,000 happy travelers trust Vibes Holidays</p>
+          <motion.button
+            onClick={() => setShowReviewForm(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-bold text-sm rounded-full shadow-lg shadow-teal-500/20 transition-all duration-300 flex items-center gap-2"
+          >
+            ✍️ Write a Review
+          </motion.button>
         </motion.div>
       </section>
+
+      {/* Review Form Modal */}
+      <ReviewForm
+        isOpen={showReviewForm}
+        onClose={() => setShowReviewForm(false)}
+        onSuccess={() => {
+          setShowReviewForm(false);
+          // Refresh reviews after successful submission
+          reviewService.getApprovedReviews().then((reviews: any[]) => {
+            const mapped = reviews.map((r: any) => ({
+              name: r.name,
+              location: r.destination || 'India',
+              rating: r.rating,
+              text: r.comment,
+              image: `https://ui-avatars.com/api/?name=${encodeURIComponent(r.name)}&background=0d9488&color=fff&size=150`,
+            }));
+            setDynamicReviews(mapped);
+          }).catch(() => { });
+        }}
+      />
 
       {/* ── CTA ── */}
       <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden text-white">

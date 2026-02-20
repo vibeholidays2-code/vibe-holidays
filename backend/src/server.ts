@@ -17,6 +17,8 @@ import packageRoutes from './routes/packageRoutes';
 import bookingRoutes from './routes/bookingRoutes';
 import inquiryRoutes from './routes/inquiryRoutes';
 import galleryRoutes from './routes/galleryRoutes';
+import reviewRoutes from './routes/reviewRoutes';
+import newsletterRoutes from './routes/newsletterRoutes';
 
 dotenv.config();
 
@@ -47,16 +49,16 @@ app.use('/brochures', express.static(path.join(__dirname, '../brochures'))); // 
 
 // Health check routes for UptimeRobot
 app.get('/', (req, res) => {
-  res.status(200).json({ 
-    status: 'ok', 
+  res.status(200).json({
+    status: 'ok',
     message: 'Vibe Holidays API is running',
     timestamp: new Date().toISOString()
   });
 });
 
 app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'ok', 
+  res.status(200).json({
+    status: 'ok',
     message: 'Vibe Holidays API is running',
     timestamp: new Date().toISOString()
   });
@@ -72,6 +74,8 @@ app.use('/api/admin/bookings', bookingRoutes);
 app.use('/api', inquiryRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/admin/gallery', galleryRoutes);
+app.use('/api', reviewRoutes);
+app.use('/api', newsletterRoutes);
 
 // Connect to database and start server
 const startServer = async () => {

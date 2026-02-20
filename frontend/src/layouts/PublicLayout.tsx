@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageTransition from '../components/PageTransition';
+import WhatsAppWidget from '../components/WhatsAppWidget';
 
 const PublicLayout = () => {
   return (
@@ -13,6 +14,7 @@ const PublicLayout = () => {
         </PageTransition>
       </main>
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import NewsletterSignup from './NewsletterSignup';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -224,6 +225,11 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Newsletter Signup */}
+        <div className="mt-12">
+          <NewsletterSignup />
         </div>
 
         {/* Enhanced Bottom Bar with Subtle Dividers */}
