@@ -11,10 +11,10 @@ const Footer = () => {
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.3"/>
+              <circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.3" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#footer-pattern)"/>
+          <rect width="100%" height="100%" fill="url(#footer-pattern)" />
         </svg>
       </div>
 
@@ -23,14 +23,14 @@ const Footer = () => {
           {/* Enhanced Company Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-soft">
-                <span className="text-white font-bold text-xl">V</span>
+              <div className="w-16 h-16 rounded-xl overflow-hidden shadow-soft flex items-center justify-center">
+                <img src="/logo.png" alt="Vibes Holidays Logo" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                 Vibes Holidays
               </h3>
             </div>
-            
+
             <p className="text-neutral-300 text-lg leading-relaxed max-w-md">
               Your gateway to unforgettable travel experiences. We create
               memories that last a lifetime with personalized service and attention to detail.
@@ -97,7 +97,7 @@ const Footer = () => {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                   </svg>
                 </a>
               </div>

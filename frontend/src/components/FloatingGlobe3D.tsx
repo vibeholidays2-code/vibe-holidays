@@ -1,6 +1,6 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, Line } from '@react-three/drei';
+import { OrbitControls, Sphere, Line, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Destination coordinates (lat, lon converted to 3D)
@@ -31,6 +31,11 @@ const Globe = () => {
   const globeRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
 
+  // Load Earth texture
+  const earthTexture = useTexture(
+    'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+  );
+
   useFrame((state) => {
     if (globeRef.current) {
       globeRef.current.rotation.y += 0.001;
@@ -41,7 +46,7 @@ const Globe = () => {
   });
 
   const destinationPoints = useMemo(() => {
-    return destinations.map((dest) => latLonToVector3(dest.lat, dest.lon, 2.5));
+    return destinations.map((dest) => latLonToVector3(dest.lat, dest.lon, 2.52));
   }, []);
 
   // Create flight arc paths
@@ -55,7 +60,7 @@ const Globe = () => {
         .multiplyScalar(0.5)
         .normalize()
         .multiplyScalar(3.5);
-      
+
       const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
       const points = curve.getPoints(50);
       paths.push(points);
@@ -65,22 +70,33 @@ const Globe = () => {
 
   return (
     <group>
-      {/* Main Globe - Wireframe */}
+      {/* Main Globe — Realistic Earth */}
       <Sphere ref={globeRef} args={[2.5, 64, 64]}>
-        <meshBasicMaterial
-          color="#14B8A6"
-          wireframe
-          transparent
-          opacity={0.3}
+        <meshStandardMaterial
+          map={earthTexture}
+          roughness={0.3}
+          metalness={0.05}
+          emissive="#667799"
+          emissiveIntensity={0.35}
         />
       </Sphere>
 
       {/* Atmosphere Glow */}
-      <Sphere args={[2.7, 64, 64]}>
+      <Sphere args={[2.62, 64, 64]}>
         <meshBasicMaterial
-          color="#FFA726"
+          color="#4fc3f7"
           transparent
-          opacity={0.1}
+          opacity={0.08}
+          side={THREE.BackSide}
+        />
+      </Sphere>
+
+      {/* Outer atmosphere haze */}
+      <Sphere args={[2.78, 64, 64]}>
+        <meshBasicMaterial
+          color="#81d4fa"
+          transparent
+          opacity={0.05}
           side={THREE.BackSide}
         />
       </Sphere>
@@ -123,9 +139,12 @@ const FloatingGlobe3D = () => {
   return (
     <div className="w-full h-[500px] lg:h-[600px]">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <Globe />
+        <ambientLight intensity={1.2} />
+        <directionalLight position={[5, 3, 5]} intensity={2} />
+        <pointLight position={[-10, -5, -10]} intensity={0.6} color="#4fc3f7" />
+        <Suspense fallback={null}>
+          <Globe />
+        </Suspense>
         <OrbitControls
           enableZoom={false}
           enablePan={false}

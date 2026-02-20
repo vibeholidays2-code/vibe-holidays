@@ -67,19 +67,19 @@ const values = [
 const team = [
   {
     name: 'Ashish Patel', role: 'Founder & CEO',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80',
+    img: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=300&q=80',
     desc: 'Passionate traveler with 10+ years in the travel industry. Believes every journey should be transformative.',
     social: { linkedin: '#', instagram: '#' },
   },
   {
     name: 'Priya Sharma', role: 'Head of Operations',
-    img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80',
+    img: 'https://images.unsplash.com/photo-1614436163996-25cee5f54290?w=300&q=80',
     desc: 'Ensures every trip runs smoothly from start to finish. Expert in logistics and customer satisfaction.',
     social: { linkedin: '#', instagram: '#' },
   },
   {
     name: 'Rahul Mehta', role: 'Senior Travel Expert',
-    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80',
+    img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&q=80',
     desc: 'Specialist in Southeast Asia and Europe destinations. Has personally visited 40+ countries.',
     social: { linkedin: '#', instagram: '#' },
   },

@@ -377,8 +377,8 @@ const PackagesPage = () => {
               {/* Quick stats */}
               <div className="flex flex-wrap gap-6">
                 {[
-                  { label: 'Destinations', value: '5+', icon: '🌍' },
-                  { label: 'Packages', value: '20+', icon: '📦' },
+                  { label: 'Destinations', value: '50+', icon: '🌍' },
+                  { label: 'Packages', value: '100+', icon: '📦' },
                   { label: 'Happy Travelers', value: '5K+', icon: '✈️' },
                 ].map((stat, i) => (
                   <motion.div
