@@ -42,9 +42,22 @@ const InquiryModal = ({
     setSuccess(false);
 
     try {
-      const payload = packageId
-        ? { ...formData, packageId }
-        : formData;
+      // Build enriched message that includes travelers & tourType info
+      const travelersLabel = formData.travelers ? `Travellers: ${formData.travelers}` : '';
+      const tourLabel = formData.tourType ? `Tour Type: ${formData.tourType}` : '';
+      const extras = [travelersLabel, tourLabel].filter(Boolean).join(' | ');
+      const enrichedMessage = extras
+        ? `${formData.message}\n\n[${extras}]`
+        : formData.message;
+
+      const basePayload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: enrichedMessage,
+      };
+
+      const payload = packageId ? { ...basePayload, packageId } : basePayload;
 
       await api.post(packageId ? '/inquiries' : '/contact', payload);
       setSuccess(true);
@@ -56,10 +69,16 @@ const InquiryModal = ({
         setSuccess(false);
       }, 2000);
     } catch (err: any) {
-      setError(
-        err.response?.data?.message ||
+      if (!err.response) {
+        // Network error — backend unreachable
+        setError('Cannot reach server. Please check your connection or try again in a moment.');
+      } else {
+        setError(
+          err.response?.data?.message ||
+          err.response?.data?.errors?.join(', ') ||
           'Failed to send inquiry. Please try again later.'
-      );
+        );
+      }
     } finally {
       setLoading(false);
     }

@@ -19,20 +19,20 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {/* Enhanced Company Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-16 h-16 rounded-xl overflow-hidden shadow-soft flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden shadow-soft flex items-center justify-center">
                 <img src="/logo.png" alt="Vibes Holidays Logo" className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                 Vibes Holidays
               </h3>
             </div>
 
-            <p className="text-neutral-300 text-lg leading-relaxed max-w-md">
+            <p className="text-neutral-300 text-base sm:text-lg leading-relaxed max-w-md">
               Your gateway to unforgettable travel experiences. We create
               memories that last a lifetime with personalized service and attention to detail.
             </p>
@@ -233,8 +233,8 @@ const Footer = () => {
         </div>
 
         {/* Enhanced Bottom Bar with Subtle Dividers */}
-        <div className="mt-16 pt-8 border-t border-gradient-to-r from-transparent via-neutral-700 to-transparent">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-neutral-700">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
             <div className="flex items-center space-x-4">
               <p className="text-neutral-400 text-sm">
                 &copy; {currentYear} Vibes Holidays. All rights reserved.

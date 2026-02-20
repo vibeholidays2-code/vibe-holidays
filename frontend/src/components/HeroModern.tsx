@@ -17,13 +17,14 @@ interface HeroModernProps {
   featuredPackages: Package[];
 }
 
+// showOnMobile: only 2 badges on small screens to avoid clutter
 const destinations = [
-  { label: 'Bali', emoji: '🏖️', pos: { top: '18%', left: '5%' } },
-  { label: 'Kashmir', emoji: '🏔️', pos: { top: '15%', right: '6%' } },
-  { label: 'Goa', emoji: '🌊', pos: { top: '45%', left: '4%' } },
-  { label: 'Dubai', emoji: '🌆', pos: { top: '42%', right: '5%' } },
-  { label: 'Maldives', emoji: '🐠', pos: { top: '70%', left: '6%' } },
-  { label: 'Thailand', emoji: '🛕', pos: { top: '68%', right: '6%' } },
+  { label: 'Bali', emoji: '🏖️', pos: { top: '20%', left: '4%' }, mobileShow: true },
+  { label: 'Kashmir', emoji: '🏔️', pos: { top: '20%', right: '4%' }, mobileShow: true },
+  { label: 'Goa', emoji: '🌊', pos: { top: '46%', left: '3%' }, mobileShow: false },
+  { label: 'Dubai', emoji: '🌆', pos: { top: '46%', right: '3%' }, mobileShow: false },
+  { label: 'Maldives', emoji: '🐠', pos: { top: '70%', left: '4%' }, mobileShow: false },
+  { label: 'Thailand', emoji: '🛕', pos: { top: '70%', right: '4%' }, mobileShow: false },
 ];
 
 const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
@@ -48,7 +49,7 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
       {destinations.map((dest, i) => (
         <motion.div
           key={dest.label}
-          className="absolute z-10"
+          className={`absolute z-10 ${dest.mobileShow ? '' : 'hidden sm:block'}`}
           style={dest.pos}
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -58,8 +59,8 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
             animate={{ y: [0, i % 2 === 0 ? -9 : 9, 0] }}
             transition={{ duration: 3.5 + i * 0.4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-lg border border-white/30 rounded-full text-white text-sm font-semibold shadow-2xl select-none">
-              <span className="text-base">{dest.emoji}</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/15 backdrop-blur-lg border border-white/30 rounded-full text-white text-xs sm:text-sm font-semibold shadow-2xl select-none">
+              <span className="text-sm sm:text-base">{dest.emoji}</span>
               <span>{dest.label}</span>
             </div>
           </motion.div>
@@ -67,7 +68,7 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
       ))}
 
       {/* CTA Buttons — pinned to bottom */}
-      <div className="relative z-10 mt-auto pb-12 sm:pb-16 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-5">
+      <div className="relative z-10 mt-auto pb-8 sm:pb-16 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-5">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,7 +77,7 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
         >
           <Link to="/packages">
             <motion.button
-              className="group relative w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-[#FFA726] text-white rounded-full font-bold text-base sm:text-lg shadow-2xl shadow-orange-500/30 overflow-hidden"
+              className="group relative w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-4 min-h-[52px] bg-[#FFA726] text-white rounded-full font-bold text-base sm:text-lg shadow-2xl shadow-orange-500/30 overflow-hidden"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
             >
@@ -105,7 +106,7 @@ const HeroModern = ({ featuredPackages: _ }: HeroModernProps) => {
         >
           <Link to="/contact">
             <motion.button
-              className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-white/15 backdrop-blur-md border-2 border-white/60 text-white rounded-full font-bold text-base sm:text-lg shadow-2xl"
+              className="w-full sm:w-auto px-8 sm:px-10 py-4 min-h-[52px] bg-white/15 backdrop-blur-md border-2 border-white/60 text-white rounded-full font-bold text-base sm:text-lg shadow-2xl"
               whileHover={{ scale: 1.06, backgroundColor: 'rgba(255,255,255,0.95)', color: '#FFA726' }}
               whileTap={{ scale: 0.96 }}
             >

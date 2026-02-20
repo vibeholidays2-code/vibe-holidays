@@ -45,8 +45,8 @@ const CountUp = ({ target, suffix = '' }: { target: number; suffix?: string }) =
 };
 
 // ─── Infinite Testimonials Carousel ──────────────────────────────────────────
-const CARD_WIDTH = 360;
-const GAP = 24;
+const CARD_WIDTH = 320;
+const GAP = 20;
 
 const TestimonialsCarousel = ({ items }: { items: typeof testimonialData }) => {
   const doubled = [...items, ...items];
@@ -83,7 +83,7 @@ const TestimonialsCarousel = ({ items }: { items: typeof testimonialData }) => {
         {doubled.map((t, i) => (
           <div
             key={i}
-            className="flex-shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-7 hover:bg-white/8 hover:border-white/20 transition-all duration-400 relative overflow-hidden group"
+            className="flex-shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 hover:bg-white/8 hover:border-white/20 transition-all duration-400 relative overflow-hidden group"
             style={{ width: CARD_WIDTH }}
           >
             {/* Large quote */}

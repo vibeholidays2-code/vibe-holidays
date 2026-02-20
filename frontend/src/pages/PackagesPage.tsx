@@ -232,7 +232,7 @@ const PackagesPage = () => {
       />
 
       {/* ── Hero Section ── */}
-      <section ref={heroRef} className="relative min-h-[70vh] flex items-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[55vh] sm:min-h-[70vh] flex items-center overflow-hidden">
         {/* Space / Earth-from-orbit background photo */}
         <div className="absolute inset-0">
           <img
@@ -260,7 +260,7 @@ const PackagesPage = () => {
         />
 
         <div className="container mx-auto px-4 lg:px-8 xl:px-12 relative z-10">
-          <div className="flex items-center py-16 sm:py-20 lg:py-28">
+          <div className="flex items-center py-12 sm:py-16 lg:py-28">
             {/* Left — Text (max half-width on large screens) */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -278,7 +278,7 @@ const PackagesPage = () => {
                 Explore The World
               </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-extrabold mb-6 leading-[0.95]">
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-extrabold mb-6 leading-[1.05] sm:leading-[0.95]">
                 <span className="text-white">Holiday</span>
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-teal-300 to-emerald-400">
@@ -386,7 +386,7 @@ const PackagesPage = () => {
               transition={{ duration: 0.6 }}
             >
               {/* Section Header */}
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 sm:mb-16">
                 <motion.span
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -395,13 +395,13 @@ const PackagesPage = () => {
                 >
                   ✨ Handpicked Destinations
                 </motion.span>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-5 leading-tight">
                   Select Your{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">
                     Dream Destination
                   </span>
                 </h2>
-                <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+                <p className="text-base sm:text-xl text-slate-400 max-w-3xl mx-auto">
                   Discover handpicked destinations with carefully curated packages designed for unforgettable experiences
                 </p>
               </div>
