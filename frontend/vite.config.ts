@@ -14,9 +14,19 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://vibe-holidays-backend-0vgn.onrender.com',
+        target: 'http://localhost:5000',
         changeOrigin: true,
-        secure: true,
+        secure: false,
+      },
+      '/brochures': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/uploads': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
       },
     },
   },

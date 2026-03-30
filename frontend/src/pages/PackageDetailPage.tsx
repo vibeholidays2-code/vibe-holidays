@@ -377,7 +377,7 @@ const PackageDetailPage = () => {
                             {/* Day number */}
                             <div className="flex-shrink-0 flex flex-col items-center">
                               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-700 text-white rounded-xl sm:rounded-2xl flex items-center justify-center font-bold text-sm sm:text-base shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform duration-300">
-                                {index + 1}
+                                {item.day}
                               </div>
                               {index < pkg.itinerary!.length - 1 && (
                                 <div className="w-0.5 flex-1 bg-gradient-to-b from-teal-500/40 to-transparent mt-2 min-h-[20px]" />
@@ -386,8 +386,12 @@ const PackageDetailPage = () => {
                             {/* Content */}
                             <div className="flex-1 pb-2">
                               <div className="bg-white/5 hover:bg-white/8 border border-white/10 hover:border-teal-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5 transition-all duration-300">
-                                <h3 className="font-bold text-teal-400 mb-2 text-sm sm:text-base">Day {index + 1}</h3>
-                                <p className="text-slate-300 whitespace-pre-line leading-relaxed text-sm sm:text-base">{item}</p>
+                                <h3 className="font-bold text-teal-400 mb-2 text-sm sm:text-base">
+                                  Day {item.day} – {item.title}
+                                </h3>
+                                <p className="text-slate-300 whitespace-pre-line leading-relaxed text-sm sm:text-base">
+                                  {item.description}
+                                </p>
                               </div>
                             </div>
                           </motion.div>

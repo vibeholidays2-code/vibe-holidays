@@ -1,12 +1,18 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+export interface IItineraryItem {
+  day: number;
+  title: string;
+  description: string;
+}
+
 export interface IPackage extends Document {
   name: string;
   destination: string;
   duration: number;
   price: number;
   description: string;
-  itinerary: string[];
+  itinerary: IItineraryItem[];
   inclusions: string[];
   exclusions: string[];
   images: string[];
@@ -46,7 +52,11 @@ const PackageSchema: Schema = new Schema(
       required: [true, 'Description is required'],
     },
     itinerary: {
-      type: [String],
+      type: [{
+        day: { type: Number, required: true },
+        title: { type: String, required: true },
+        description: { type: String, required: true }
+      }],
       default: [],
     },
     inclusions: {

@@ -50,6 +50,7 @@ This is a DNS resolution issue preventing connection to MongoDB Atlas.
    - Port → TCP → 27017
    - Allow the connection
 
+
 ### Solution 3: Use Mobile Hotspot
 
 If your ISP is blocking MongoDB Atlas:

@@ -1,3 +1,9 @@
+export interface ItineraryItem {
+  day: number;
+  title: string;
+  description: string;
+}
+
 export interface Package {
   _id: string;
   name: string;
@@ -5,7 +11,7 @@ export interface Package {
   duration: number;
   price: number;
   description: string;
-  itinerary: string[];
+  itinerary: ItineraryItem[];
   inclusions: string[];
   exclusions: string[];
   images: string[];
