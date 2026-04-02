@@ -103,9 +103,10 @@ const EarthGlobe = () => {
         <meshPhongMaterial
           map={earthTexture}
           bumpMap={bumpMap || undefined}
-          bumpScale={0.03}
-          specular={new THREE.Color('#888888')}
-          shininess={30}
+          bumpScale={0.05}
+          specularMap={earthTexture}
+          specular={new THREE.Color('#333333')}
+          shininess={15}
         />
       </Sphere>
 

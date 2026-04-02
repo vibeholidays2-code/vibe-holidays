@@ -5,7 +5,7 @@ import {
   createPackage,
   updatePackage,
   deletePackage,
-} from '../controllers/packageController';
+} from '../controllers/packageControllerStatic'; // Using static JSON data
 import { authenticate } from '../middleware/auth';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ const router = express.Router();
 router.get('/', getPackages);
 router.get('/:id', getPackageById);
 
-// Protected admin routes
+// Protected admin routes (disabled in static mode)
 router.post('/', authenticate, createPackage);
 router.put('/:id', authenticate, updatePackage);
 router.delete('/:id', authenticate, deletePackage);

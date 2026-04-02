@@ -1,0 +1,344 @@
+[
+  {
+    "name": "Bali Budget Package",
+    "destination": "Bali",
+    "duration": 7,
+    "price": 25000,
+    "description": "Experience the magic of Bali with our budget-friendly package. Visit iconic temples, pristine beaches, and lush rice terraces.",
+    "highlights": [
+      "Visit Tanah Lot Temple",
+      "Ubud Monkey Forest",
+      "Tegalalang Rice Terraces",
+      "Water Temple Tour",
+      "Kuta Beach",
+      "Traditional Balinese Dance",
+      "Local Market Visit"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Sightseeing Tours",
+      "English Speaking Guide"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Lunch and Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80",
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+    "featured": true,
+    "active": true,
+    "category": "Bali",
+    "brochureUrl": "/brochures/bali-budget.pdf"
+  },
+  {
+    "name": "Jaisalmer Desert Group Tour",
+    "destination": "Jaisalmer",
+    "duration": 3,
+    "price": 8500,
+    "description": "Explore the Golden City of Jaisalmer with camel safari, desert camping, and fort visits.",
+    "highlights": [
+      "Jaisalmer Fort",
+      "Camel Safari",
+      "Desert Camping",
+      "Cultural Evening",
+      "Sand Dunes",
+      "Patwon Ki Haveli"
+    ],
+    "inclusions": [
+      "2 Nights Accommodation",
+      "All Meals",
+      "Camel Safari",
+      "Desert Camp",
+      "Sightseeing"
+    ],
+    "exclusions": [
+      "Transportation to Jaisalmer",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Jaisalmer",
+    "brochureUrl": "/brochures/jaisalmer-group.pdf"
+  },
+  {
+    "name": "Vietnam Hanoi Explorer",
+    "destination": "Hanoi, Vietnam",
+    "duration": 4,
+    "price": 24000,
+    "description": "Discover the charm of Hanoi with its ancient temples, bustling markets, and delicious street food.",
+    "highlights": [
+      "Hoan Kiem Lake",
+      "Old Quarter Walking Tour",
+      "Temple of Literature",
+      "Water Puppet Show",
+      "Street Food Tour"
+    ],
+    "inclusions": [
+      "3 Nights Hotel",
+      "Daily Breakfast",
+      "City Tours",
+      "Airport Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Visa Fees",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Vietnam",
+    "brochureUrl": "/brochures/vietnam-hanoi.pdf"
+  },
+  {
+    "name": "Goa Beach Package",
+    "destination": "Goa",
+    "duration": 4,
+    "price": 10000,
+    "description": "Relax on pristine beaches, enjoy water sports, and experience Goa's vibrant nightlife.",
+    "highlights": [
+      "Calangute Beach",
+      "Baga Beach",
+      "Fort Aguada",
+      "Water Sports",
+      "Beach Shacks",
+      "Sunset Cruise"
+    ],
+    "inclusions": [
+      "3 Nights Accommodation",
+      "Breakfast",
+      "Airport Transfers",
+      "Sightseeing"
+    ],
+    "exclusions": [
+      "Flights",
+      "Water Sports",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Goa",
+    "brochureUrl": "/brochures/goa-beach.pdf"
+  },
+  {
+    "name": "Manali Honeymoon Package",
+    "destination": "Manali",
+    "duration": 6,
+    "price": 22500,
+    "description": "Perfect honeymoon destination with snow-capped mountains, romantic settings, and adventure activities.",
+    "highlights": [
+      "Solang Valley",
+      "Rohtang Pass",
+      "Hadimba Temple",
+      "Mall Road",
+      "Old Manali",
+      "River Rafting"
+    ],
+    "inclusions": [
+      "5 Nights Hotel",
+      "Daily Breakfast & Dinner",
+      "Cab for Sightseeing",
+      "Honeymoon Cake"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Adventure Activities",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+    "featured": true,
+    "active": true,
+    "category": "Manali",
+    "brochureUrl": "/brochures/manali-honeymoon.pdf"
+  },
+  {
+    "name": "Kerala Premium Package",
+    "destination": "Kerala",
+    "duration": 7,
+    "price": 20000,
+    "description": "God's Own Country - Experience backwaters, hill stations, and pristine beaches of Kerala.",
+    "highlights": [
+      "Munnar Tea Gardens",
+      "Alleppey Houseboat",
+      "Thekkady Wildlife",
+      "Kovalam Beach",
+      "Kathakali Dance",
+      "Ayurvedic Massage"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "All Meals",
+      "Houseboat Stay",
+      "Transfers & Sightseeing"
+    ],
+    "exclusions": [
+      "Flights",
+      "Entry Fees",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Kerala",
+    "brochureUrl": "/brochures/kerala-premium.pdf"
+  },
+  {
+    "name": "Kedarnath Yatra Package",
+    "destination": "Kedarnath",
+    "duration": 5,
+    "price": 17000,
+    "description": "Sacred pilgrimage to Kedarnath Temple, one of the twelve Jyotirlingas of Lord Shiva.",
+    "highlights": [
+      "Kedarnath Temple",
+      "Helicopter Service Option",
+      "Gaurikund",
+      "Sonprayag",
+      "Rishikesh Darshan"
+    ],
+    "inclusions": [
+      "4 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "Helicopter Charges",
+      "Porter Charges",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Kedarnath",
+    "brochureUrl": "/brochures/kedarnath-yatra.pdf"
+  },
+  {
+    "name": "Udaipur Lake City Package",
+    "destination": "Udaipur",
+    "duration": 4,
+    "price": 7000,
+    "description": "City of Lakes - Explore royal palaces, serene lakes, and rich cultural heritage.",
+    "highlights": [
+      "City Palace",
+      "Lake Pichola Boat Ride",
+      "Jag Mandir",
+      "Saheliyon Ki Bari",
+      "Fateh Sagar Lake"
+    ],
+    "inclusions": [
+      "3 Nights Hotel",
+      "Breakfast",
+      "Sightseeing",
+      "Boat Ride"
+    ],
+    "exclusions": [
+      "Transportation to Udaipur",
+      "Lunch & Dinner",
+      "Entry Fees"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Udaipur",
+    "brochureUrl": "/brochures/udaipur-lake.pdf"
+  },
+  {
+    "name": "Spiti Valley Complete Tour",
+    "destination": "Spiti Valley",
+    "duration": 8,
+    "price": 28500,
+    "description": "Adventure through the cold desert mountain valley with ancient monasteries and stunning landscapes.",
+    "highlights": [
+      "Key Monastery",
+      "Chandratal Lake",
+      "Kaza Town",
+      "Dhankar Monastery",
+      "Pin Valley",
+      "Kunzum Pass"
+    ],
+    "inclusions": [
+      "7 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Permits"
+    ],
+    "exclusions": [
+      "Flights to Manali",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Spiti Valley",
+    "brochureUrl": "/brochures/spiti-valley.pdf"
+  },
+  {
+    "name": "Char Dham Group Tour",
+    "destination": "Uttarakhand",
+    "duration": 10,
+    "price": 26000,
+    "description": "Complete Char Dham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath.",
+    "highlights": [
+      "Yamunotri Temple",
+      "Gangotri Temple",
+      "Kedarnath Temple",
+      "Badrinath Temple",
+      "Rishikesh",
+      "Haridwar"
+    ],
+    "inclusions": [
+      "9 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "Helicopter Services",
+      "Porter Charges",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=600&q=80",
+    "featured": false,
+    "active": true,
+    "category": "Char Dham",
+    "brochureUrl": "/brochures/char-dham.pdf"
+  }
+]
