@@ -5,10 +5,30 @@
     "duration": 6,
     "price": 29500,
     "description": "Experience the magic of Bali with temples, beaches, and cultural experiences in this 5 night 6 days package.",
-    "highlights": ["Tanah Lot Temple", "Ubud Monkey Forest", "Tegalalang Rice Terraces", "Water Temple", "Kuta Beach", "Balinese Dance Show"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Airport Transfers", "Sightseeing Tours", "English Speaking Guide"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Lunch and Dinner"],
-    "images": ["https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"],
+    "highlights": [
+      "Tanah Lot Temple",
+      "Ubud Monkey Forest",
+      "Tegalalang Rice Terraces",
+      "Water Temple",
+      "Kuta Beach",
+      "Balinese Dance Show"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Sightseeing Tours",
+      "English Speaking Guide"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Lunch and Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
     "featured": true,
     "active": true,
@@ -21,10 +41,30 @@
     "duration": 7,
     "price": 25000,
     "description": "Budget-friendly Bali escape with all major attractions covered in 6 nights 7 days.",
-    "highlights": ["Temple Tours", "Beach Visits", "Rice Terraces", "Cultural Shows", "Local Markets", "Water Sports"],
-    "inclusions": ["6 Nights Accommodation", "Daily Breakfast", "Airport Transfers", "Sightseeing", "Guide Services"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Meals (Lunch & Dinner)"],
-    "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80"],
+    "highlights": [
+      "Temple Tours",
+      "Beach Visits",
+      "Rice Terraces",
+      "Cultural Shows",
+      "Local Markets",
+      "Water Sports"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Sightseeing",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Meals (Lunch & Dinner)"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
     "featured": false,
     "active": true,
@@ -37,11 +77,30 @@
     "duration": 7,
     "price": 55000,
     "description": "Luxury Bali experience with 4-star accommodations and premium services.",
-    "highlights": ["Luxury Hotels", "Private Tours", "Spa Sessions", "Fine Dining", "Exclusive Experiences", "Premium Transfers"],
-    "inclusions": ["6 Nights 4★ Hotel", "All Meals", "Airport Transfers", "Private Sightseeing", "Spa Treatment"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+    "highlights": [
+      "Luxury Hotels",
+      "Private Tours",
+      "Spa Sessions",
+      "Fine Dining",
+      "Exclusive Experiences",
+      "Premium Transfers"
+    ],
+    "inclusions": [
+      "6 Nights 4★ Hotel",
+      "All Meals",
+      "Airport Transfers",
+      "Private Sightseeing",
+      "Spa Treatment"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Bali",
@@ -53,28 +112,67 @@
     "duration": 7,
     "price": 52000,
     "description": "Perfect honeymoon package with romantic settings, luxury stays, and couple experiences.",
-    "highlights": ["Romantic Dinners", "Couple Spa", "Private Beach", "Sunset Views", "Luxury Resorts", "Honeymoon Suite"],
-    "inclusions": ["6 Nights Luxury Stay", "All Meals", "Honeymoon Cake", "Couple Spa", "Private Tours", "Candlelight Dinner"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+    "highlights": [
+      "Romantic Dinners",
+      "Couple Spa",
+      "Private Beach",
+      "Sunset Views",
+      "Luxury Resorts",
+      "Honeymoon Suite"
+    ],
+    "inclusions": [
+      "6 Nights Luxury Stay",
+      "All Meals",
+      "Honeymoon Cake",
+      "Couple Spa",
+      "Private Tours",
+      "Candlelight Dinner"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1573790387438-4da905039392?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Bali",
     "brochureUrl": "/pdfs/bali/✨BALI  LUXURY HONEYMOON ESCAPE ✨.pdf"
-  }
-,
+  },
   {
     "name": "Bali Safari Package",
     "destination": "Bali",
     "duration": 6,
     "price": 36000,
     "description": "Bali adventure with safari park, wildlife encounters, and nature experiences.",
-    "highlights": ["Bali Safari Park", "Wildlife Shows", "Elephant Ride", "Temple Tours", "Beach Visits", "Cultural Shows"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Safari Park Entry", "Sightseeing Tours", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
+    "highlights": [
+      "Bali Safari Park",
+      "Wildlife Shows",
+      "Elephant Ride",
+      "Temple Tours",
+      "Beach Visits",
+      "Cultural Shows"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Safari Park Entry",
+      "Sightseeing Tours",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1558005530-a7958896ec60?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1558005530-a7958896ec60?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Bali",
@@ -86,11 +184,32 @@
     "duration": 6,
     "price": 34000,
     "description": "Rejuvenating Bali spa package with wellness treatments and relaxation.",
-    "highlights": ["Multiple Spa Sessions", "Balinese Massage", "Body Scrubs", "Yoga Sessions", "Temple Tours", "Beach Relaxation"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Spa Treatments", "Yoga Classes", "Sightseeing", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Meals (Lunch & Dinner)"],
-    "images": ["https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+    "highlights": [
+      "Multiple Spa Sessions",
+      "Balinese Massage",
+      "Body Scrubs",
+      "Yoga Sessions",
+      "Temple Tours",
+      "Beach Relaxation"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Spa Treatments",
+      "Yoga Classes",
+      "Sightseeing",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Meals (Lunch & Dinner)"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Bali",
@@ -102,10 +221,29 @@
     "duration": 4,
     "price": 10000,
     "description": "Quick Goa getaway with beaches, water sports, and nightlife in 3 nights 4 days.",
-    "highlights": ["Calangute Beach", "Baga Beach", "Fort Aguada", "Water Sports", "Beach Shacks", "Sunset Views"],
-    "inclusions": ["3 Nights Accommodation", "Breakfast", "Airport Transfers", "Sightseeing Tours"],
-    "exclusions": ["Flights", "Water Sports Charges", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80"],
+    "highlights": [
+      "Calangute Beach",
+      "Baga Beach",
+      "Fort Aguada",
+      "Water Sports",
+      "Beach Shacks",
+      "Sunset Views"
+    ],
+    "inclusions": [
+      "3 Nights Accommodation",
+      "Breakfast",
+      "Airport Transfers",
+      "Sightseeing Tours"
+    ],
+    "exclusions": [
+      "Flights",
+      "Water Sports Charges",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80",
     "featured": false,
     "active": true,
@@ -118,27 +256,65 @@
     "duration": 5,
     "price": 15000,
     "description": "Group tour package covering North and South Goa with all major attractions.",
-    "highlights": ["North Goa Beaches", "South Goa Churches", "Dudhsagar Falls", "Spice Plantation", "Cruise Party", "Water Sports"],
-    "inclusions": ["4 Nights Accommodation", "All Meals", "Transportation", "Sightseeing", "Cruise Party"],
-    "exclusions": ["Flights", "Water Sports", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80",
+    "highlights": [
+      "North Goa Beaches",
+      "South Goa Churches",
+      "Dudhsagar Falls",
+      "Spice Plantation",
+      "Cruise Party",
+      "Water Sports"
+    ],
+    "inclusions": [
+      "4 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Sightseeing",
+      "Cruise Party"
+    ],
+    "exclusions": [
+      "Flights",
+      "Water Sports",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1587922546307-776227941871?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1587922546307-776227941871?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Goa",
     "brochureUrl": "/pdfs/goa/🏝️ GOA GROUP TOUR PACKAGE.pdf"
-  }
-,
+  },
   {
     "name": "Jaisalmer Desert Group Tour",
     "destination": "Jaisalmer",
     "duration": 3,
     "price": 8500,
     "description": "Explore the Golden City with camel safari, desert camping, and fort visits.",
-    "highlights": ["Jaisalmer Fort", "Camel Safari", "Desert Camping", "Cultural Evening", "Sand Dunes", "Patwon Ki Haveli"],
-    "inclusions": ["2 Nights Accommodation", "All Meals", "Camel Safari", "Desert Camp", "Sightseeing"],
-    "exclusions": ["Transportation to Jaisalmer", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"],
+    "highlights": [
+      "Jaisalmer Fort",
+      "Camel Safari",
+      "Desert Camping",
+      "Cultural Evening",
+      "Sand Dunes",
+      "Patwon Ki Haveli"
+    ],
+    "inclusions": [
+      "2 Nights Accommodation",
+      "All Meals",
+      "Camel Safari",
+      "Desert Camp",
+      "Sightseeing"
+    ],
+    "exclusions": [
+      "Transportation to Jaisalmer",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&q=80",
     "featured": false,
     "active": true,
@@ -151,11 +327,31 @@
     "duration": 4,
     "price": 12000,
     "description": "Private customized tour of Jaisalmer with personalized experiences and luxury camping.",
-    "highlights": ["Private Fort Tour", "Luxury Desert Camp", "Camel Safari", "Cultural Programs", "Havelis Visit", "Sunset at Dunes"],
-    "inclusions": ["3 Nights Accommodation", "All Meals", "Private Vehicle", "Camel Safari", "Luxury Camp", "Guide"],
-    "exclusions": ["Transportation to Jaisalmer", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&q=80",
+    "highlights": [
+      "Private Fort Tour",
+      "Luxury Desert Camp",
+      "Camel Safari",
+      "Cultural Programs",
+      "Havelis Visit",
+      "Sunset at Dunes"
+    ],
+    "inclusions": [
+      "3 Nights Accommodation",
+      "All Meals",
+      "Private Vehicle",
+      "Camel Safari",
+      "Luxury Camp",
+      "Guide"
+    ],
+    "exclusions": [
+      "Transportation to Jaisalmer",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Jaisalmer",
@@ -167,10 +363,29 @@
     "duration": 6,
     "price": 18000,
     "description": "Complete Himachal tour covering Manali, Kasol, and Sissu with adventure activities.",
-    "highlights": ["Solang Valley", "Kasol Village", "Sissu Waterfall", "Rohtang Pass", "Hadimba Temple", "Old Manali"],
-    "inclusions": ["5 Nights Hotel", "Daily Breakfast", "Cab for Sightseeing", "All Transfers"],
-    "exclusions": ["Flights/Train", "Adventure Activities", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"],
+    "highlights": [
+      "Solang Valley",
+      "Kasol Village",
+      "Sissu Waterfall",
+      "Rohtang Pass",
+      "Hadimba Temple",
+      "Old Manali"
+    ],
+    "inclusions": [
+      "5 Nights Hotel",
+      "Daily Breakfast",
+      "Cab for Sightseeing",
+      "All Transfers"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Adventure Activities",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
     "featured": false,
     "active": true,
@@ -183,28 +398,65 @@
     "duration": 6,
     "price": 22500,
     "description": "Romantic honeymoon package with scenic locations and couple experiences.",
-    "highlights": ["Romantic Settings", "Solang Valley", "Kasol", "Sissu", "Rohtang Pass", "Honeymoon Suite"],
-    "inclusions": ["5 Nights Hotel", "Daily Breakfast & Dinner", "Cab for Sightseeing", "Honeymoon Cake", "Candlelight Dinner"],
-    "exclusions": ["Flights/Train", "Adventure Activities", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+    "highlights": [
+      "Romantic Settings",
+      "Solang Valley",
+      "Kasol",
+      "Sissu",
+      "Rohtang Pass",
+      "Honeymoon Suite"
+    ],
+    "inclusions": [
+      "5 Nights Hotel",
+      "Daily Breakfast & Dinner",
+      "Cab for Sightseeing",
+      "Honeymoon Cake",
+      "Candlelight Dinner"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Adventure Activities",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Manali",
     "brochureUrl": "/pdfs/manali/💕🏔️ MANALI – KASOL – SISSU HONEYMOON PACKAGE.pdf"
-  }
-,
+  },
   {
     "name": "Shimla-Manali Tour Package (Exclusive)",
     "destination": "Shimla & Manali",
     "duration": 7,
     "price": 20000,
     "description": "Exclusive Shimla-Manali tour covering both hill stations with all major attractions.",
-    "highlights": ["Mall Road Shimla", "Kufri", "Solang Valley", "Rohtang Pass", "Hadimba Temple", "Ridge Shimla"],
-    "inclusions": ["6 Nights Hotel", "Daily Breakfast", "Cab for Sightseeing", "All Transfers"],
-    "exclusions": ["Flights/Train", "Adventure Activities", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+    "highlights": [
+      "Mall Road Shimla",
+      "Kufri",
+      "Solang Valley",
+      "Rohtang Pass",
+      "Hadimba Temple",
+      "Ridge Shimla"
+    ],
+    "inclusions": [
+      "6 Nights Hotel",
+      "Daily Breakfast",
+      "Cab for Sightseeing",
+      "All Transfers"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Adventure Activities",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Manali",
@@ -216,11 +468,30 @@
     "duration": 6,
     "price": 16000,
     "description": "Classic Shimla-Manali tour with snow activities and sightseeing.",
-    "highlights": ["Shimla Sightseeing", "Kufri Snow Point", "Manali Local", "Solang Valley", "Rohtang Pass", "Mall Road"],
-    "inclusions": ["5 Nights Hotel", "Daily Breakfast", "Cab for Sightseeing", "All Transfers"],
-    "exclusions": ["Flights/Train", "Adventure Activities", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+    "highlights": [
+      "Shimla Sightseeing",
+      "Kufri Snow Point",
+      "Manali Local",
+      "Solang Valley",
+      "Rohtang Pass",
+      "Mall Road"
+    ],
+    "inclusions": [
+      "5 Nights Hotel",
+      "Daily Breakfast",
+      "Cab for Sightseeing",
+      "All Transfers"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Adventure Activities",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Manali",
@@ -232,10 +503,28 @@
     "duration": 7,
     "price": 20000,
     "description": "God's Own Country - Experience backwaters, hill stations, and beaches of Kerala.",
-    "highlights": ["Munnar Tea Gardens", "Alleppey Houseboat", "Thekkady Wildlife", "Kovalam Beach", "Kathakali Dance", "Ayurvedic Massage"],
-    "inclusions": ["6 Nights Accommodation", "All Meals", "Houseboat Stay", "Transfers & Sightseeing"],
-    "exclusions": ["Flights", "Entry Fees", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80"],
+    "highlights": [
+      "Munnar Tea Gardens",
+      "Alleppey Houseboat",
+      "Thekkady Wildlife",
+      "Kovalam Beach",
+      "Kathakali Dance",
+      "Ayurvedic Massage"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "All Meals",
+      "Houseboat Stay",
+      "Transfers & Sightseeing"
+    ],
+    "exclusions": [
+      "Flights",
+      "Entry Fees",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",
     "featured": false,
     "active": true,
@@ -248,28 +537,62 @@
     "duration": 5,
     "price": 17000,
     "description": "Sacred pilgrimage to Kedarnath Temple, one of the twelve Jyotirlingas.",
-    "highlights": ["Kedarnath Temple", "Helicopter Service Option", "Gaurikund", "Sonprayag", "Rishikesh Darshan"],
-    "inclusions": ["4 Nights Accommodation", "All Meals", "Transportation", "Guide Services"],
-    "exclusions": ["Helicopter Charges", "Porter Charges", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&q=80",
+    "highlights": [
+      "Kedarnath Temple",
+      "Helicopter Service Option",
+      "Gaurikund",
+      "Sonprayag",
+      "Rishikesh Darshan"
+    ],
+    "inclusions": [
+      "4 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "Helicopter Charges",
+      "Porter Charges",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Kedarnath",
     "brochureUrl": "/pdfs/kedarnath/🕉️🕉️ KEDARNATH YATRA PACKAGE.pdf"
-  }
-,
+  },
   {
     "name": "Char Dham Group Tour",
     "destination": "Uttarakhand",
     "duration": 10,
     "price": 26000,
     "description": "Complete Char Dham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath.",
-    "highlights": ["Yamunotri Temple", "Gangotri Temple", "Kedarnath Temple", "Badrinath Temple", "Rishikesh", "Haridwar"],
-    "inclusions": ["9 Nights Accommodation", "All Meals", "Transportation", "Guide Services"],
-    "exclusions": ["Helicopter Services", "Porter Charges", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=600&q=80",
+    "highlights": [
+      "Yamunotri Temple",
+      "Gangotri Temple",
+      "Kedarnath Temple",
+      "Badrinath Temple",
+      "Rishikesh",
+      "Haridwar"
+    ],
+    "inclusions": [
+      "9 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "Helicopter Services",
+      "Porter Charges",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Char Dham",
@@ -281,10 +604,27 @@
     "duration": 4,
     "price": 7000,
     "description": "City of Lakes - Explore royal palaces, serene lakes, and rich heritage.",
-    "highlights": ["City Palace", "Lake Pichola Boat Ride", "Jag Mandir", "Saheliyon Ki Bari", "Fateh Sagar Lake"],
-    "inclusions": ["3 Nights Hotel", "Breakfast", "Sightseeing", "Boat Ride"],
-    "exclusions": ["Transportation to Udaipur", "Lunch & Dinner", "Entry Fees"],
-    "images": ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"],
+    "highlights": [
+      "City Palace",
+      "Lake Pichola Boat Ride",
+      "Jag Mandir",
+      "Saheliyon Ki Bari",
+      "Fateh Sagar Lake"
+    ],
+    "inclusions": [
+      "3 Nights Hotel",
+      "Breakfast",
+      "Sightseeing",
+      "Boat Ride"
+    ],
+    "exclusions": [
+      "Transportation to Udaipur",
+      "Lunch & Dinner",
+      "Entry Fees"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
     "featured": false,
     "active": true,
@@ -297,11 +637,28 @@
     "duration": 4,
     "price": 9000,
     "description": "Udaipur and Kumbhalgarh fort tour with heritage experiences.",
-    "highlights": ["City Palace", "Kumbhalgarh Fort", "Lake Pichola", "Ranakpur Temples", "Local Markets"],
-    "inclusions": ["3 Nights Hotel", "Breakfast", "Sightseeing", "Transportation"],
-    "exclusions": ["Transportation to Udaipur", "Lunch & Dinner", "Entry Fees"],
-    "images": ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
+    "highlights": [
+      "City Palace",
+      "Kumbhalgarh Fort",
+      "Lake Pichola",
+      "Ranakpur Temples",
+      "Local Markets"
+    ],
+    "inclusions": [
+      "3 Nights Hotel",
+      "Breakfast",
+      "Sightseeing",
+      "Transportation"
+    ],
+    "exclusions": [
+      "Transportation to Udaipur",
+      "Lunch & Dinner",
+      "Entry Fees"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Udaipur",
@@ -313,28 +670,65 @@
     "duration": 5,
     "price": 11000,
     "description": "Group tour covering Udaipur, Nathdwara temple, and Kumbhalgarh fort.",
-    "highlights": ["Udaipur Sightseeing", "Nathdwara Temple", "Kumbhalgarh Fort", "Ranakpur Jain Temple", "Lake Pichola"],
-    "inclusions": ["4 Nights Hotel", "All Meals", "Transportation", "Sightseeing", "Guide"],
-    "exclusions": ["Transportation to Udaipur", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
+    "highlights": [
+      "Udaipur Sightseeing",
+      "Nathdwara Temple",
+      "Kumbhalgarh Fort",
+      "Ranakpur Jain Temple",
+      "Lake Pichola"
+    ],
+    "inclusions": [
+      "4 Nights Hotel",
+      "All Meals",
+      "Transportation",
+      "Sightseeing",
+      "Guide"
+    ],
+    "exclusions": [
+      "Transportation to Udaipur",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Udaipur",
     "brochureUrl": "/pdfs/udaipur/✨ ✨UDAIPUR – NATHDWARA – KUMBHALGARH GROUP TOUR ✨.pdf"
-  }
-,
+  },
   {
     "name": "Royal Rajasthan Tour Package",
     "destination": "Rajasthan",
     "duration": 8,
     "price": 24000,
     "description": "Complete Rajasthan tour covering Jaipur, Jodhpur, Udaipur, and Jaisalmer.",
-    "highlights": ["Jaipur City Palace", "Amber Fort", "Jodhpur Mehrangarh Fort", "Udaipur Lakes", "Jaisalmer Fort", "Desert Safari"],
-    "inclusions": ["7 Nights Accommodation", "Daily Breakfast", "Transportation", "Sightseeing", "Guide Services"],
-    "exclusions": ["Flights/Train", "Lunch & Dinner", "Personal Expenses", "Entry Fees"],
-    "images": ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
+    "highlights": [
+      "Jaipur City Palace",
+      "Amber Fort",
+      "Jodhpur Mehrangarh Fort",
+      "Udaipur Lakes",
+      "Jaisalmer Fort",
+      "Desert Safari"
+    ],
+    "inclusions": [
+      "7 Nights Accommodation",
+      "Daily Breakfast",
+      "Transportation",
+      "Sightseeing",
+      "Guide Services"
+    ],
+    "exclusions": [
+      "Flights/Train",
+      "Lunch & Dinner",
+      "Personal Expenses",
+      "Entry Fees"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Rajasthan",
@@ -346,10 +740,28 @@
     "duration": 8,
     "price": 28500,
     "description": "Adventure through the cold desert mountain valley with ancient monasteries.",
-    "highlights": ["Key Monastery", "Chandratal Lake", "Kaza Town", "Dhankar Monastery", "Pin Valley", "Kunzum Pass"],
-    "inclusions": ["7 Nights Accommodation", "All Meals", "Transportation", "Permits"],
-    "exclusions": ["Flights to Manali", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80"],
+    "highlights": [
+      "Key Monastery",
+      "Chandratal Lake",
+      "Kaza Town",
+      "Dhankar Monastery",
+      "Pin Valley",
+      "Kunzum Pass"
+    ],
+    "inclusions": [
+      "7 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Permits"
+    ],
+    "exclusions": [
+      "Flights to Manali",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
     "featured": false,
     "active": true,
@@ -362,11 +774,30 @@
     "duration": 7,
     "price": 25000,
     "description": "Group tour to Spiti Valley with shared accommodations and group activities.",
-    "highlights": ["Key Monastery", "Chandratal Lake", "Kaza", "Dhankar", "Tabo Monastery", "Kunzum Pass"],
-    "inclusions": ["6 Nights Accommodation", "All Meals", "Transportation", "Permits", "Guide"],
-    "exclusions": ["Flights to Manali", "Personal Expenses", "Tips"],
-    "images": ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
+    "highlights": [
+      "Key Monastery",
+      "Chandratal Lake",
+      "Kaza",
+      "Dhankar",
+      "Tabo Monastery",
+      "Kunzum Pass"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "All Meals",
+      "Transportation",
+      "Permits",
+      "Guide"
+    ],
+    "exclusions": [
+      "Flights to Manali",
+      "Personal Expenses",
+      "Tips"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1562979314-bee7453e911c?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1562979314-bee7453e911c?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Spiti Valley",
@@ -378,27 +809,66 @@
     "duration": 7,
     "price": 45000,
     "description": "Exclusive Singapore and Malaysia combo tour with all major attractions.",
-    "highlights": ["Marina Bay Sands", "Universal Studios", "Gardens by the Bay", "Sentosa Island", "Petronas Towers", "Genting Highlands"],
-    "inclusions": ["6 Nights Accommodation", "Daily Breakfast", "Airport Transfers", "Sightseeing Tours", "Universal Studios Entry"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=80"],
+    "highlights": [
+      "Marina Bay Sands",
+      "Universal Studios",
+      "Gardens by the Bay",
+      "Sentosa Island",
+      "Petronas Towers",
+      "Genting Highlands"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Sightseeing Tours",
+      "Universal Studios Entry"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Singapore",
     "brochureUrl": "/pdfs/singapore/✨ Exclusively from Vibes Holidays –✨ Singapore + MALAYSIA ✨ (1).pdf"
-  }
-,
+  },
   {
     "name": "Vietnam Group Tour",
     "destination": "Vietnam",
     "duration": 6,
     "price": 32000,
     "description": "Group tour covering Hanoi, Halong Bay, and Ho Chi Minh with cultural experiences.",
-    "highlights": ["Hanoi Old Quarter", "Halong Bay Cruise", "Ho Chi Minh City", "Cu Chi Tunnels", "Mekong Delta", "Water Puppet Show"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "Sightseeing Tours", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Lunch & Dinner"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
+    "highlights": [
+      "Hanoi Old Quarter",
+      "Halong Bay Cruise",
+      "Ho Chi Minh City",
+      "Cu Chi Tunnels",
+      "Mekong Delta",
+      "Water Puppet Show"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "Sightseeing Tours",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Lunch & Dinner"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"
+    ],
     "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
     "featured": false,
     "active": true,
@@ -411,11 +881,30 @@
     "duration": 6,
     "price": 32000,
     "description": "Budget Vietnam tour with Hanoi, Halong Bay, and Da Nang.",
-    "highlights": ["Hanoi Sightseeing", "Halong Bay", "Da Nang Beach", "Hoi An Ancient Town", "Marble Mountains"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "Sightseeing", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Meals"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi Sightseeing",
+      "Halong Bay",
+      "Da Nang Beach",
+      "Hoi An Ancient Town",
+      "Marble Mountains"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "Sightseeing",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Meals"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -427,11 +916,30 @@
     "duration": 5,
     "price": 35000,
     "description": "Beach paradise in Phu Quoc Island with water activities and relaxation.",
-    "highlights": ["Pristine Beaches", "Snorkeling", "Island Hopping", "Night Market", "Sunset Views", "Water Sports"],
-    "inclusions": ["4 Nights Beach Resort", "Daily Breakfast", "Airport Transfers", "Island Tours"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Water Sports"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Pristine Beaches",
+      "Snorkeling",
+      "Island Hopping",
+      "Night Market",
+      "Sunset Views",
+      "Water Sports"
+    ],
+    "inclusions": [
+      "4 Nights Beach Resort",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Island Tours"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Water Sports"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -443,28 +951,64 @@
     "duration": 4,
     "price": 24000,
     "description": "Explore Hanoi with its ancient temples, bustling markets, and street food.",
-    "highlights": ["Hoan Kiem Lake", "Old Quarter", "Temple of Literature", "Water Puppet Show", "Street Food Tour"],
-    "inclusions": ["3 Nights Hotel", "Daily Breakfast", "City Tours", "Airport Transfers"],
-    "exclusions": ["International Flights", "Visa Fees", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hoan Kiem Lake",
+      "Old Quarter",
+      "Temple of Literature",
+      "Water Puppet Show",
+      "Street Food Tour"
+    ],
+    "inclusions": [
+      "3 Nights Hotel",
+      "Daily Breakfast",
+      "City Tours",
+      "Airport Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Visa Fees",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
     "brochureUrl": "/pdfs/vietnam/– ✨ Hanoi @24000 ✨.pdf"
-  }
-,
+  },
   {
     "name": "Hanoi - Da Nang Tour",
     "destination": "Vietnam",
     "duration": 6,
     "price": 36000,
     "description": "Vietnam tour covering Hanoi and Da Nang with beach and cultural experiences.",
-    "highlights": ["Hanoi Old Quarter", "Halong Bay", "Da Nang Beach", "Hoi An", "Marble Mountains", "My Khe Beach"],
-    "inclusions": ["5 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "Sightseeing", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Meals"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi Old Quarter",
+      "Halong Bay",
+      "Da Nang Beach",
+      "Hoi An",
+      "Marble Mountains",
+      "My Khe Beach"
+    ],
+    "inclusions": [
+      "5 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "Sightseeing",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Meals"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1528127269322-539801943592?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -476,11 +1020,30 @@
     "duration": 7,
     "price": 42000,
     "description": "Perfect combo of cultural Hanoi and beach paradise Phu Quoc.",
-    "highlights": ["Hanoi Sightseeing", "Halong Bay", "Phu Quoc Beaches", "Island Hopping", "Water Activities"],
-    "inclusions": ["6 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "Island Tours", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Water Sports"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi Sightseeing",
+      "Halong Bay",
+      "Phu Quoc Beaches",
+      "Island Hopping",
+      "Water Activities"
+    ],
+    "inclusions": [
+      "6 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "Island Tours",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Water Sports"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -492,11 +1055,32 @@
     "duration": 8,
     "price": 48000,
     "description": "Complete Vietnam tour covering North to South with all major cities.",
-    "highlights": ["Hanoi", "Halong Bay", "Da Nang", "Hoi An", "Ho Chi Minh City", "Cu Chi Tunnels", "Mekong Delta"],
-    "inclusions": ["7 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "All Sightseeing", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Meals"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi",
+      "Halong Bay",
+      "Da Nang",
+      "Hoi An",
+      "Ho Chi Minh City",
+      "Cu Chi Tunnels",
+      "Mekong Delta"
+    ],
+    "inclusions": [
+      "7 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "All Sightseeing",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Meals"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Vietnam",
@@ -508,28 +1092,66 @@
     "duration": 8,
     "price": 48000,
     "description": "Vietnam tour with cultural cities and beach island experience.",
-    "highlights": ["Hanoi", "Halong Bay", "Da Nang", "Hoi An", "Phu Quoc Island", "Beach Activities"],
-    "inclusions": ["7 Nights Accommodation", "Daily Breakfast", "Halong Bay Cruise", "Island Tours", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Water Sports"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi",
+      "Halong Bay",
+      "Da Nang",
+      "Hoi An",
+      "Phu Quoc Island",
+      "Beach Activities"
+    ],
+    "inclusions": [
+      "7 Nights Accommodation",
+      "Daily Breakfast",
+      "Halong Bay Cruise",
+      "Island Tours",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Water Sports"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
     "brochureUrl": "/pdfs/vietnam/✨✨ Hanoi – Da Nang – Phu Quoc✨.pdf"
-  }
-,
+  },
   {
     "name": "Vietnam @ 48000 Premium",
     "destination": "Vietnam",
     "duration": 8,
     "price": 48000,
     "description": "Premium Vietnam tour with luxury accommodations and exclusive experiences.",
-    "highlights": ["Luxury Hotels", "Private Tours", "Halong Bay Cruise", "Fine Dining", "Spa Sessions", "Premium Transfers"],
-    "inclusions": ["7 Nights Luxury Hotels", "All Meals", "Halong Bay Cruise", "Private Sightseeing", "Spa Treatment"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Luxury Hotels",
+      "Private Tours",
+      "Halong Bay Cruise",
+      "Fine Dining",
+      "Spa Sessions",
+      "Premium Transfers"
+    ],
+    "inclusions": [
+      "7 Nights Luxury Hotels",
+      "All Meals",
+      "Halong Bay Cruise",
+      "Private Sightseeing",
+      "Spa Treatment"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -541,11 +1163,30 @@
     "duration": 6,
     "price": 38000,
     "description": "Beach lover's paradise covering Da Nang and Phu Quoc Island.",
-    "highlights": ["Da Nang Beach", "Hoi An", "Marble Mountains", "Phu Quoc Island", "Snorkeling", "Beach Activities"],
-    "inclusions": ["5 Nights Beach Resorts", "Daily Breakfast", "Island Tours", "Transfers"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses", "Water Sports"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Da Nang Beach",
+      "Hoi An",
+      "Marble Mountains",
+      "Phu Quoc Island",
+      "Snorkeling",
+      "Beach Activities"
+    ],
+    "inclusions": [
+      "5 Nights Beach Resorts",
+      "Daily Breakfast",
+      "Island Tours",
+      "Transfers"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses",
+      "Water Sports"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1578271887552-5ac3a72752bc?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1578271887552-5ac3a72752bc?w=600&q=80",
     "featured": false,
     "active": true,
     "category": "Vietnam",
@@ -557,11 +1198,33 @@
     "duration": 10,
     "price": 55000,
     "description": "Grand Vietnam tour covering all major destinations from North to South.",
-    "highlights": ["Hanoi", "Halong Bay", "Ninh Binh", "Da Nang", "Hoi An", "Nha Trang", "Ho Chi Minh", "Mekong Delta"],
-    "inclusions": ["9 Nights Accommodation", "All Meals", "Halong Bay Cruise", "All Sightseeing", "Transfers", "Guide"],
-    "exclusions": ["International Flights", "Travel Insurance", "Personal Expenses"],
-    "images": ["https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1200&q=80"],
-    "thumbnail": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
+    "highlights": [
+      "Hanoi",
+      "Halong Bay",
+      "Ninh Binh",
+      "Da Nang",
+      "Hoi An",
+      "Nha Trang",
+      "Ho Chi Minh",
+      "Mekong Delta"
+    ],
+    "inclusions": [
+      "9 Nights Accommodation",
+      "All Meals",
+      "Halong Bay Cruise",
+      "All Sightseeing",
+      "Transfers",
+      "Guide"
+    ],
+    "exclusions": [
+      "International Flights",
+      "Travel Insurance",
+      "Personal Expenses"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1528127269322-539801943592?w=1200&q=80"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80",
     "featured": true,
     "active": true,
     "category": "Vietnam",
