@@ -64,26 +64,7 @@ const values = [
   { icon: '🌏', title: 'Best Destinations', description: 'From exotic beaches to mountain adventures, we curate the best travel experiences worldwide.', color: 'from-emerald-500/15 to-emerald-600/5', border: 'border-emerald-500/20', glow: 'shadow-emerald-500/10' },
 ];
 
-const team = [
-  {
-    name: 'Ashish Patel', role: 'Founder & CEO',
-    img: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=300&q=80',
-    desc: 'Passionate traveler with 10+ years in the travel industry. Believes every journey should be transformative.',
-    social: { linkedin: '#', instagram: '#' },
-  },
-  {
-    name: 'Priya Sharma', role: 'Head of Operations',
-    img: 'https://images.unsplash.com/photo-1614436163996-25cee5f54290?w=300&q=80',
-    desc: 'Ensures every trip runs smoothly from start to finish. Expert in logistics and customer satisfaction.',
-    social: { linkedin: '#', instagram: '#' },
-  },
-  {
-    name: 'Rahul Mehta', role: 'Senior Travel Expert',
-    img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&q=80',
-    desc: 'Specialist in Southeast Asia and Europe destinations. Has personally visited 40+ countries.',
-    social: { linkedin: '#', instagram: '#' },
-  },
-];
+
 
 const testimonials = [
   { name: 'Sneha Patel', location: 'Ahmedabad', rating: 5, text: 'Vibe Holidays made our Bali trip absolutely magical! Every detail was perfectly planned. Will definitely book again!', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80', trip: 'Bali, Indonesia' },
@@ -387,46 +368,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* ── TEAM ── */}
-    <section className="py-16 lg:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent pointer-events-none" />
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <motion.div {...fadeUp()} className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-teal-500/10 border border-teal-500/20 rounded-full text-teal-400 text-xs font-semibold uppercase tracking-wider mb-5">
-            The People Behind
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4">
-            Meet Our{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Team</span>
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">Passionate travel experts dedicated to making your journey unforgettable.</p>
-        </motion.div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {team.map((m, i) => (
-            <motion.div key={i} {...fadeUp(i * 0.12)}
-              className="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/30 hover:shadow-xl hover:shadow-teal-500/5 transition-all duration-400"
-            >
-              {/* Photo */}
-              <div className="relative h-56 overflow-hidden">
-                <img src={m.img} alt={m.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                {/* Role badge */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <span className="inline-block px-3 py-1 bg-teal-500/30 border border-teal-500/40 text-teal-300 text-xs font-bold rounded-full backdrop-blur-sm">
-                    {m.role}
-                  </span>
-                </div>
-              </div>
-              {/* Info */}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-white mb-2">{m.name}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{m.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+
 
     {/* ── TESTIMONIALS ── */}
     <section className="py-16 lg:py-24">
